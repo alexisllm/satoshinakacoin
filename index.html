@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Landing de preventa Genesis para SatoshiNakaCoin SNC en BNB Smart Chain, una moneda meme tributo inspirada en la cultura Nakamoto." />
+  <title>SatoshiNakaCoin | Preventa Genesis SNC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="page-glow page-glow-one" aria-hidden="true"></div>
+  <div class="page-glow page-glow-two" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader">
+    <nav class="navbar container" aria-label="Navegación principal">
+      <a href="#inicio" class="brand" aria-label="SatoshiNakaCoin inicio">
+        <span class="brand-mark"><img src="snc-coin.png" alt="Moneda Satoshi Naka Coin" class="brand-logo" /></span>
+        <span class="brand-text">
+          <strong>SatoshiNakaCoin</strong>
+          <small>Genesis Presale</small>
+        </span>
+      </a>
+
+      <button class="btn btn-primary btn-small header-wallet-mobile open-wallet" type="button">Conectar Wallet</button>
+
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-menu" id="navMenu">
+        <ul class="nav-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#acerca">Acerca de</a></li>
+          <li><a href="#tokenomics">Tokenomics</a></li>
+          <li><a href="#roadmap">Roadmap</a></li>
+          <li><a href="#como-comprar">Cómo comprar</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="SNC-Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Whitepaper</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <div class="snc-balance-wrap">
+            <button class="snc-balance-chip" id="sncBalanceChip" type="button" aria-label="SNC comprados" title="Conecta tu wallet para ver cuántos SNC has comprado">
+              <strong id="sncBalanceValue">0 SNC</strong>
+            </button>
+          </div>
+
+          <div class="social-links" aria-label="Redes sociales Genesis">
+            <a href="#" aria-label="Telegram" title="Telegram">✦</a>
+            <a href="#" aria-label="X / Twitter" title="X">𝕏</a>
+          </div>
+
+          <div class="language-menu" id="languageMenu">
+            <button class="language-selector" id="languageToggle" type="button" aria-label="Selector de idioma" aria-expanded="false" aria-controls="languageDropdown">
+              <span>🌐</span>
+              <strong id="currentLanguage">ES</strong>
+              <small>⌄</small>
+            </button>
+
+            <div class="language-dropdown" id="languageDropdown" role="menu" aria-label="Idiomas disponibles">
+              <button type="button" data-lang="ES" role="menuitem">🇪🇸 Español</button>
+              <button type="button" data-lang="EN" role="menuitem">🇺🇸 English</button>
+              <button type="button" data-lang="PT" role="menuitem">🇧🇷 Português</button>
+              <button type="button" data-lang="FR" role="menuitem">🇫🇷 Français</button>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-small open-wallet" type="button">Conectar Wallet</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <p class="eyebrow">PREVENTA GENESIS · TOKEN SNC</p>
+          <h1>La moneda meme tributo inspirada en el legado de Satoshi Nakamoto.</h1>
+          <p class="hero-description">
+            SatoshiNakaCoin celebra la cultura Bitcoin: autocustodia, verificación pública y comunidad Genesis en una experiencia de preventa conectada a BNB Smart Chain, con wallet real y flujo preparado para compras en BNB.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#presale-widget" class="btn btn-primary btn-large">Comprar SNC</a>
+            <a href="#como-comprar" class="btn btn-secondary btn-large">Ver cómo funciona</a>
+          </div>
+
+          <div class="hero-stats" aria-label="Estadísticas del proyecto">
+            <article>
+              <strong>148%</strong>
+              <span>APY Genesis</span>
+            </article>
+            <article>
+              <strong>28K+</strong>
+              <span>Comunidad Genesis</span>
+            </article>
+            <article>
+              <strong>12,500</strong>
+              <span>1 BNB = SNC</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="tribute-orb" aria-hidden="true">
+            <span class="orb-ring orb-ring-one"></span>
+            <span class="orb-ring orb-ring-two"></span>
+            <span class="orb-core"><img src="snc-coin.png" alt="Moneda Satoshi Naka Coin" class="orb-logo" /></span>
+            <span class="spark spark-one"></span>
+            <span class="spark spark-two"></span>
+            <span class="spark spark-three"></span>
+          </div>
+
+          <aside class="presale-card" id="presale-widget" aria-label="Widget real de preventa en BNB Smart Chain">
+            <div class="presale-header">
+              <div>
+                <p class="eyebrow">RONDA GENESIS BSC</p>
+                <h2>Compra SNC ahora</h2>
+              </div>
+              <span class="status-pill">BSC Real</span>
+            </div>
+
+            <div class="countdown" aria-label="Contador regresivo">
+              <div><strong id="days">00</strong><span>Días</span></div>
+              <div><strong id="hours">00</strong><span>Horas</span></div>
+              <div><strong id="minutes">00</strong><span>Min</span></div>
+              <div><strong id="seconds">00</strong><span>Seg</span></div>
+            </div>
+
+            <div class="progress-area">
+              <div class="progress-info">
+                <span>Total recaudado</span>
+                <strong id="raisedAmount">185,250 USDT / 3,380,000 USDT</strong>
+              </div>
+              <div class="progress-track" aria-label="Progreso de preventa">
+                <span class="progress-fill" id="saleProgress"></span>
+              </div>
+            </div>
+
+            <form class="buy-form" id="buyForm" novalidate>
+              <select id="currencySelect" name="currency" hidden aria-hidden="true" tabindex="-1">
+                <option value="BNB" data-rate="12500" selected>BNB</option>
+              </select>
+
+              <div class="purchase-fields" id="purchaseFields">
+                <label for="amountInput">Cantidad de BNB</label>
+                <div class="input-wrap">
+                  <input id="amountInput" name="amount" type="number" min="0" step="0.0001" placeholder="Ej: 0.05" autocomplete="off" />
+                  <span id="currencyBadge">BNB</span>
+                </div>
+                <p class="bnb-usdt-converter" id="bnbUsdtConverter">≈ 0.00 USDT</p>
+
+                <div class="token-preview">
+                  <span>Recibirás aproximadamente</span>
+                  <strong id="tokensOutput">0 SNC</strong>
+                </div>
+              </div>
+
+              <button class="btn btn-primary btn-full" id="buyButton" type="submit">Conectar Wallet</button>
+
+              <p class="form-message" id="purchaseMessage" role="status" aria-live="polite"></p>
+            </form>
+
+            <div class="presale-extra-actions">
+              <button class="btn btn-secondary btn-full referral-trigger" id="openReferralModalButton" type="button">Recomiéndanos y gana</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="Indicadores del proyecto">
+      <div class="container trust-grid">
+        <span>Auditoría preparada</span>
+        <span>Contrato BSC preparado</span>
+        <span>Dashboard responsive</span>
+        <span>Compra en BSC</span>
+        <span>Comunidad global</span>
+      </div>
+    </section>
+
+    <section class="section about" id="acerca">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">ACERCA DE SNC</p>
+          <h2>SatoshiNakaCoin nace como un tributo meme a la cultura Nakamoto.</h2>
+        </div>
+
+        <div class="card-grid three-columns">
+          <article class="feature-card reveal">
+            <span class="card-icon">⚡</span>
+            <h3>Compra rápida</h3>
+            <p>Widget de preventa real en BNB Smart Chain con conexión de wallet, cálculo de SNC y validaciones claras.</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <span class="card-icon">🛡️</span>
+            <h3>Enfoque seguro</h3>
+            <p>Mensajes preventivos, conexión EVM real y protección para no firmar hasta verificar red, monto y destino.</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <span class="card-icon">🧬</span>
+            <h3>Identidad Nakamoto</h3>
+            <p>Interfaz oscura con neón azul, acentos dorados, tarjetas premium y animaciones suaves.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tokenomics" id="tokenomics">
+      <div class="container tokenomics-premium">
+        <div class="tokenomics-copy reveal">
+          <p class="eyebrow">DISTRIBUCIÓN GENESIS</p>
+          <h2>Tokenomics SNC</h2>
+<div class="tokenomics-highlights">
+            <article>
+              <span>Suministro total</span>
+              <strong>100.000.000 SNC</strong>
+              <small>Oferta fija Genesis</small>
+            </article>
+            <article>
+              <span>Preventa Genesis</span>
+              <strong>50.000.000 SNC</strong>
+              <small>50% para compradores</small>
+            </article>
+            <article>
+              <span>Red principal</span>
+              <strong>BNB Smart Chain</strong>
+              <small>Compra con BNB</small>
+            </article>
+          </div>
+        </div>
+
+        <div class="tokenomics-orbit reveal">
+          <div class="token-orbit-card">
+            <div class="token-orbit-glow" aria-hidden="true"></div>
+            <div class="donut-chart tokenomics-donut" aria-label="Gráfico visual de distribución tokenomics">
+              <div class="donut-center">
+                <strong>SNC</strong>
+                <span>100M supply</span>
+              </div>
+            </div>
+
+            <div class="token-orbit-footer">
+              <div>
+                <span>Distribución total</span>
+                <strong>100%</strong>
+              </div>
+              <div>
+                <span>Fase</span>
+                <strong>Genesis</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="token-breakdown reveal">
+          <article class="token-allocation" style="--accent:#00d9ff; --value:50%">
+            <div class="token-allocation-top">
+              <span>Preventa Genesis</span>
+              <strong>50%</strong>
+            </div>
+            <p>50.000.000 SNC destinados a compradores iniciales de la preventa.</p>
+            <div class="allocation-bar"><span></span></div>
+          </article>
+
+          <article class="token-allocation" style="--accent:#d8a63a; --value:25%">
+            <div class="token-allocation-top">
+              <span>Liquidez inicial</span>
+              <strong>25%</strong>
+            </div>
+            <p>25.000.000 SNC reservados para crear el par de liquidez SNC/BNB.</p>
+            <div class="allocation-bar"><span></span></div>
+          </article>
+
+          <article class="token-allocation" style="--accent:#ff4fd8; --value:10%">
+            <div class="token-allocation-top">
+              <span>Marketing</span>
+              <strong>10%</strong>
+            </div>
+            <p>10.000.000 SNC para campañas, referidos, comunidad y crecimiento.</p>
+            <div class="allocation-bar"><span></span></div>
+          </article>
+
+          <article class="token-allocation" style="--accent:#8468ff; --value:10%">
+            <div class="token-allocation-top">
+              <span>Desarrollo</span>
+              <strong>10%</strong>
+            </div>
+            <p>10.000.000 SNC para soporte técnico, mejoras web y operación del proyecto.</p>
+            <div class="allocation-bar"><span></span></div>
+          </article>
+
+          <article class="token-allocation" style="--accent:#2cff9b; --value:5%">
+            <div class="token-allocation-top">
+              <span>Reserva</span>
+              <strong>5%</strong>
+            </div>
+            <p>5.000.000 SNC guardados para imprevistos, alianzas o necesidades futuras.</p>
+            <div class="allocation-bar"><span></span></div>
+          </article>
+        </div>
+      </div>
+
+      <div class="container tokenomics-mini-grid reveal" aria-label="Puntos clave de Tokenomics">
+        <article>
+          <span>01</span>
+          <strong>Preventa principal</strong>
+          <p>El 50% del suministro queda para compradores Genesis, manteniendo una preventa fuerte y sostenible.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <strong>Liquidez separada</strong>
+          <p>El 25% se reserva para crear liquidez sin tocar los tokens de preventa.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <strong>Fondos controlados</strong>
+          <p>Marketing, desarrollo y reserva quedan separados para operar sin depender de ventas improvisadas.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section roadmap" id="roadmap">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">PLAN DE EXPANSIÓN</p>
+          <h2>Roadmap por fases</h2>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <div class="timeline-marker">01</div>
+            <div class="timeline-card">
+              <h3>Fase 1: Lanzamiento</h3>
+              <ul>
+                <li>Activación de landing y widget de preventa.</li>
+                <li>Publicación del documento inicial.</li>
+                <li>Campaña de identidad Nakamoto SNC.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <div class="timeline-marker">02</div>
+            <div class="timeline-card">
+              <h3>Fase 2: Comunidad</h3>
+              <ul>
+                <li>Canales sociales y dinámicas de holders.</li>
+                <li>Ranking de participación y misiones Genesis.</li>
+                <li>Primeras recompensas Genesis para la comunidad.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <div class="timeline-marker">03</div>
+            <div class="timeline-card">
+              <h3>Fase 3: Expansión</h3>
+              <ul>
+                <li>Dashboard de métricas y beneficios.</li>
+                <li>Integraciones educativas Web3.</li>
+                <li>Campañas con comunidades tecnológicas.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <div class="timeline-marker">04</div>
+            <div class="timeline-card">
+              <h3>Fase 4: Listados / crecimiento</h3>
+              <ul>
+                <li>Preparación para listados y crecimiento.</li>
+                <li>Expansión del ecosistema en BNB Smart Chain.</li>
+                <li>Programa premium de embajadores SNC.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section how-to" id="como-comprar">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">CÓMO FUNCIONA</p>
+          <h2>Compra Genesis en 4 pasos</h2>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card reveal">
+            <span>01</span>
+            <h3>Conectar wallet</h3>
+            <p>Abre el modal, elige Best Wallet, WalletConnect, Base Wallet o MetaMask y conecta en BNB Smart Chain.</p>
+          </article>
+
+          <article class="step-card reveal">
+            <span>02</span>
+            <h3>Elegir moneda</h3>
+            <p>Selecciona BNB en BNB Smart Chain y visualiza la conversión estimada a SNC.</p>
+          </article>
+
+          <article class="step-card reveal">
+            <span>03</span>
+            <h3>Confirmar compra</h3>
+            <p>Ingresa una cantidad válida, revisa el resumen y firma la transacción desde tu wallet.</p>
+          </article>
+
+          <article class="step-card reveal">
+            <span>04</span>
+            <h3>Reclamar tokens</h3>
+            <p>Al finalizar la preventa Genesis, el usuario podrá reclamar tokens o acceder a la utilidad definida.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2>Preguntas frecuentes</h2>
+        </div>
+
+        <div class="faq-list" id="faqList">
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false">
+              ¿Qué es SatoshiNakaCoin?
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>SatoshiNakaCoin es una moneda meme tributo inspirada en la cultura Nakamoto, creada como una preventa Genesis en BNB Smart Chain.</p>
+            </div>
+          </article>
+
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false">
+              ¿En qué red se realiza la preventa?
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>La preventa se realiza en BNB Smart Chain. Antes de comprar, verifica que tu wallet esté conectada a la red correcta.</p>
+            </div>
+          </article>
+
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false">
+              ¿Con qué moneda puedo comprar SNC?
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>La compra de SNC se realiza con BNB. Al ingresar la cantidad, la web muestra una estimación de los SNC que recibirás.</p>
+            </div>
+          </article>
+
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false">
+              ¿Cuál es la tasa de la preventa?
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>La tasa actual de la preventa es 1 BNB = 12,500 SNC. Esta tasa puede cambiar en futuras fases del proyecto.</p>
+            </div>
+          </article>
+
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false">
+              ¿Cuándo recibiré mis tokens SNC?
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Los tokens SNC estarán asociados a la compra confirmada. El proceso de entrega o reclamo se anunciará según avance la preventa Genesis.</p>
+            </div>
+          </article>
+
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false">
+              ¿Qué pasa si compro desde un enlace de referido?
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Si compras desde un enlace de referido válido, la compra podrá quedar registrada para calcular la comisión del 5% correspondiente al referidor.</p>
+            </div>
+          </article>
+
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false">
+              ¿SNC solicita mi frase semilla?
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>No. SatoshiNakaCoin nunca solicita frases semilla, claves privadas ni accesos secretos. Solo debes conectar tu wallet desde proveedores compatibles.</p>
+            </div>
+          </article>
+
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false">
+              ¿La preventa tiene riesgos?
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Sí. Toda preventa cripto implica riesgo. Verifica siempre la red, el monto, la wallet receptora y participa solo con fondos que estés dispuesto a arriesgar.</p>
+            </div>
+          </article>
+
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false">
+              ¿Dónde puedo ver el Whitepaper?
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Puedes abrir el Whitepaper desde el enlace del menú superior. El documento explica la visión Genesis, la preventa y la distribución del proyecto.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+</main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="#inicio" class="brand footer-brand">
+          <span class="brand-mark"><img src="snc-coin.png" alt="Moneda Satoshi Naka Coin" class="brand-logo" /></span>
+          <span class="brand-text">
+            <strong>SatoshiNakaCoin</strong>
+            <small>Genesis Presale</small>
+          </span>
+        </a>
+      </div>
+
+      <div>
+        <h3>Comunidad</h3>
+        <ul>
+          <li><a href="#">Telegram</a></li>
+          <li><a href="#">X / Twitter</a></li>
+          <li><a href="#">Discord</a></li>
+          <li><a href="#faq">Soporte FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Aviso legal</h3>
+        <p>
+          Todo proyecto cripto tiene riesgos. SatoshiNakaCoin no es consejo financiero ni garantiza resultados, precio futuro, liquidez o ganancias. Verifica siempre la red, el monto y la dirección receptora antes de confirmar cualquier transacción.
+        </p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© 2026 SatoshiNakaCoin. Todos los derechos reservados.</span>
+    </div>
+  </footer>
+
+  <div class="modal" id="walletModal" aria-hidden="true" role="dialog" aria-labelledby="walletModalTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-content" role="document">
+      <button class="modal-close" type="button" aria-label="Cerrar modal" data-close-modal>×</button>
+      <h2 id="walletModalTitle">Conectar wallet</h2>
+      <p>Elige una wallet para conectarte y continuar con la compra.</p>
+
+      <div class="wallet-options">
+        <button type="button" class="wallet-option wallet-option-metamask" data-wallet="metamask">
+          <img src="metamask-logo.png" alt="Logo de MetaMask" class="wallet-option-logo" />
+          <span class="wallet-option-text">
+            <strong>MetaMask</strong>
+            <small>Extensión EVM</small>
+          </span>
+        </button>
+
+        <button type="button" class="wallet-option wallet-option-best" data-wallet="best">
+          <img src="best-wallet.png" alt="Logo de Best Wallet" class="wallet-option-logo" />
+          <span class="wallet-option-text">
+            <strong>Best Wallet</strong>
+            <small>Wallet recomendada</small>
+          </span>
+        </button>
+
+        <button type="button" class="wallet-option wallet-option-walletconnect" data-wallet="walletconnect">
+          <img src="walletconnect-logo.png" alt="Logo de WalletConnect" class="wallet-option-logo" />
+          <span class="wallet-option-text">
+            <strong>WalletConnect</strong>
+            <small>Escanear o enlazar</small>
+          </span>
+        </button>
+
+        <button type="button" class="wallet-option wallet-option-base" data-wallet="base">
+          <img src="base-wallet.png" alt="Logo de Base Wallet" class="wallet-option-logo" />
+          <span class="wallet-option-text">
+            <strong>Base Wallet</strong>
+            <small>Wallet Base</small>
+          </span>
+        </button>
+      </div>
+
+      <p class="form-message" id="walletMessage" role="status"></p>
+    </div>
+  </div>
+
+  <div class="modal" id="referralModal" aria-hidden="true" role="dialog" aria-labelledby="referralModalTitle">
+    <div class="modal-backdrop" data-close-referral></div>
+    <div class="modal-content referral-content" role="document">
+      <button class="modal-close" type="button" aria-label="Cerrar modal" data-close-referral>×</button>
+      <p class="eyebrow">RECOMIÉNDANOS Y GANA</p>
+      <h2 id="referralModalTitle">Enlace de referido</h2>
+      <p class="referral-copy">
+        Comparte este enlace. El <strong>5%</strong> solo se calcula y aparece en el panel admin cuando la compra quede confirmada con txHash en BNB Smart Chain.
+      </p>
+
+      <div class="referral-link-box">
+        <input id="referralLinkInput" type="text" readonly value="" placeholder="Generando enlace..." aria-label="Enlace de referido" />
+        <button id="copyReferralLink" type="button" aria-label="Copiar enlace">📋</button>
+      </div>
+
+      <p class="form-message referral-message" id="referralMessage" role="status" aria-live="polite"></p>
+      <button class="btn btn-ghost btn-full referral-close-btn" type="button" data-close-referral>Cerrar</button>
+    </div>
+  </div>
+</body>
+</html>
