@@ -84,6 +84,12 @@ const bnbToNumber = (bnbString) => {
   return Number.isFinite(parsed) ? parsed : 0;
 };
 
+const bnbToSncString = (bnbString) => {
+  const value = bnbToNumber(bnbString);
+  const snc = value * SNC_PER_BNB;
+  return Number.isFinite(snc) ? String(snc) : "0";
+};
+
 const numericToBigInt = (value) => BigInt(String(value || "0").split(".")[0]);
 
 const toPurchaseDto = (row) => ({
@@ -100,6 +106,7 @@ const toPurchaseDto = (row) => ({
   commissionPercent: Number(row.commission_percent || 0),
   commissionWei: String(row.commission_wei || "0"),
   commissionBnb: row.commission_bnb || "0",
+  commissionSncEstimated: bnbToSncString(row.commission_bnb || "0"),
   payoutStatus: row.payout_status,
   blockNumber: Number(row.block_number || 0),
   confirmations: Number(row.confirmations || 0),
@@ -604,14 +611,23 @@ app.get("/api/admin/referrals", requireAdmin, async (req, res) => {
       ORDER BY MAX(created_at) DESC
     `);
 
-    const referrers = result.rows.map((row) => ({
-      referrerWallet: row.referrer_wallet,
-      code: row.code || "",
-      totalPurchases: Number(row.total_purchases || 0),
-      totalVolumeBnb: formatWeiToBnb(numericToBigInt(row.total_volume_wei)),
-      pendingRewardsBnb: formatWeiToBnb(numericToBigInt(row.pending_rewards_wei)),
-      paidRewardsBnb: formatWeiToBnb(numericToBigInt(row.paid_rewards_wei))
-    }));
+    const referrers = result.rows.map((row) => {
+      const totalVolumeBnb = formatWeiToBnb(numericToBigInt(row.total_volume_wei));
+      const pendingRewardsBnb = formatWeiToBnb(numericToBigInt(row.pending_rewards_wei));
+      const paidRewardsBnb = formatWeiToBnb(numericToBigInt(row.paid_rewards_wei));
+
+      return {
+        referrerWallet: row.referrer_wallet,
+        code: row.code || "",
+        totalPurchases: Number(row.total_purchases || 0),
+        totalVolumeBnb,
+        totalVolumeSnc: bnbToSncString(totalVolumeBnb),
+        pendingRewardsBnb,
+        pendingRewardsSnc: bnbToSncString(pendingRewardsBnb),
+        paidRewardsBnb,
+        paidRewardsSnc: bnbToSncString(paidRewardsBnb)
+      };
+    });
 
     const totalPendingWei = result.rows.reduce(
       (sum, row) => sum + numericToBigInt(row.pending_rewards_wei),
@@ -628,6 +644,7 @@ app.get("/api/admin/referrals", requireAdmin, async (req, res) => {
       totalReferrers: referrers.length,
       totalPurchases,
       totalPendingRewardsBnb: formatWeiToBnb(totalPendingWei),
+      totalPendingRewardsSnc: bnbToSncString(formatWeiToBnb(totalPendingWei)),
       referrers
     });
   } catch (error) {

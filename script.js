@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     bnbUsdtPriceUrl: "https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT",
     raisedBnb: 0,
     goalBnb: 5200,
-    countdownDays: 9,
+    countdownDays: 31,
     countdownHours: 6,
     saleReceiverAddress: "0x46E0076C4589882d3AC363Fbd658D0A39De12D89",
     walletConnectProjectId: "cc89970cef26c7900650e9bd88cb05e9",

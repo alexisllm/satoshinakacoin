@@ -13,31 +13,36 @@ document.addEventListener("DOMContentLoaded", () => {
   const $ = (selector, context = document) => context.querySelector(selector);
 
   const adminLoginCard = $("#adminLoginCard");
-  const adminTopHeader = $(".admin-top-header");
-  const adminUserMenu = $("#adminUserMenu");
-  const adminUserToggle = $("#adminUserToggle");
-  const adminUserDropdown = $("#adminUserDropdown");
-  const adminLogoutButton = $("#adminLogoutButton");
-
   const adminKeyInput = $("#adminKeyInput");
   const loadAdminButton = $("#loadAdminButton");
   const adminMessage = $("#adminMessage");
-
   const adminReferrers = $("#adminReferrers");
   const adminPurchases = $("#adminPurchases");
   const adminPending = $("#adminPending");
   const adminProtectedPanel = $("#adminProtectedPanel");
   const adminTableBody = $("#adminTableBody");
   const adminPurchasesBody = $("#adminPurchasesBody");
+  const adminSessionMenu = $("#adminSessionMenu");
+  const creatorMenuButton = $("#creatorMenuButton");
+  const creatorDropdown = $("#creatorDropdown");
+  const logoutAdminButton = $("#logoutAdminButton");
 
-  let activeAdminKey = "";
-
-  const shortAddress = (address) => (address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "");
+  const shortAddress = (address) => address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "";
 
   const formatNumber = (value, digits = 8) => {
     const number = Number(value || 0);
     return new Intl.NumberFormat("en-US", { maximumFractionDigits: digits }).format(number);
   };
+
+  const formatSnc = (value, digits = 4) => {
+    const number = Number(value || 0);
+    return `${new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: number > 0 && number < 1 ? 4 : 0,
+      maximumFractionDigits: digits
+    }).format(number)} SNC`;
+  };
+
+  const fullWallet = (address) => address || "-";
 
   const setMessage = (message, type = "success") => {
     if (!adminMessage) return;
@@ -65,33 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return data;
   };
 
-  const showLogin = () => {
-    activeAdminKey = "";
-
-    if (adminLoginCard) adminLoginCard.hidden = false;
-    if (adminProtectedPanel) adminProtectedPanel.hidden = true;
-    if (adminUserMenu) adminUserMenu.hidden = true;
-    if (adminUserDropdown) adminUserDropdown.hidden = true;
-    if (adminUserToggle) adminUserToggle.setAttribute("aria-expanded", "false");
-    if (adminTopHeader) adminTopHeader.hidden = false;
-
-    if (adminKeyInput) {
-      adminKeyInput.value = "";
-      adminKeyInput.focus();
-    }
-
-    setMessage("", "success");
-  };
-
-  const showDashboard = () => {
-    if (adminLoginCard) adminLoginCard.hidden = true;
-    if (adminProtectedPanel) adminProtectedPanel.hidden = false;
-    if (adminUserMenu) adminUserMenu.hidden = false;
-    if (adminUserDropdown) adminUserDropdown.hidden = true;
-    if (adminUserToggle) adminUserToggle.setAttribute("aria-expanded", "false");
-    if (adminTopHeader) adminTopHeader.hidden = true;
-  };
-
   const renderRows = (rows = []) => {
     if (!adminTableBody) return;
 
@@ -105,12 +83,12 @@ document.addEventListener("DOMContentLoaded", () => {
       .map((item) => {
         return `
           <tr>
-            <td>${shortAddress(item.referrerWallet)}</td>
+            <td class="wallet-full">${fullWallet(item.referrerWallet)}</td>
             <td>${item.code || "-"}</td>
             <td>${item.totalPurchases}</td>
             <td>${formatNumber(item.totalVolumeBnb, 6)} BNB</td>
-            <td>${formatNumber(item.pendingRewardsBnb, 8)} BNB</td>
-            <td>${formatNumber(item.paidRewardsBnb, 8)} BNB</td>
+            <td>${formatSnc(item.pendingRewardsSnc)}</td>
+            <td>${formatSnc(item.paidRewardsSnc)}</td>
           </tr>
         `;
       })
@@ -135,10 +113,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         return `
           <tr>
-            <td>${shortAddress(purchase.referrerWallet)}</td>
+            <td class="wallet-full">${fullWallet(purchase.referrerWallet)}</td>
             <td>${shortAddress(purchase.buyerWallet)}</td>
             <td>${formatNumber(purchase.amountBnb, 6)} BNB</td>
-            <td>${formatNumber(purchase.commissionBnb, 8)} BNB</td>
+            <td>${formatSnc(purchase.commissionSncEstimated)}</td>
             <td><a href="${txUrl}" target="_blank" rel="noopener">Ver TX</a></td>
             <td>${purchase.payoutStatus === "paid" ? "Pagado" : "Pendiente"}</td>
             <td>${date}</td>
@@ -148,8 +126,37 @@ document.addEventListener("DOMContentLoaded", () => {
       .join("");
   };
 
+  const openAdminPanel = () => {
+    document.body.classList.add("admin-unlocked");
+
+    if (adminLoginCard) adminLoginCard.hidden = true;
+    if (adminProtectedPanel) adminProtectedPanel.hidden = false;
+    if (adminSessionMenu) adminSessionMenu.hidden = false;
+    if (creatorDropdown) creatorDropdown.hidden = true;
+    if (creatorMenuButton) creatorMenuButton.setAttribute("aria-expanded", "false");
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const closeAdminPanel = () => {
+    document.body.classList.remove("admin-unlocked");
+
+    if (adminLoginCard) adminLoginCard.hidden = false;
+    if (adminProtectedPanel) adminProtectedPanel.hidden = true;
+    if (adminSessionMenu) adminSessionMenu.hidden = true;
+    if (creatorDropdown) creatorDropdown.hidden = true;
+    if (creatorMenuButton) creatorMenuButton.setAttribute("aria-expanded", "false");
+
+    if (adminKeyInput) {
+      adminKeyInput.value = "";
+      window.setTimeout(() => adminKeyInput.focus(), 80);
+    }
+
+    setMessage("Sesión cerrada.", "success");
+  };
+
   const loadAdminData = async () => {
-    const adminKey = String(adminKeyInput?.value || activeAdminKey || "").trim();
+    const adminKey = String(adminKeyInput?.value || "").trim();
 
     if (!adminKey) {
       setMessage("Ingresa el ADMIN_KEY de tu archivo .env.", "error");
@@ -162,19 +169,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await apiRequest("/admin/referrals", { adminKey });
       const purchasesData = await apiRequest("/admin/purchases", { adminKey });
 
-      activeAdminKey = adminKey;
-
       if (adminReferrers) adminReferrers.textContent = String(data.totalReferrers || 0);
       if (adminPurchases) adminPurchases.textContent = String(data.totalPurchases || 0);
-      if (adminPending) adminPending.textContent = `${formatNumber(data.totalPendingRewardsBnb, 8)} BNB`;
+      if (adminPending) adminPending.textContent = formatSnc(data.totalPendingRewardsSnc);
 
       renderRows(data.referrers || []);
       renderPurchaseRows(purchasesData.purchases || []);
-
-      showDashboard();
       setMessage("Datos cargados correctamente.", "success");
+      openAdminPanel();
     } catch (error) {
-      showLogin();
+      if (adminProtectedPanel) adminProtectedPanel.hidden = true;
+      if (adminSessionMenu) adminSessionMenu.hidden = true;
+      if (adminLoginCard) adminLoginCard.hidden = false;
+      document.body.classList.remove("admin-unlocked");
       setMessage(error.message || "No se pudieron cargar los datos.", "error");
     }
   };
@@ -187,25 +194,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  if (adminUserToggle) {
-    adminUserToggle.addEventListener("click", () => {
-      const isOpen = adminUserDropdown ? !adminUserDropdown.hidden : false;
+  if (creatorMenuButton) {
+    creatorMenuButton.addEventListener("click", () => {
+      const isOpen = creatorDropdown ? !creatorDropdown.hidden : false;
 
-      if (adminUserDropdown) adminUserDropdown.hidden = isOpen;
-      adminUserToggle.setAttribute("aria-expanded", String(!isOpen));
+      if (creatorDropdown) creatorDropdown.hidden = isOpen;
+      creatorMenuButton.setAttribute("aria-expanded", String(!isOpen));
     });
   }
 
-  if (adminLogoutButton) {
-    adminLogoutButton.addEventListener("click", showLogin);
+  if (logoutAdminButton) {
+    logoutAdminButton.addEventListener("click", closeAdminPanel);
   }
 
   document.addEventListener("click", (event) => {
-    if (!adminUserMenu || adminUserMenu.hidden || !adminUserDropdown || adminUserDropdown.hidden) return;
+    if (!adminSessionMenu || adminSessionMenu.hidden) return;
 
-    if (!adminUserMenu.contains(event.target)) {
-      adminUserDropdown.hidden = true;
-      if (adminUserToggle) adminUserToggle.setAttribute("aria-expanded", "false");
+    if (!adminSessionMenu.contains(event.target)) {
+      if (creatorDropdown) creatorDropdown.hidden = true;
+      if (creatorMenuButton) creatorMenuButton.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && creatorDropdown && !creatorDropdown.hidden) {
+      creatorDropdown.hidden = true;
+      if (creatorMenuButton) creatorMenuButton.setAttribute("aria-expanded", "false");
     }
   });
 });

@@ -7,6 +7,7 @@
   <title>SNC | Admin Referidos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/x-icon" href="snc-coin.png"> 
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <script src="admin-referidos.js" defer></script>
@@ -15,20 +16,9 @@
   <div class="page-glow page-glow-one" aria-hidden="true"></div>
   <div class="page-glow page-glow-two" aria-hidden="true"></div>
 
-  <div class="admin-user-menu" id="adminUserMenu" hidden>
-    <button class="admin-user-button" id="adminUserToggle" type="button" aria-expanded="false" aria-controls="adminUserDropdown">
-      Creador Alex
-      <span>⌄</span>
-    </button>
-
-    <div class="admin-user-dropdown" id="adminUserDropdown" hidden>
-      <button type="button" id="adminLogoutButton">Cerrar</button>
-    </div>
-  </div>
-
   <main class="referral-page admin-page">
-    <div class="container admin-container">
-      <header class="referral-page-header admin-top-header">
+    <div class="container">
+      <header class="referral-page-header admin-topbar">
         <a href="index.html" class="brand">
           <span class="brand-mark"><img src="snc-coin.png" alt="SNC" class="brand-logo" /></span>
           <span class="brand-text">
@@ -36,34 +26,47 @@
             <small>Admin Referidos</small>
           </span>
         </a>
-        <a href="index.html" class="btn btn-ghost">Volver</a>
+
+        <div class="admin-top-actions">
+          <div class="admin-session-menu" id="adminSessionMenu" hidden>
+            <button class="admin-creator-button" id="creatorMenuButton" type="button" aria-expanded="false" aria-controls="creatorDropdown">
+              Creador Alex
+              <span>⌄</span>
+            </button>
+            <div class="admin-creator-dropdown" id="creatorDropdown" hidden>
+              <button type="button" id="logoutAdminButton">Cerrar</button>
+            </div>
+          </div>
+
+          <a href="index.html" class="btn btn-ghost">Volver</a>
+        </div>
       </header>
 
-      <section class="admin-login-center" id="adminLoginCard">
-        <div class="admin-login-card">
-          <p class="eyebrow">ADMIN</p>
-          <h1>Compras con referidos</h1>
-          <p>
-            Ingresa tu clave privada para ver únicamente compras confirmadas que generaron comisión.
-          </p>
+      <section class="admin-login-card" id="adminLoginCard">
+        <p class="eyebrow">ADMIN</p>
+        <h1>Compras con referidos</h1>
+        <p>
+          Ingresa tu clave privada para ver únicamente compras confirmadas que generaron comisión.
+        </p>
 
+        <div class="admin-login-form">
           <div class="admin-key-control">
             <label for="adminKeyInput">ADMIN_KEY</label>
             <input id="adminKeyInput" type="password" placeholder="Clave admin del archivo .env" autocomplete="current-password" />
           </div>
-
-          <button class="btn btn-primary btn-full" id="loadAdminButton" type="button">Cargar datos</button>
-          <p class="form-message" id="adminMessage" role="status" aria-live="polite"></p>
+          <button class="btn btn-primary" id="loadAdminButton" type="button">Cargar datos</button>
         </div>
+
+        <p class="form-message" id="adminMessage" role="status" aria-live="polite"></p>
       </section>
 
-      <section id="adminProtectedPanel" class="admin-protected-panel admin-dashboard-content" hidden>
-        <div class="admin-dashboard-heading">
+      <section id="adminProtectedPanel" class="admin-protected-panel admin-content-panel" hidden>
+        <div class="admin-panel-head">
           <div>
             <p class="eyebrow">ADMIN</p>
-            <h1>Compras con referidos</h1>
+            <h1>Panel de referidos</h1>
             <p>
-              Aquí se muestran únicamente compras confirmadas en BNB Smart Chain que generaron comisión. Los simples clicks del enlace no se guardan para pagar el 5%.
+              Compras confirmadas con enlace de referido y comisión calculada en SNC.
             </p>
           </div>
         </div>
@@ -78,8 +81,8 @@
             <strong id="adminPurchases">0</strong>
           </article>
           <article>
-            <span>Comisiones pendientes</span>
-            <strong id="adminPending">0 BNB</strong>
+            <span>SNC pendientes</span>
+            <strong id="adminPending">0 SNC</strong>
           </article>
         </div>
 
@@ -93,12 +96,12 @@
                   <th>Código</th>
                   <th>Compras</th>
                   <th>Volumen</th>
-                  <th>Pendiente</th>
-                  <th>Pagado</th>
+                  <th>Pendiente SNC</th>
+                  <th>Pagado SNC</th>
                 </tr>
               </thead>
               <tbody id="adminTableBody">
-                <tr><td colspan="6" class="referral-empty">Aún no hay datos cargados.</td></tr>
+                <tr><td colspan="6" class="referral-empty">Ingresa tu ADMIN_KEY y carga los datos.</td></tr>
               </tbody>
             </table>
           </div>
@@ -107,7 +110,7 @@
         <article class="referral-table-card">
           <h2>Compras confirmadas</h2>
           <p class="admin-table-note">
-            Aquí solo aparecen compras que entraron con enlace de referido y fueron verificadas por txHash. Si alguien solo abrió el link, no aparece aquí.
+            Aquí solo aparecen compras verificadas por txHash que entraron con enlace de referido.
           </p>
           <div class="table-scroll">
             <table class="referral-table">
@@ -116,14 +119,14 @@
                   <th>Referidor</th>
                   <th>Comprador</th>
                   <th>Monto</th>
-                  <th>Comisión 5%</th>
+                  <th>Comisión 5% SNC</th>
                   <th>TX</th>
                   <th>Estado</th>
                   <th>Fecha</th>
                 </tr>
               </thead>
               <tbody id="adminPurchasesBody">
-                <tr><td colspan="7" class="referral-empty">Aún no hay datos cargados.</td></tr>
+                <tr><td colspan="7" class="referral-empty">Ingresa tu ADMIN_KEY y carga los datos.</td></tr>
               </tbody>
             </table>
           </div>
