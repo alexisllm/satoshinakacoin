@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const creatorDropdown = $("#creatorDropdown");
   const logoutAdminButton = $("#logoutAdminButton");
   const connectPayoutWalletButton = $("#connectPayoutWalletButton");
+  const walletConnectStat = $(".wallet-connect-stat");
   const adminPayoutWalletStatus = $("#adminPayoutWalletStatus");
   const adminTokenStatus = $("#adminTokenStatus");
   const adminBuyersBody = $("#adminBuyersBody");
@@ -52,6 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
     payoutWallet: "",
     payoutProvider: null,
     tokenAddress: "",
+    tokenBalance: null,
+    tokenBalanceLoading: false,
     referralsData: null,
     purchasesData: null,
     buyersData: null,
@@ -125,6 +128,30 @@ document.addEventListener("DOMContentLoaded", () => {
     return BigInt(whole || "0") * (10n ** BigInt(decimals)) + BigInt(paddedFraction || "0");
   };
 
+  const tokenUnitsToDecimal = (hexValue, decimals = 18) => {
+    const raw = BigInt(hexValue || "0x0");
+    const divisor = 10n ** BigInt(decimals);
+    const whole = raw / divisor;
+    const fraction = raw % divisor;
+
+    if (fraction === 0n) {
+      return whole.toString();
+    }
+
+    const fractionText = fraction
+      .toString()
+      .padStart(decimals, "0")
+      .replace(/0+$/, "");
+
+    return `${whole.toString()}.${fractionText}`;
+  };
+
+  const encodeBalanceOfData = (wallet) => {
+    const selector = "70a08231";
+    const cleanWallet = String(wallet || "").toLowerCase().replace(/^0x/, "").padStart(64, "0");
+    return `0x${selector}${cleanWallet}`;
+  };
+
   const encodeTransferData = (to, amountUnits) => {
     const selector = "a9059cbb";
     const cleanTo = String(to || "").toLowerCase().replace(/^0x/, "").padStart(64, "0");
@@ -192,27 +219,74 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
 
+  const refreshPayoutWalletBalance = async () => {
+    if (!state.payoutProvider || !state.payoutWallet || !state.tokenAddress) {
+      state.tokenBalance = null;
+      state.tokenBalanceLoading = false;
+      updatePayoutWalletUi();
+      return;
+    }
+
+    try {
+      state.tokenBalanceLoading = true;
+      updatePayoutWalletUi();
+
+      const result = await state.payoutProvider.request({
+        method: "eth_call",
+        params: [
+          {
+            to: state.tokenAddress,
+            data: encodeBalanceOfData(state.payoutWallet)
+          },
+          "latest"
+        ]
+      });
+
+      state.tokenBalance = tokenUnitsToDecimal(result, state.tokenDecimals);
+    } catch (error) {
+      console.warn("No se pudo consultar el balance SNC:", error);
+      state.tokenBalance = null;
+    } finally {
+      state.tokenBalanceLoading = false;
+      updatePayoutWalletUi();
+    }
+  };
+
   const updatePayoutWalletUi = () => {
+    const isConnected = Boolean(state.payoutWallet);
+    const hasBalance = state.tokenBalance !== null && state.tokenBalance !== undefined;
+
+    if (walletConnectStat) {
+      walletConnectStat.classList.toggle("is-connected", isConnected);
+    }
+
     if (adminPayoutWalletStatus) {
-      adminPayoutWalletStatus.textContent = state.payoutWallet
-        ? `${shortAddress(state.payoutWallet)} conectada`
+      adminPayoutWalletStatus.innerHTML = isConnected
+        ? `<span class="wallet-ok-dot" aria-hidden="true"></span>${shortAddress(state.payoutWallet)} conectada`
         : "No conectada";
     }
 
     if (connectPayoutWalletButton) {
-      connectPayoutWalletButton.textContent = state.payoutWallet
-        ? "Wallet conectada"
-        : "Conectar wallet";
-      connectPayoutWalletButton.classList.toggle("is-connected", Boolean(state.payoutWallet));
+      connectPayoutWalletButton.textContent = isConnected
+        ? "Wallet SNC conectada"
+        : "Conectar wallet SNC";
+      connectPayoutWalletButton.classList.toggle("is-connected", isConnected);
+      connectPayoutWalletButton.disabled = isConnected;
     }
 
     if (adminTokenStatus) {
-      if (!state.tokenAddress) {
-        adminTokenStatus.textContent = "Configura SNC_TOKEN_ADDRESS en Render para habilitar envíos reales.";
-        adminTokenStatus.classList.add("error");
+      adminTokenStatus.classList.toggle("error", false);
+
+      if (!isConnected) {
+        adminTokenStatus.textContent = "Conecta la wallet que tiene los tokens SNC";
+      } else if (!state.tokenAddress) {
+        adminTokenStatus.innerHTML = `Consultando saldo disponible en <strong>SNC</strong>`;
+      } else if (state.tokenBalanceLoading) {
+        adminTokenStatus.innerHTML = `Consultando saldo disponible en <strong>SNC</strong>`;
+      } else if (hasBalance) {
+        adminTokenStatus.innerHTML = `Disponible para enviar: <strong>${formatSnc(state.tokenBalance)}</strong>`;
       } else {
-        adminTokenStatus.textContent = `Token SNC: ${shortAddress(state.tokenAddress)} · BSC`;
-        adminTokenStatus.classList.remove("error");
+        adminTokenStatus.innerHTML = `No se pudo leer el saldo. Verifica que la wallet esté en BNB Smart Chain.`;
       }
     }
   };
@@ -249,6 +323,10 @@ document.addEventListener("DOMContentLoaded", () => {
     state.tokenAddress = config.sncTokenAddress || "";
     state.tokenDecimals = Number(config.sncTokenDecimals || 18);
     updatePayoutWalletUi();
+
+    if (state.payoutWallet && state.tokenAddress) {
+      await refreshPayoutWalletBalance();
+    }
   };
 
   const connectPayoutWallet = async () => {
@@ -273,6 +351,8 @@ document.addEventListener("DOMContentLoaded", () => {
       state.payoutProvider = provider;
       state.payoutWallet = account.toLowerCase();
       updatePayoutWalletUi();
+      await loadPublicConfig();
+      await refreshPayoutWalletBalance();
       setMessage(`Wallet de pago conectada: ${shortAddress(state.payoutWallet)}`, "success");
     } catch (error) {
       setMessage(error.message || "No se pudo conectar la wallet de pago.", "error");
@@ -286,7 +366,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (!state.tokenAddress) {
-      setMessage("Configura SNC_TOKEN_ADDRESS en Render antes de enviar SNC.", "error");
+      setMessage("El contrato SNC no está disponible todavía. Revisa la configuración del token.", "error");
       return;
     }
 
@@ -348,6 +428,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setMessage(`Pago SNC confirmado y marcado como pagado. TX: ${shortAddress(txHash)}`, "success");
       await loadAdminData();
+      await refreshPayoutWalletBalance();
     } catch (error) {
       setMessage(error.message || "No se pudo enviar o verificar el pago SNC.", "error");
     }
@@ -360,7 +441,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (!state.tokenAddress) {
-      setMessage("Configura SNC_TOKEN_ADDRESS en Render antes de enviar SNC.", "error");
+      setMessage("El contrato SNC no está disponible todavía. Revisa la configuración del token.", "error");
       return;
     }
 
@@ -422,6 +503,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setMessage(`SNC enviados al comprador y marcados como pagados. TX: ${shortAddress(txHash)}`, "success");
       await loadAdminData();
+      await refreshPayoutWalletBalance();
     } catch (error) {
       setMessage(error.message || "No se pudo enviar o verificar los SNC al comprador.", "error");
     }
