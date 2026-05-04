@@ -62,6 +62,75 @@ document.addEventListener("DOMContentLoaded", () => {
     tokenDecimals: 18
   };
 
+  const ADMIN_SESSION_STORAGE_KEY = "snc_admin_session_key_v1";
+  const PAYOUT_WALLET_STORAGE_KEY = "snc_admin_payout_wallet_connected_v1";
+  const ADMIN_AUTO_REFRESH_MS = 45000;
+  let adminAutoRefreshTimer = null;
+
+  const readStoredAdminKey = () => {
+    try {
+      return String(window.localStorage.getItem(ADMIN_SESSION_STORAGE_KEY) || "").trim();
+    } catch (error) {
+      return "";
+    }
+  };
+
+  const saveStoredAdminKey = (adminKey) => {
+    try {
+      window.localStorage.setItem(ADMIN_SESSION_STORAGE_KEY, String(adminKey || "").trim());
+    } catch (error) {
+      console.warn("No se pudo guardar la sesión admin:", error);
+    }
+  };
+
+  const clearStoredAdminKey = () => {
+    try {
+      window.localStorage.removeItem(ADMIN_SESSION_STORAGE_KEY);
+    } catch (error) {
+      console.warn("No se pudo limpiar la sesión admin:", error);
+    }
+  };
+
+  const rememberPayoutWalletConnection = () => {
+    try {
+      window.localStorage.setItem(PAYOUT_WALLET_STORAGE_KEY, "1");
+    } catch (error) {
+      console.warn("No se pudo recordar la wallet admin:", error);
+    }
+  };
+
+  const clearPayoutWalletConnectionMemory = () => {
+    try {
+      window.localStorage.removeItem(PAYOUT_WALLET_STORAGE_KEY);
+    } catch (error) {
+      console.warn("No se pudo limpiar la wallet recordada:", error);
+    }
+  };
+
+  const shouldRestorePayoutWallet = () => {
+    try {
+      return window.localStorage.getItem(PAYOUT_WALLET_STORAGE_KEY) === "1";
+    } catch (error) {
+      return false;
+    }
+  };
+
+  const stopAdminAutoRefresh = () => {
+    if (adminAutoRefreshTimer) {
+      window.clearInterval(adminAutoRefreshTimer);
+      adminAutoRefreshTimer = null;
+    }
+  };
+
+  const startAdminAutoRefresh = () => {
+    stopAdminAutoRefresh();
+
+    adminAutoRefreshTimer = window.setInterval(() => {
+      if (!state.adminKey || document.hidden) return;
+      loadAdminData({ adminKey: state.adminKey, silent: true, scroll: false });
+    }, ADMIN_AUTO_REFRESH_MS);
+  };
+
   let confirmResolver = null;
 
   const closeAdminConfirmModal = (result = false) => {
@@ -350,12 +419,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
       state.payoutProvider = provider;
       state.payoutWallet = account.toLowerCase();
+      rememberPayoutWalletConnection();
       updatePayoutWalletUi();
       await loadPublicConfig();
       await refreshPayoutWalletBalance();
       setMessage(`Wallet de pago conectada: ${shortAddress(state.payoutWallet)}`, "success");
     } catch (error) {
       setMessage(error.message || "No se pudo conectar la wallet de pago.", "error");
+    }
+  };
+
+  const restorePayoutWalletIfAllowed = async () => {
+    if (!shouldRestorePayoutWallet()) return;
+
+    const provider = window.ethereum;
+
+    if (!provider) return;
+
+    try {
+      const accounts = await provider.request({ method: "eth_accounts" });
+      const account = accounts?.[0] || "";
+
+      if (!isValidAddress(account)) return;
+
+      state.payoutProvider = provider;
+      state.payoutWallet = account.toLowerCase();
+      updatePayoutWalletUi();
+
+      if (state.tokenAddress) {
+        await refreshPayoutWalletBalance();
+      }
+    } catch (error) {
+      console.warn("No se pudo restaurar la wallet admin:", error);
     }
   };
 
@@ -655,7 +750,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateAdminSummaryForTab(state.activeTab);
   };
 
-  const openAdminPanel = () => {
+  const openAdminPanel = ({ scroll = true } = {}) => {
     document.body.classList.add("admin-unlocked");
 
     if (adminLoginCard) adminLoginCard.hidden = true;
@@ -664,11 +759,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (creatorDropdown) creatorDropdown.hidden = true;
     if (creatorMenuButton) creatorMenuButton.setAttribute("aria-expanded", "false");
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    startAdminAutoRefresh();
+
+    if (scroll) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const closeAdminPanel = () => {
     document.body.classList.remove("admin-unlocked");
+    stopAdminAutoRefresh();
+    clearStoredAdminKey();
+    clearPayoutWalletConnectionMemory();
 
     if (adminLoginCard) adminLoginCard.hidden = false;
     if (adminProtectedPanel) adminProtectedPanel.hidden = true;
@@ -677,6 +779,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (creatorMenuButton) creatorMenuButton.setAttribute("aria-expanded", "false");
 
     state.adminKey = "";
+    state.payoutWallet = "";
+    state.payoutProvider = null;
+    state.tokenBalance = null;
+    updatePayoutWalletUi();
 
     setAdminTab("referidos");
 
@@ -688,17 +794,25 @@ document.addEventListener("DOMContentLoaded", () => {
     setMessage("Sesión cerrada.", "success");
   };
 
-  const loadAdminData = async () => {
-    const adminKey = String(adminKeyInput?.value || "").trim();
+  const loadAdminData = async ({
+    adminKey: providedAdminKey = "",
+    silent = false,
+    fromSavedSession = false,
+    scroll = true
+  } = {}) => {
+    const adminKey = String(providedAdminKey || adminKeyInput?.value || state.adminKey || "").trim();
 
     if (!adminKey) {
-      setMessage("Ingresa el ADMIN_KEY de tu archivo .env.", "error");
+      if (!silent) setMessage("Ingresa la clave admin del desarrollador.", "error");
       return;
     }
 
     try {
       state.adminKey = adminKey;
-      setMessage("Cargando compras confirmadas...", "success");
+
+      if (!silent) {
+        setMessage("Cargando datos actualizados...", "success");
+      }
 
       await loadPublicConfig();
 
@@ -716,18 +830,45 @@ document.addEventListener("DOMContentLoaded", () => {
       renderPurchaseRows(purchasesData.purchases || []);
       renderBuyersRows(buyersData.buyers || []);
       updateAdminSummaryForTab(state.activeTab);
-      setMessage("Datos cargados correctamente.", "success");
-      openAdminPanel();
+
+      saveStoredAdminKey(adminKey);
+
+      if (adminKeyInput) {
+        adminKeyInput.value = adminKey;
+      }
+
+      openAdminPanel({ scroll: scroll && !silent });
+
+      await restorePayoutWalletIfAllowed();
+
+      if (!silent) {
+        setMessage("Datos cargados correctamente.", "success");
+      }
     } catch (error) {
+      stopAdminAutoRefresh();
+
+      if (fromSavedSession) {
+        clearStoredAdminKey();
+      }
+
       if (adminProtectedPanel) adminProtectedPanel.hidden = true;
       if (adminSessionMenu) adminSessionMenu.hidden = true;
       if (adminLoginCard) adminLoginCard.hidden = false;
       document.body.classList.remove("admin-unlocked");
-      setMessage(error.message || "No se pudieron cargar los datos.", "error");
+
+      const message = fromSavedSession
+        ? "La sesión guardada ya no es válida. Ingresa la clave admin otra vez."
+        : error.message || "No se pudieron cargar los datos.";
+
+      if (!silent || fromSavedSession) {
+        setMessage(message, "error");
+      }
     }
   };
 
-  if (loadAdminButton) loadAdminButton.addEventListener("click", loadAdminData);
+  if (loadAdminButton) {
+    loadAdminButton.addEventListener("click", () => loadAdminData());
+  }
   if (connectPayoutWalletButton) connectPayoutWalletButton.addEventListener("click", connectPayoutWallet);
 
 
@@ -903,4 +1044,17 @@ document.addEventListener("DOMContentLoaded", () => {
       if (creatorMenuButton) creatorMenuButton.setAttribute("aria-expanded", "false");
     }
   });
+
+  const savedAdminKey = readStoredAdminKey();
+
+  if (savedAdminKey) {
+    if (adminKeyInput) adminKeyInput.value = savedAdminKey;
+    setMessage("Restaurando sesión admin...", "success");
+    loadAdminData({
+      adminKey: savedAdminKey,
+      silent: true,
+      fromSavedSession: true,
+      scroll: false
+    });
+  }
 });
