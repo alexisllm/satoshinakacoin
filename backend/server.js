@@ -22,6 +22,8 @@ const DATABASE_URL = process.env.DATABASE_URL || "";
 const DATABASE_SSL =
   String(process.env.DATABASE_SSL || "").toLowerCase() === "true" ||
   /sslmode=require/i.test(DATABASE_URL);
+const SNC_TOKEN_ADDRESS = String(process.env.SNC_TOKEN_ADDRESS || "").toLowerCase();
+const SNC_TOKEN_DECIMALS = Number(process.env.SNC_TOKEN_DECIMALS || 18);
 
 const REFERRAL_BPS = Math.round(REFERRAL_PERCENT * 100);
 
@@ -108,6 +110,9 @@ const toPurchaseDto = (row) => ({
   commissionBnb: row.commission_bnb || "0",
   commissionSncEstimated: bnbToSncString(row.commission_bnb || "0"),
   payoutStatus: row.payout_status,
+  tokenDeliveryStatus: row.token_delivery_status || "pending",
+  tokenDeliveryTxHash: row.token_delivery_tx_hash || "",
+  tokenDeliveredAt: row.token_delivered_at ? new Date(row.token_delivered_at).toISOString() : "",
   blockNumber: Number(row.block_number || 0),
   confirmations: Number(row.confirmations || 0),
   payoutTxHash: row.payout_tx_hash || "",
@@ -229,6 +234,97 @@ const verifyBscPurchase = async ({ txHash, buyerWallet }) => {
   };
 };
 
+const tokenAmountToUnits = (amount, decimals = 18) => {
+  const clean = String(amount || "0").replace(/,/g, "").trim();
+
+  if (!/^\d+(\.\d+)?$/.test(clean)) {
+    throw new Error("Monto SNC inválido.");
+  }
+
+  const [whole, fraction = ""] = clean.split(".");
+  const paddedFraction = fraction.padEnd(decimals, "0").slice(0, decimals);
+
+  return BigInt(whole || "0") * (10n ** BigInt(decimals)) + BigInt(paddedFraction || "0");
+};
+
+const verifySncTransfer = async ({ txHash, payerWallet, receiverWallet, expectedSnc }) => {
+  if (!isValidTxHash(txHash)) {
+    throw new Error("Hash de envío inválido.");
+  }
+
+  if (!isValidAddress(SNC_TOKEN_ADDRESS)) {
+    throw new Error("Configura SNC_TOKEN_ADDRESS en Render antes de marcar pagos.");
+  }
+
+  if (!isValidAddress(receiverWallet)) {
+    throw new Error("Wallet destino inválida.");
+  }
+
+  const [tx, receipt, latestBlockHex] = await Promise.all([
+    rpc("eth_getTransactionByHash", [txHash]),
+    rpc("eth_getTransactionReceipt", [txHash]),
+    rpc("eth_blockNumber", [])
+  ]);
+
+  if (!tx) {
+    throw new Error("La transacción de SNC todavía no existe en BNB Smart Chain.");
+  }
+
+  if (!receipt) {
+    throw new Error("La transacción de SNC aún está pendiente.");
+  }
+
+  if (String(receipt.status).toLowerCase() !== "0x1") {
+    throw new Error("La transacción de SNC falló en la red.");
+  }
+
+  const txTo = normalizeAddress(tx.to);
+  const txFrom = normalizeAddress(tx.from);
+  const tokenAddress = normalizeAddress(SNC_TOKEN_ADDRESS);
+
+  if (txTo !== tokenAddress) {
+    throw new Error("La transacción no fue enviada al contrato SNC configurado.");
+  }
+
+  if (payerWallet && isValidAddress(payerWallet) && txFrom !== normalizeAddress(payerWallet)) {
+    throw new Error("La wallet pagadora no coincide con el remitente de la transacción.");
+  }
+
+  const input = String(tx.input || "").toLowerCase();
+  if (!input.startsWith("0xa9059cbb") || input.length < 138) {
+    throw new Error("La transacción no parece ser un transfer ERC20/BEP20.");
+  }
+
+  const encodedReceiver = `0x${input.slice(34, 74)}`;
+  const encodedAmount = BigInt(`0x${input.slice(74, 138)}`);
+  const expectedUnits = tokenAmountToUnits(expectedSnc, SNC_TOKEN_DECIMALS);
+
+  if (normalizeAddress(encodedReceiver) !== normalizeAddress(receiverWallet)) {
+    throw new Error("La wallet destino no coincide con la transacción de SNC.");
+  }
+
+  if (encodedAmount < expectedUnits) {
+    throw new Error("El monto enviado es menor al monto pendiente esperado.");
+  }
+
+  const latestBlock = Number(hexToBigInt(latestBlockHex));
+  const txBlock = Number(hexToBigInt(receipt.blockNumber));
+  const confirmations = Math.max(latestBlock - txBlock + 1, 0);
+
+  if (confirmations < MIN_CONFIRMATIONS) {
+    throw new Error(`Faltan confirmaciones del envío SNC. Actual: ${confirmations}, requeridas: ${MIN_CONFIRMATIONS}.`);
+  }
+
+  return {
+    txHash: txHash.toLowerCase(),
+    from: txFrom,
+    to: encodedReceiver,
+    amountUnits: encodedAmount.toString(),
+    blockNumber: txBlock,
+    confirmations
+  };
+};
+
 const initDb = async () => {
   await pool.query(`
     CREATE TABLE IF NOT EXISTS referrers (
@@ -273,6 +369,23 @@ const initDb = async () => {
       purchase_tx_hashes JSONB NOT NULL DEFAULT '[]'::jsonb,
       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
+
+    CREATE TABLE IF NOT EXISTS buyer_deliveries (
+      id UUID PRIMARY KEY,
+      buyer_wallet TEXT NOT NULL,
+      amount_snc TEXT NOT NULL,
+      delivery_tx_hash TEXT,
+      purchase_tx_hashes JSONB NOT NULL DEFAULT '[]'::jsonb,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
+
+    ALTER TABLE purchases
+      ADD COLUMN IF NOT EXISTS token_delivery_status TEXT NOT NULL DEFAULT 'pending',
+      ADD COLUMN IF NOT EXISTS token_delivery_tx_hash TEXT,
+      ADD COLUMN IF NOT EXISTS token_delivered_at TIMESTAMPTZ;
+
+    CREATE INDEX IF NOT EXISTS idx_purchases_token_delivery_status ON purchases(token_delivery_status);
+    CREATE INDEX IF NOT EXISTS idx_buyer_deliveries_wallet ON buyer_deliveries(buyer_wallet);
   `);
 };
 
@@ -331,6 +444,8 @@ app.get("/api/public-config", (req, res) => {
   res.json({
     ok: true,
     saleReceiverAddress: isValidAddress(SALE_RECEIVER_ADDRESS) ? SALE_RECEIVER_ADDRESS : "",
+    sncTokenAddress: isValidAddress(SNC_TOKEN_ADDRESS) ? SNC_TOKEN_ADDRESS : "",
+    sncTokenDecimals: SNC_TOKEN_DECIMALS,
     sncPerBnb: SNC_PER_BNB,
     presaleTokensForSale: PRESALE_TOKENS_FOR_SALE,
     referralPercent: REFERRAL_PERCENT
@@ -670,20 +785,181 @@ app.get("/api/admin/purchases", requireAdmin, async (req, res) => {
   }
 });
 
+app.get("/api/admin/buyers", requireAdmin, async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT
+        buyer_wallet,
+        COUNT(*)::INT AS total_purchases,
+        COALESCE(SUM(tokens_snc_estimated::numeric), 0)::TEXT AS total_purchased_snc,
+        COALESCE(SUM(CASE WHEN token_delivery_status = 'paid' THEN tokens_snc_estimated::numeric ELSE 0 END), 0)::TEXT AS delivered_snc,
+        COALESCE(SUM(CASE WHEN token_delivery_status <> 'paid' THEN tokens_snc_estimated::numeric ELSE 0 END), 0)::TEXT AS pending_delivery_snc,
+        MAX(created_at) AS last_purchase_at
+      FROM purchases
+      GROUP BY buyer_wallet
+      ORDER BY MAX(created_at) DESC
+    `);
+
+    const buyers = result.rows.map((row) => ({
+      buyerWallet: row.buyer_wallet,
+      totalPurchases: Number(row.total_purchases || 0),
+      totalPurchasedSnc: row.total_purchased_snc || "0",
+      deliveredSnc: row.delivered_snc || "0",
+      pendingDeliverySnc: row.pending_delivery_snc || "0",
+      lastPurchaseAt: row.last_purchase_at ? new Date(row.last_purchase_at).toISOString() : ""
+    }));
+
+    const totalPending = buyers.reduce((sum, buyer) => sum + Number(buyer.pendingDeliverySnc || 0), 0);
+    const totalDelivered = buyers.reduce((sum, buyer) => sum + Number(buyer.deliveredSnc || 0), 0);
+
+    res.json({
+      ok: true,
+      totalBuyers: buyers.length,
+      totalPendingDeliverySnc: String(totalPending),
+      totalDeliveredSnc: String(totalDelivered),
+      buyers
+    });
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      error: error.message || "No se pudieron cargar los compradores."
+    });
+  }
+});
+
+app.post("/api/admin/buyer-deliveries/mark-paid", requireAdmin, async (req, res) => {
+  const client = await pool.connect();
+
+  try {
+    const buyerWallet = normalizeAddress(req.body?.buyerWallet);
+    const deliveryTxHash = String(req.body?.deliveryTxHash || "").toLowerCase();
+    const payerWallet = normalizeAddress(req.body?.payerWallet);
+    const expectedSnc = String(req.body?.expectedSnc || "0");
+
+    if (!isValidAddress(buyerWallet)) {
+      return res.status(400).json({ ok: false, error: "Wallet de comprador inválida." });
+    }
+
+    if (!isValidTxHash(deliveryTxHash)) {
+      return res.status(400).json({ ok: false, error: "Hash de envío inválido." });
+    }
+
+    await verifySncTransfer({
+      txHash: deliveryTxHash,
+      payerWallet,
+      receiverWallet: buyerWallet,
+      expectedSnc
+    });
+
+    await client.query("BEGIN");
+
+    const pendingResult = await client.query(
+      `
+        SELECT *
+        FROM purchases
+        WHERE buyer_wallet = $1 AND token_delivery_status <> 'paid'
+        FOR UPDATE
+      `,
+      [buyerWallet]
+    );
+
+    const pendingPurchases = pendingResult.rows;
+
+    if (!pendingPurchases.length) {
+      await client.query("ROLLBACK");
+      return res.status(400).json({ ok: false, error: "No hay SNC pendientes por enviar a este comprador." });
+    }
+
+    const totalSnc = pendingPurchases.reduce(
+      (sum, item) => sum + Number(item.tokens_snc_estimated || 0),
+      0
+    );
+
+    await client.query(
+      `
+        UPDATE purchases
+        SET token_delivery_status = 'paid',
+            token_delivered_at = NOW(),
+            token_delivery_tx_hash = $2
+        WHERE buyer_wallet = $1 AND token_delivery_status <> 'paid'
+      `,
+      [buyerWallet, deliveryTxHash]
+    );
+
+    const deliveryId = crypto.randomUUID();
+    const purchaseTxHashes = pendingPurchases.map((item) => item.tx_hash);
+
+    const deliveryResult = await client.query(
+      `
+        INSERT INTO buyer_deliveries (
+          id,
+          buyer_wallet,
+          amount_snc,
+          delivery_tx_hash,
+          purchase_tx_hashes,
+          created_at
+        )
+        VALUES ($1, $2, $3, $4, $5::jsonb, NOW())
+        RETURNING *
+      `,
+      [
+        deliveryId,
+        buyerWallet,
+        String(totalSnc),
+        deliveryTxHash,
+        JSON.stringify(purchaseTxHashes)
+      ]
+    );
+
+    await client.query("COMMIT");
+
+    res.json({
+      ok: true,
+      delivery: {
+        id: deliveryResult.rows[0].id,
+        buyerWallet: deliveryResult.rows[0].buyer_wallet,
+        amountSnc: deliveryResult.rows[0].amount_snc,
+        deliveryTxHash: deliveryResult.rows[0].delivery_tx_hash || "",
+        purchaseTxHashes,
+        createdAt: deliveryResult.rows[0].created_at
+          ? new Date(deliveryResult.rows[0].created_at).toISOString()
+          : nowIso()
+      }
+    });
+  } catch (error) {
+    await client.query("ROLLBACK").catch(() => {});
+    res.status(500).json({
+      ok: false,
+      error: error.message || "No se pudo marcar la entrega como pagada."
+    });
+  } finally {
+    client.release();
+  }
+});
+
 app.post("/api/admin/payouts/mark-paid", requireAdmin, async (req, res) => {
   const client = await pool.connect();
 
   try {
     const referrerWallet = normalizeAddress(req.body?.referrerWallet);
     const payoutTxHash = String(req.body?.payoutTxHash || "").toLowerCase();
+    const payerWallet = normalizeAddress(req.body?.payerWallet);
+    const expectedSnc = String(req.body?.expectedSnc || "0");
 
     if (!isValidAddress(referrerWallet)) {
       return res.status(400).json({ ok: false, error: "Wallet de referidor inválida." });
     }
 
-    if (payoutTxHash && !isValidTxHash(payoutTxHash)) {
+    if (!isValidTxHash(payoutTxHash)) {
       return res.status(400).json({ ok: false, error: "Hash de pago inválido." });
     }
+
+    await verifySncTransfer({
+      txHash: payoutTxHash,
+      payerWallet,
+      receiverWallet: referrerWallet,
+      expectedSnc
+    });
 
     await client.query("BEGIN");
 

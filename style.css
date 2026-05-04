@@ -803,8 +803,12 @@ body.wallet-connected #sncBalanceValue {
 .status-pill {
   display: inline-flex;
   align-items: center;
-  min-height: 30px;
-  padding: 0 11px;
+  justify-content: center;
+  min-width: 66px;
+  min-height: 34px;
+  padding: 0 13px;
+  text-align: center;
+  white-space: nowrap;
   border: 1px solid rgba(44, 255, 155, 0.35);
   border-radius: 999px;
   background: rgba(44, 255, 155, 0.1);
@@ -3598,6 +3602,1407 @@ body.wallet-connected .referral-trigger {
   border-bottom: 0;
 }
 
+.referral-empty {
+  padding: 18px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.admin-toolbar {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.admin-toolbar .admin-key-control {
+  flex: 1 1 320px;
+}
+
+@media (max-width: 760px) {
+  .referral-page {
+    padding: 18px 0 50px;
+  }
+
+  .referral-page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .referral-grid,
+  .referral-mini-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .referral-link-row {
+    grid-template-columns: 1fr;
+  }
+
+  .referral-page-header .btn,
+  .referral-link-row .btn,
+  .admin-toolbar .btn {
+    width: 100%;
+  }
+}
+
+
+.admin-table-note {
+  margin: -4px 0 16px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+
+/* Admin: el panel solo aparece después de validar ADMIN_KEY */
+.admin-protected-panel[hidden] {
+  display: none !important;
+}
+
+.admin-protected-panel {
+  animation: adminPanelFade 0.25s ease both;
+}
+
+@keyframes adminPanelFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+@media (max-width: 760px) {
+  .hero-buttons {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-buttons .btn {
+    width: min(100%, 340px);
+    margin-inline: auto;
+  }
+
+  .hero-stats {
+    width: min(100%, 340px);
+    margin-inline: auto;
+    gap: 12px;
+  }
+
+  .hero-stats article {
+    width: 100%;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-buttons .btn {
+    width: min(100%, 332px);
+  }
+
+  .hero-stats {
+    width: min(100%, 332px);
+  }
+}
+
+
+/* Ajuste premium para escritorio: evita que el título hero quede exageradamente grande */
+@media (min-width: 1121px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 0.98fr) minmax(420px, 500px);
+    gap: clamp(42px, 5vw, 86px);
+  }
+
+  .hero-content h1 {
+    max-width: 900px;
+    font-size: clamp(3rem, 4.25vw, 5rem);
+    line-height: 1.03;
+    letter-spacing: -0.045em;
+  }
+
+  .hero-description {
+    max-width: 760px;
+    font-size: clamp(1rem, 1.15vw, 1.16rem);
+  }
+}
+
+@media (min-width: 1500px) {
+  .hero-content h1 {
+    max-width: 940px;
+    font-size: clamp(3.2rem, 4vw, 5.15rem);
+  }
+}
+
+
+/* Ajuste móvil: botones y tarjetas del hero centradas sin ocupar todo el ancho */
+@media (max-width: 760px) {
+  .hero-buttons {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-buttons .btn {
+    width: min(100%, 340px);
+    margin-inline: auto;
+  }
+
+  .hero-stats {
+    width: min(100%, 340px);
+    margin-inline: auto;
+    gap: 12px;
+  }
+
+  .hero-stats article {
+    width: 100%;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-buttons .btn {
+    width: min(100%, 332px);
+  }
+
+  .hero-stats {
+    width: min(100%, 332px);
+  }
+}
+
+
+/* =========================================================
+   Ajuste final móvil:
+   - La tarjeta de preventa ya no ocupa todo el ancho.
+   - El bloque de texto del hero queda más cómodo y centrado.
+   - Mantiene diseño, colores y funcionamiento.
+   ========================================================= */
+@media (max-width: 760px) {
+  .hero {
+    padding-top: calc(var(--header-height) + 20px);
+    padding-bottom: 52px;
+  }
+
+  .hero-grid {
+    justify-items: center;
+    gap: 24px;
+  }
+
+  .hero-visual {
+    width: 100%;
+    max-width: 348px;
+    margin-inline: auto;
+    justify-items: center;
+  }
+
+  .presale-card {
+    width: min(calc(100vw - 36px), 340px);
+    max-width: 340px;
+    margin-inline: auto;
+    padding: 16px 14px;
+    border-radius: 24px;
+  }
+
+  .presale-header h2 {
+    font-size: 1.18rem;
+    line-height: 1.15;
+  }
+
+  .countdown {
+    gap: 8px;
+  }
+
+  .countdown div {
+    padding: 10px 5px;
+    border-radius: 13px;
+  }
+
+  .countdown strong {
+    font-size: 1.18rem;
+  }
+
+  .countdown span {
+    font-size: 0.64rem;
+  }
+
+  .progress-info {
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .progress-info strong {
+    font-size: 0.94rem;
+    line-height: 1.3;
+  }
+
+  .hero-content {
+    width: min(calc(100vw - 42px), 340px);
+    max-width: 340px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero-content .eyebrow {
+    max-width: 300px;
+    margin-inline: auto;
+    font-size: 0.68rem;
+    line-height: 1.5;
+    letter-spacing: 0.16em;
+  }
+
+  .hero-content h1 {
+    width: 100%;
+    max-width: 340px;
+    margin-inline: auto;
+    font-size: clamp(1.82rem, 8.4vw, 2.45rem);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  .hero-description {
+    max-width: 320px;
+    margin: 16px auto 0;
+    font-size: 0.92rem;
+    line-height: 1.58;
+    text-wrap: pretty;
+  }
+
+  .hero-buttons {
+    width: 100%;
+    max-width: 315px;
+    margin: 20px auto 0;
+    justify-content: center;
+  }
+
+  .hero-buttons .btn {
+    width: min(100%, 292px);
+    min-height: 52px;
+    margin-inline: auto;
+  }
+
+  .hero-stats {
+    width: min(100%, 315px);
+    max-width: 315px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 390px) {
+  .presale-card {
+    width: min(calc(100vw - 32px), 328px);
+    padding: 15px 13px;
+  }
+
+  .hero-visual,
+  .hero-content {
+    max-width: 328px;
+  }
+
+  .hero-content {
+    width: min(calc(100vw - 36px), 328px);
+  }
+
+  .hero-content h1 {
+    font-size: clamp(1.72rem, 8.1vw, 2.25rem);
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+  }
+}
+
+
+@media (max-width: 1120px) {
+  .nav-actions .language-menu {
+    width: min(100%, 220px);
+    margin-inline: auto;
+  }
+
+  .nav-actions .language-selector {
+    width: 100%;
+  }
+
+  .language-dropdown {
+    left: 50%;
+    right: auto;
+    width: min(220px, calc(100vw - 56px));
+    transform: translate(-50%, -8px);
+  }
+
+  .language-menu.open .language-dropdown {
+    transform: translate(-50%, 0);
+  }
+}
+
+
+/* =========================================================
+   FIX: contenido visible y responsive seguro
+   Evita pantalla en blanco si algún navegador bloquea animaciones
+   o si JavaScript tarda en iniciar.
+   ========================================================= */
+.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.reveal.visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+
+
+/* Ajuste final Tokenomics: sin texto descriptivo y con contenido más arriba */
+#tokenomics.section {
+  padding-top: 72px;
+}
+
+#tokenomics .tokenomics-highlights {
+  margin-top: 24px;
+}
+
+@media (max-width: 1120px) {
+  #tokenomics.section {
+    padding-top: 58px;
+  }
+
+  #tokenomics .tokenomics-highlights {
+    margin-top: 22px;
+  }
+}
+
+@media (max-width: 760px) {
+  #tokenomics.section {
+    padding-top: 42px;
+  }
+
+  #tokenomics .tokenomics-copy h2 {
+    margin-top: 4px;
+  }
+
+  #tokenomics .tokenomics-highlights {
+    margin-top: 18px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .snc-balance-chip {
+    min-height: 46px;
+    padding: 0.45rem 0.8rem;
+  }
+
+  .snc-balance-chip__label {
+    display: none;
+  }
+
+  #sncBalanceValue {
+    font-size: 0.88rem;
+  }
+}
+
+
+/* Ajuste final: Mis SNC a la izquierda y enlaces a la derecha */
+.nav-actions {
+  display: flex;
+  align-items: center;
+}
+
+.snc-balance-wrap {
+  order: 1;
+  display: flex;
+  align-items: center;
+}
+
+.nav-actions .social-links {
+  order: 2;
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
+}
+
+.language-menu {
+  order: 3;
+}
+
+.nav-actions .open-wallet {
+  order: 4;
+}
+
+.snc-balance-chip {
+  min-width: 158px;
+  justify-content: center;
+}
+
+@media (max-width: 1120px) {
+  .snc-balance-wrap {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-actions .social-links {
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  .snc-balance-chip {
+    min-width: min(100%, 230px);
+  }
+}
+
+@media (max-width: 520px) {
+  .snc-balance-chip {
+    min-width: 150px;
+    max-width: 230px;
+  }
+}
+
+
+/* =========================================================
+   FIX MÓVIL HEADER: SNC compacto + idioma separado
+   ========================================================= */
+@media (max-width: 640px) {
+  .navbar {
+    gap: 8px;
+  }
+
+  .nav-actions {
+    gap: 6px;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    min-width: 0;
+  }
+
+  .snc-balance-wrap {
+    flex: 0 1 auto;
+  }
+
+  .snc-balance-chip {
+    min-width: 108px !important;
+    max-width: 122px !important;
+    min-height: 38px !important;
+    padding: 0.35rem 0.55rem !important;
+    border-radius: 15px;
+  }
+
+  #sncBalanceValue {
+    font-size: 0.78rem !important;
+    letter-spacing: -0.02em;
+  }
+
+  .social-links {
+    gap: 5px !important;
+    flex: 0 0 auto;
+  }
+
+  .social-links a {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 0.86rem !important;
+  }
+
+  .language-menu {
+    flex: 0 0 auto;
+    margin-left: 3px;
+  }
+
+  .language-selector {
+    min-height: 38px !important;
+    width: auto !important;
+    min-width: 70px !important;
+    padding: 0 9px !important;
+    gap: 5px !important;
+    font-size: 0.8rem !important;
+  }
+
+  .language-selector span {
+    font-size: 0.9rem;
+  }
+
+  .language-selector strong {
+    max-width: 42px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .language-dropdown {
+    right: 0 !important;
+    left: auto !important;
+    width: min(190px, calc(100vw - 22px)) !important;
+    max-height: 270px;
+    overflow-y: auto;
+    transform: translateY(-8px) !important;
+  }
+
+  .language-menu.open .language-dropdown {
+    transform: translateY(0) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav-actions {
+    gap: 5px;
+  }
+
+  .snc-balance-chip {
+    min-width: 96px !important;
+    max-width: 108px !important;
+  }
+
+  #sncBalanceValue {
+    font-size: 0.72rem !important;
+  }
+
+  .social-links a {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .language-selector {
+    min-width: 62px !important;
+    padding-inline: 7px !important;
+  }
+
+  .language-selector span {
+    display: none;
+  }
+
+  .language-selector strong {
+    max-width: 48px;
+  }
+}
+
+@media (max-width: 360px) {
+  .snc-balance-chip {
+    min-width: 86px !important;
+    max-width: 96px !important;
+  }
+
+  .social-links a {
+    width: 31px !important;
+    height: 31px !important;
+  }
+
+  .language-selector {
+    min-width: 56px !important;
+    min-height: 34px !important;
+  }
+}
+
+
+/* =========================================================
+   FIX FINAL MÓVIL:
+   - El indicador SNC comprado vuelve a mostrarse dentro del menú.
+   - El menú hamburguesa queda fijo, sin scroll interno.
+   - El selector de idioma queda compacto y separado.
+   ========================================================= */
+@media (max-width: 1120px) {
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  .nav-menu {
+    position: fixed !important;
+    top: calc(var(--header-height) + 8px) !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: min(calc(100vw - 28px), 390px) !important;
+    max-width: calc(100vw - 28px) !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 16px 14px 18px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+    transform: translate(-50%, -14px) !important;
+  }
+
+  .nav-menu.active {
+    transform: translate(-50%, 0) !important;
+  }
+
+  .nav-links {
+    width: 100% !important;
+    display: grid !important;
+    gap: 2px !important;
+    justify-items: center !important;
+    order: 1 !important;
+  }
+
+  .nav-links a {
+    width: 100% !important;
+    min-height: 34px !important;
+    padding: 6px 8px !important;
+    line-height: 1.05 !important;
+    font-size: 0.9rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .nav-actions {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+    align-items: center !important;
+    gap: 9px !important;
+    order: 2 !important;
+  }
+
+  .nav-menu .snc-balance-wrap {
+    display: flex !important;
+    width: 100% !important;
+    justify-content: center !important;
+    order: 1 !important;
+    margin: 0 !important;
+  }
+
+  .nav-menu .snc-balance-chip {
+    display: inline-flex !important;
+    width: min(100%, 170px) !important;
+    min-width: 0 !important;
+    max-width: 170px !important;
+    min-height: 38px !important;
+    padding: 0.35rem 0.75rem !important;
+    border-radius: 16px !important;
+  }
+
+  .nav-menu #sncBalanceValue {
+    font-size: 0.82rem !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  .nav-menu .social-links {
+    display: flex !important;
+    width: auto !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    order: 2 !important;
+    margin: 0 !important;
+  }
+
+  .nav-menu .social-links a {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 0.82rem !important;
+  }
+
+  .nav-menu .language-menu {
+    display: inline-flex !important;
+    width: auto !important;
+    order: 3 !important;
+    margin: 0 !important;
+  }
+
+  .nav-menu .language-selector {
+    width: auto !important;
+    min-width: 74px !important;
+    min-height: 36px !important;
+    padding: 0 10px !important;
+    gap: 5px !important;
+    font-size: 0.78rem !important;
+  }
+
+  .nav-menu .language-dropdown {
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    left: 50% !important;
+    right: auto !important;
+    width: min(210px, calc(100vw - 44px)) !important;
+    max-height: min(300px, calc(100vh - var(--header-height) - 130px)) !important;
+    overflow-y: auto !important;
+    transform: translate(-50%, -8px) !important;
+    z-index: 120 !important;
+  }
+
+  .nav-menu .language-menu.open .language-dropdown {
+    transform: translate(-50%, 0) !important;
+  }
+
+  .nav-actions .open-wallet {
+    display: none !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav-menu {
+    top: calc(var(--header-height) + 6px) !important;
+    width: min(calc(100vw - 20px), 350px) !important;
+    padding: 14px 12px 16px !important;
+    gap: 8px !important;
+  }
+
+  .nav-links a {
+    min-height: 31px !important;
+    padding-block: 5px !important;
+    font-size: 0.84rem !important;
+  }
+
+  .nav-actions {
+    gap: 7px !important;
+  }
+
+  .nav-menu .snc-balance-chip {
+    max-width: 150px !important;
+    min-height: 35px !important;
+  }
+
+  .nav-menu #sncBalanceValue {
+    font-size: 0.76rem !important;
+  }
+
+  .nav-menu .social-links a {
+    width: 31px !important;
+    height: 31px !important;
+  }
+
+  .nav-menu .language-selector {
+    min-height: 34px !important;
+    min-width: 64px !important;
+    padding-inline: 8px !important;
+  }
+
+  .nav-menu .language-selector span {
+    display: none !important;
+  }
+}
+
+@media (max-height: 640px) and (max-width: 1120px) {
+  .nav-menu {
+    top: 62px !important;
+    padding-block: 10px !important;
+    gap: 6px !important;
+  }
+
+  .nav-links a {
+    min-height: 28px !important;
+    font-size: 0.78rem !important;
+    padding-block: 4px !important;
+  }
+
+  .nav-actions {
+    gap: 6px !important;
+  }
+
+  .nav-menu .snc-balance-chip,
+  .nav-menu .language-selector {
+    min-height: 32px !important;
+  }
+
+  .nav-menu .social-links a {
+    width: 29px !important;
+    height: 29px !important;
+  }
+}
+
+
+/* =========================================================
+   FIX IDIOMAS + MENÚ MÓVIL ESTÁTICO
+   - El dropdown de idiomas muestra 4 opciones visibles y el resto con scroll.
+   - El menú hamburguesa queda fijo y no genera scroll interno.
+   - El indicador de SNC comprados permanece visible.
+   ========================================================= */
+.language-dropdown {
+  max-height: 202px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 217, 255, 0.55) rgba(255, 255, 255, 0.08);
+}
+
+.language-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.language-dropdown::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+
+.language-dropdown::-webkit-scrollbar-thumb {
+  background: rgba(0, 217, 255, 0.55);
+  border-radius: 999px;
+}
+
+body.menu-open {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+@media (max-width: 1120px) {
+  .nav-menu {
+    overflow: visible !important;
+  }
+
+  .nav-menu .snc-balance-wrap {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .nav-menu .snc-balance-chip {
+    display: inline-flex !important;
+    flex-shrink: 0 !important;
+  }
+
+  .nav-menu .language-dropdown {
+    max-height: 194px !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+    padding: 8px !important;
+    gap: 5px !important;
+  }
+
+  .nav-menu .language-dropdown button {
+    min-height: 38px !important;
+    padding: 0 12px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav-menu .language-dropdown {
+    max-height: 184px !important;
+  }
+
+  .nav-menu .language-dropdown button {
+    min-height: 36px !important;
+  }
+}
+
+@media (max-height: 640px) and (max-width: 1120px) {
+  .nav-menu .language-dropdown {
+    max-height: 166px !important;
+  }
+
+  .nav-menu .language-dropdown button {
+    min-height: 34px !important;
+  }
+}
+
+
+/* =========================================================
+   Logo sin fondo negro + optimización visual
+   - Giro 2D sobre el centro para que nunca se vea negro.
+   - Sin rotateY, sin backface y sin will-change permanente.
+   - Imágenes pequeñas: snc-coin-header.png, snc-coin-orb.png, snc-favicon.png.
+   ========================================================= */
+.brand-mark {
+  overflow: hidden;
+  border-radius: 50%;
+  padding: 1px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 216, 107, 0.22), rgba(0, 217, 255, 0.08) 62%, rgba(0, 0, 0, 0) 72%);
+  border-color: rgba(255, 216, 107, 0.5);
+  contain: layout paint;
+}
+
+.brand-logo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  transform-origin: 50% 50%;
+  animation: sncCoinFlatSpin 24s linear infinite;
+}
+
+.brand:hover .brand-logo {
+  animation-duration: 14s;
+}
+
+@keyframes sncCoinFlatSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.orb-logo {
+  transform: translateZ(0);
+}
+
+/* Reduce trabajo visual en tarjetas y secciones fuera de pantalla. */
+.section,
+.site-footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 680px;
+}
+
+.hero,
+.site-header,
+.modal,
+.nav-menu.active {
+  content-visibility: visible;
+}
+
+/* Menos consumo en móviles: animaciones decorativas más lentas y estables. */
+@media (max-width: 760px) {
+  .brand-logo {
+    animation-duration: 32s;
+  }
+
+  .orb-ring,
+  .spark,
+  .grid-overlay {
+    animation-duration: 28s !important;
+  }
+}
+
+/* Si el usuario prefiere menos movimiento, se desactivan animaciones continuas. */
+@media (prefers-reduced-motion: reduce) {
+  .brand-logo,
+  .orb-ring,
+  .spark,
+  .grid-overlay {
+    animation: none !important;
+  }
+
+  .section,
+  .site-footer {
+    content-visibility: visible;
+    contain-intrinsic-size: auto;
+  }
+}
+
+
+
+/* =========================================================
+   FIX FINAL: menú móvil con fondo opaco/borroso + logo 3D
+   - El fondo de la web ya no queda blanco al abrir hamburguesa.
+   - El logo gira en 3D con imagen por ambos lados para no quedar negro.
+   - Animación ligera con transform.
+   ========================================================= */
+body.menu-open::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(0, 217, 255, 0.16), transparent 34rem),
+    radial-gradient(circle at 86% 18%, rgba(216, 166, 58, 0.12), transparent 30rem),
+    rgba(2, 6, 16, 0.78);
+  backdrop-filter: blur(9px) saturate(115%);
+  -webkit-backdrop-filter: blur(9px) saturate(115%);
+}
+
+body.menu-open .site-header {
+  z-index: 90;
+}
+
+@media (max-width: 1120px) {
+  body.menu-open .nav-menu.active {
+    z-index: 95;
+    background:
+      linear-gradient(135deg, rgba(6, 12, 27, 0.94), rgba(3, 7, 18, 0.97)),
+      rgba(5, 7, 15, 0.96);
+    box-shadow:
+      0 26px 90px rgba(0, 0, 0, 0.72),
+      inset 0 0 0 1px rgba(0, 217, 255, 0.08);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+}
+
+/* Logo 3D de doble cara: no se queda oscuro al girar */
+.brand-mark {
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  padding: 1px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 216, 107, 0.20), rgba(0, 217, 255, 0.08) 62%, transparent 74%);
+  border-color: rgba(255, 216, 107, 0.58);
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  animation: sncCoinFlip3d 12s linear infinite;
+  contain: layout paint;
+}
+
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 1;
+  border-radius: 50%;
+  background-image: url("snc-coin-header.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: rotateY(180deg) translateZ(1px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  filter: drop-shadow(0 0 10px rgba(255, 216, 107, 0.24));
+}
+
+.brand-logo {
+  position: relative;
+  z-index: 2;
+  animation: none !important;
+  transform: translateZ(1px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  filter: drop-shadow(0 0 10px rgba(255, 216, 107, 0.24));
+}
+
+.brand:hover .brand-mark {
+  animation-duration: 8s;
+}
+
+@keyframes sncCoinFlip3d {
+  0% {
+    transform: perspective(720px) rotateY(0deg);
+  }
+
+  100% {
+    transform: perspective(720px) rotateY(360deg);
+  }
+}
+
+@media (max-width: 760px) {
+  .brand-mark {
+    animation-duration: 16s;
+  }
+
+  body.menu-open::after {
+    background:
+      radial-gradient(circle at 20% 12%, rgba(0, 217, 255, 0.14), transparent 24rem),
+      rgba(2, 6, 16, 0.84);
+    backdrop-filter: blur(8px) saturate(112%);
+    -webkit-backdrop-filter: blur(8px) saturate(112%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-mark {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+
+
+/* =========================================================
+   Ajuste solicitado: bloque visual del hero + moneda central 3D
+   - Sube solo la sección visual derecha del hero para dejarla cerca del menú superior.
+   - La moneda central también gira en 3D con doble cara para no quedar oscura.
+   ========================================================= */
+@media (min-width: 1121px) {
+  .hero-visual {
+    transform: translateY(-90px);
+  }
+}
+
+.tribute-orb {
+  perspective: 900px;
+}
+
+.orb-core {
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  animation: sncOrbCoinFlip3d 14s linear infinite;
+  will-change: transform;
+}
+
+.orb-core::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  z-index: 1;
+  border-radius: 50%;
+  background-image: url("snc-coin-orb.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: rotateY(180deg) translateZ(1px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  filter: drop-shadow(0 0 18px rgba(255, 216, 107, 0.28));
+}
+
+.orb-logo {
+  position: relative;
+  z-index: 2;
+  transform: translateZ(1px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@keyframes sncOrbCoinFlip3d {
+  0% {
+    transform: perspective(900px) rotateY(0deg);
+  }
+
+  100% {
+    transform: perspective(900px) rotateY(360deg);
+  }
+}
+
+@media (max-width: 760px) {
+  .orb-core {
+    animation-duration: 18s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb-core {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto;
+  }
+}
+
+
+/* =========================================================
+   AJUSTE FINAL INICIO DESKTOP:
+   La sección Inicio queda pegada visualmente al menú superior
+   con una separación aproximada de 10px.
+   ========================================================= */
+@media (min-width: 1121px) {
+  .hero {
+    min-height: auto !important;
+    align-items: flex-start !important;
+    padding-top: calc(var(--header-height) + 10px) !important;
+    padding-bottom: 56px !important;
+  }
+
+  .hero-grid {
+    align-items: flex-start !important;
+    padding-top: 0 !important;
+  }
+
+  .hero-visual {
+    transform: none !important;
+    margin-top: 0 !important;
+  }
+}
+
+
+/* =========================================================
+   AJUSTE HERO DESKTOP:
+   - Baja el bloque Inicio 25px respecto al ajuste anterior.
+   - Reduce el título principal para que se vea más elegante.
+   ========================================================= */
+@media (min-width: 1121px) {
+  .hero {
+    padding-top: calc(var(--header-height) + 35px) !important;
+    padding-bottom: 64px !important;
+  }
+
+  .hero-content h1 {
+    max-width: 860px !important;
+    font-size: clamp(2.7rem, 3.55vw, 4.45rem) !important;
+    line-height: 1.04 !important;
+    letter-spacing: -0.038em !important;
+  }
+
+  .hero-description {
+    max-width: 720px !important;
+    font-size: clamp(0.98rem, 1.05vw, 1.1rem) !important;
+    margin-top: 22px !important;
+  }
+}
+
+@media (min-width: 1500px) {
+  .hero-content h1 {
+    max-width: 900px !important;
+    font-size: clamp(3rem, 3.45vw, 4.65rem) !important;
+  }
+}
+
+
+
+@media (max-width: 520px) {
+  .status-pill {
+    min-width: 58px;
+    min-height: 34px;
+    padding-inline: 12px;
+    font-size: 0.78rem;
+    line-height: 1;
+  }
+
+  .presale-header {
+    gap: 10px;
+  }
+}
+
+
+/* ===== Admin styles restored ===== */
+.referral-page {
+  min-height: 100vh;
+  padding: 32px 0 70px;
+}
+
+.referral-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.referral-page-header .brand {
+  min-width: 0;
+}
+
+.referral-dashboard-card,
+.referral-panel-card,
+.referral-table-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.025));
+  box-shadow: 0 22px 80px rgba(0,0,0,.25);
+  backdrop-filter: blur(16px);
+}
+
+.referral-dashboard-card {
+  padding: clamp(22px, 4vw, 38px);
+}
+
+.referral-dashboard-card h1 {
+  margin: 10px 0 14px;
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(2.2rem, 7vw, 4.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.referral-dashboard-card > p {
+  max-width: 760px;
+  color: var(--muted-strong);
+  font-size: 1rem;
+}
+
+.referral-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-top: 26px;
+}
+
+.referral-panel-card {
+  padding: 22px;
+}
+
+.referral-panel-card h2,
+.referral-table-card h2 {
+  margin-bottom: 14px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.2rem;
+}
+
+.referral-wallet-box,
+.referral-link-control,
+.admin-key-control {
+  display: grid;
+  gap: 8px;
+}
+
+.referral-wallet-box label,
+.referral-link-control label,
+.admin-key-control label {
+  color: var(--muted-strong);
+  font-size: .9rem;
+  font-weight: 900;
+}
+
+.referral-link-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+.referral-link-row input,
+.admin-key-control input,
+.referral-wallet-box input {
+  min-height: 52px;
+  padding: 0 14px;
+}
+
+.referral-mini-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.referral-mini-stats article {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,.04);
+}
+
+.referral-mini-stats span {
+  display: block;
+  color: var(--muted);
+  font-size: .8rem;
+  font-weight: 800;
+}
+
+.referral-mini-stats strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--blue);
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.1rem;
+}
+
+.referral-table-card {
+  grid-column: 1 / -1;
+  padding: 22px;
+  overflow: hidden;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.referral-table {
+  width: 100%;
+  min-width: 860px;
+  border-collapse: collapse;
+}
+
+.referral-table th,
+.referral-table td {
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-strong);
+  text-align: left;
+  vertical-align: middle;
+  font-size: .9rem;
+}
+
+.referral-table th {
+  color: var(--gold-light);
+  font-family: "Orbitron", sans-serif;
+  font-size: .78rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.referral-table tr:last-child td {
+  border-bottom: 0;
+}
+
 
 .referral-table .wallet-full {
   color: var(--text);
@@ -4509,4 +5914,484 @@ body.wallet-connected .referral-trigger {
   .admin-panel-head h1 {
     font-size: clamp(2rem, 12vw, 3rem);
   }
+}
+
+
+/* Corrección final: login admin tipo tarjeta cuadrada y centrada */
+body.admin-page-body {
+  overflow-x: hidden;
+}
+
+.admin-page .container {
+  width: min(calc(100% - 32px), 1320px);
+}
+
+.admin-login-card {
+  width: min(100%, 520px) !important;
+  min-height: 500px;
+  margin: clamp(42px, 9vh, 88px) auto 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  padding: clamp(28px, 4vw, 42px) !important;
+  border-radius: 30px !important;
+}
+
+.admin-login-form {
+  display: grid;
+  gap: 16px;
+}
+
+.admin-login-form .btn {
+  width: 100%;
+}
+
+.admin-login-card .admin-key-control input {
+  width: 100%;
+}
+
+.admin-unlocked .admin-login-card {
+  display: none !important;
+}
+
+.admin-session-menu {
+  position: relative;
+}
+
+.admin-protected-panel {
+  width: min(100%, 1180px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.admin-content-panel {
+  margin-top: 18px !important;
+}
+
+.admin-panel-head {
+  padding: clamp(20px, 2.8vw, 30px) !important;
+}
+
+.admin-panel-head h1 {
+  font-size: clamp(2rem, 4vw, 3.35rem) !important;
+}
+
+@media (max-width: 760px) {
+  .admin-login-card {
+    width: min(100%, 420px) !important;
+    min-height: 460px;
+    margin-top: 32px !important;
+    border-radius: 26px !important;
+  }
+
+  .admin-login-card h1 {
+    font-size: clamp(2.05rem, 11vw, 3rem) !important;
+  }
+
+  .admin-topbar {
+    margin-bottom: 10px !important;
+  }
+}
+
+
+/* =========================================================
+   FIX ADMIN LOGIN: tarjeta más arriba, más pequeña y sin scroll
+   ========================================================= */
+.admin-page-body {
+  min-height: 100svh;
+}
+
+.admin-page {
+  min-height: 100svh;
+  padding: 14px 0 22px;
+}
+
+.admin-page .container {
+  width: min(calc(100% - 32px), 1320px);
+}
+
+.admin-topbar {
+  margin-bottom: 8px;
+}
+
+.admin-login-card {
+  width: min(100%, 460px);
+  margin: 6px auto 0;
+  padding: 22px 28px 24px;
+  border-radius: 24px;
+}
+
+.admin-login-card h1 {
+  margin: 10px 0 12px;
+  font-size: clamp(1.95rem, 3.9vw, 3rem);
+  line-height: 1.03;
+  letter-spacing: -0.045em;
+}
+
+.admin-login-card > p {
+  font-size: 0.94rem;
+  line-height: 1.45;
+}
+
+.admin-login-form {
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.admin-login-form label {
+  gap: 8px;
+}
+
+.admin-login-form input {
+  min-height: 48px;
+}
+
+.admin-login-form .btn {
+  min-height: 50px;
+  padding-block: 13px;
+}
+
+@media (min-width: 901px) {
+  .admin-login-card {
+    transform: translateY(-22px);
+  }
+}
+
+@media (max-width: 760px) {
+  .admin-page {
+    padding: 12px 0 18px;
+  }
+
+  .admin-topbar {
+    margin-bottom: 10px;
+  }
+
+  .admin-login-card {
+    width: min(100%, 420px);
+    margin-top: 8px;
+    padding: 22px 20px;
+    border-radius: 22px;
+  }
+
+  .admin-login-card h1 {
+    font-size: clamp(2rem, 10vw, 2.9rem);
+  }
+}
+
+@media (max-width: 420px) {
+  .admin-page .container {
+    width: min(calc(100% - 24px), 1320px);
+  }
+
+  .admin-login-card {
+    padding: 18px 16px;
+  }
+
+  .admin-login-card h1 {
+    font-size: clamp(1.8rem, 11vw, 2.55rem);
+  }
+}
+
+
+/* Admin: favicon, sin volver y copia rápida de wallets */
+.admin-top-actions .btn-ghost {
+  display: none !important;
+}
+
+.wallet-copy-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+}
+
+.wallet-full-value {
+  display: inline-block;
+  max-width: min(520px, 64vw);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  word-break: break-all;
+}
+
+.wallet-copy-button {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid rgba(0, 217, 255, 0.35);
+  border-radius: 8px;
+  background: rgba(0, 217, 255, 0.08);
+  color: var(--blue);
+  font-family: "Inter", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.wallet-copy-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 216, 107, 0.6);
+  background: rgba(255, 216, 107, 0.12);
+  color: var(--gold-light);
+}
+
+.wallet-copy-button.copied {
+  border-color: rgba(44, 255, 155, 0.6);
+  background: rgba(44, 255, 155, 0.13);
+  color: var(--success);
+}
+
+.wallet-copy-button.copy-error {
+  border-color: rgba(255, 93, 122, 0.65);
+  background: rgba(255, 93, 122, 0.14);
+  color: var(--danger);
+}
+
+@media (max-width: 760px) {
+  .wallet-copy-wrap {
+    align-items: flex-start;
+  }
+
+  .wallet-full-value {
+    max-width: 72vw;
+    font-size: 0.78rem;
+  }
+
+  .wallet-copy-button {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Admin: pagos SNC de referidos */
+.admin-wallet-pay-card {
+  width: min(100%, 1480px);
+  margin: 1.4rem auto 1.4rem;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid rgba(27, 224, 255, 0.18);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(14, 36, 55, 0.72), rgba(22, 25, 37, 0.72));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin-wallet-pay-card > div {
+  display: grid;
+  gap: 0.28rem;
+}
+
+.admin-wallet-label {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+#adminPayoutWalletStatus {
+  color: var(--accent-cyan);
+  font-size: 1.05rem;
+}
+
+#adminTokenStatus {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+#adminTokenStatus.error {
+  color: var(--accent-gold);
+}
+
+.admin-pay-cell {
+  display: grid;
+  gap: 0.45rem;
+  justify-items: start;
+}
+
+.admin-pay-cell span {
+  color: var(--accent-gold);
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.admin-pay-button {
+  border: 1px solid rgba(27, 224, 255, 0.35);
+  background: linear-gradient(135deg, rgba(0, 213, 255, 0.16), rgba(34, 255, 145, 0.10));
+  color: var(--accent-cyan);
+  border-radius: 12px;
+  padding: 0.62rem 0.85rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
+}
+
+.admin-pay-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(27, 224, 255, 0.75);
+  background: linear-gradient(135deg, rgba(0, 213, 255, 0.22), rgba(34, 255, 145, 0.16));
+}
+
+.admin-pay-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+@media (max-width: 768px) {
+  .admin-wallet-pay-card {
+    align-items: stretch;
+    flex-direction: column;
+    border-radius: 18px;
+    padding: 1rem;
+  }
+
+  .admin-wallet-pay-card .btn {
+    width: 100%;
+  }
+}
+
+
+/* Admin final: wallet dentro de tarjetas, tabs referidos/compradores y botones legibles */
+.admin-panel-head-compact {
+  width: min(100%, 1220px);
+  margin: 1.15rem auto 1.45rem;
+  padding: clamp(1.35rem, 2.4vw, 2.2rem);
+}
+
+.admin-panel-head-compact h1 {
+  font-size: clamp(2rem, 4.2vw, 4.8rem);
+}
+
+.admin-tab-menu {
+  width: min(100%, 1220px);
+  margin: 0 auto 1rem;
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.admin-tab-button {
+  border: 1px solid rgba(27, 224, 255, 0.25);
+  border-radius: 999px;
+  background: rgba(6, 17, 33, 0.82);
+  color: var(--muted-strong);
+  padding: 0.8rem 1.2rem;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.admin-tab-button.active,
+.admin-tab-button:hover {
+  color: #06111f;
+  border-color: rgba(255, 216, 107, 0.55);
+  background: linear-gradient(135deg, var(--gold-light), var(--accent-cyan));
+  transform: translateY(-1px);
+}
+
+.admin-wallet-stats {
+  width: min(100%, 1220px);
+  margin-inline: auto;
+  align-items: stretch;
+}
+
+.wallet-connect-stat {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.wallet-connect-stat small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.admin-wallet-connect-button,
+.wallet-connect-stat .btn,
+#connectPayoutWalletButton {
+  min-height: 42px;
+  border: 1px solid rgba(27, 224, 255, 0.45) !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.14), rgba(44, 255, 155, 0.10)) !important;
+  color: var(--accent-cyan) !important;
+  font-weight: 900;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+}
+
+.admin-wallet-connect-button:hover,
+.wallet-connect-stat .btn:hover,
+#connectPayoutWalletButton:hover,
+#connectPayoutWalletButton.is-connected {
+  color: #06111f !important;
+  background: linear-gradient(135deg, var(--gold-light), var(--accent-cyan)) !important;
+}
+
+.admin-tab-panel {
+  width: min(100%, 1220px);
+  margin-inline: auto;
+}
+
+.admin-tab-panel[hidden] {
+  display: none !important;
+}
+
+.admin-tab-panel .referral-table-card {
+  margin-top: 1.1rem;
+}
+
+.referral-table th {
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .admin-panel-head-compact,
+  .admin-tab-menu,
+  .admin-wallet-stats,
+  .admin-tab-panel {
+    width: min(calc(100% - 24px), 1220px);
+  }
+
+  .admin-tab-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-tab-button {
+    padding: 0.72rem 0.6rem;
+    font-size: 0.78rem;
+  }
+
+  .admin-wallet-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-wallet-stats article small {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.admin-tab-button {
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.admin-tab-button.active {
+  color: var(--text);
+  border-color: rgba(0, 217, 255, 0.72);
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.16), rgba(216, 166, 58, 0.09));
 }

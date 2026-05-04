@@ -5,9 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Landing de preventa Genesis para SatoshiNakaCoin SNC en BNB Smart Chain, una moneda meme tributo inspirada en la cultura Nakamoto." />
   <title>SatoshiNakaCoin | Preventa Genesis SNC</title>
+  <link rel="icon" type="image/png" href="snc-favicon.png" />
+  <link rel="shortcut icon" type="image/png" href="snc-favicon.png" />
+  <link rel="apple-touch-icon" href="snc-favicon.png" />
+  <link rel="preload" as="image" href="snc-coin-header.png" imagesrcset="snc-coin-header.png" />
+  <meta name="theme-color" content="#020712" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="shortcut icon" href="snc-coin.png" type="image/x-icon">
-  <link rel="icon" type="image/x-icon" href="snc-coin.png">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
@@ -20,7 +23,7 @@
   <header class="site-header" id="siteHeader">
     <nav class="navbar container" aria-label="Navegación principal">
       <a href="#inicio" class="brand" aria-label="SatoshiNakaCoin inicio">
-        <span class="brand-mark"><img src="snc-coin.png" alt="Moneda Satoshi Naka Coin" class="brand-logo" /></span>
+        <span class="brand-mark"><img src="snc-coin-header.png" alt="Moneda Satoshi Naka Coin" class="brand-logo" width="48" height="48" decoding="async" fetchpriority="high" /></span>
         <span class="brand-text">
           <strong>SatoshiNakaCoin</strong>
           <small>Genesis Presale</small>
@@ -70,6 +73,9 @@
               <button type="button" data-lang="EN" role="menuitem">🇺🇸 English</button>
               <button type="button" data-lang="PT" role="menuitem">🇧🇷 Português</button>
               <button type="button" data-lang="FR" role="menuitem">🇫🇷 Français</button>
+              <button type="button" data-lang="ZH" role="menuitem">🇨🇳 中文</button>
+              <button type="button" data-lang="JA" role="menuitem">🇯🇵 日本語</button>
+              <button type="button" data-lang="KO" role="menuitem">🇰🇷 한국어</button>
             </div>
           </div>
           <button class="btn btn-primary btn-small open-wallet" type="button">Conectar Wallet</button>
@@ -113,7 +119,7 @@
           <div class="tribute-orb" aria-hidden="true">
             <span class="orb-ring orb-ring-one"></span>
             <span class="orb-ring orb-ring-two"></span>
-            <span class="orb-core"><img src="snc-coin.png" alt="Moneda Satoshi Naka Coin" class="orb-logo" /></span>
+            <span class="orb-core"><img src="snc-coin-orb.png" alt="Moneda Satoshi Naka Coin" class="orb-logo" width="180" height="180" loading="lazy" decoding="async" /></span>
             <span class="spark spark-one"></span>
             <span class="spark spark-two"></span>
             <span class="spark spark-three"></span>
@@ -125,7 +131,7 @@
                 <p class="eyebrow">RONDA GENESIS BSC</p>
                 <h2>Compra SNC ahora</h2>
               </div>
-              <span class="status-pill">BSC Real</span>
+              <span class="status-pill">BSC</span>
             </div>
 
             <div class="countdown" aria-label="Contador regresivo">
@@ -530,7 +536,7 @@
     <div class="container footer-grid">
       <div>
         <a href="#inicio" class="brand footer-brand">
-          <span class="brand-mark"><img src="snc-coin.png" alt="Moneda Satoshi Naka Coin" class="brand-logo" /></span>
+          <span class="brand-mark"><img src="snc-coin-header.png" alt="Moneda Satoshi Naka Coin" class="brand-logo" width="48" height="48" loading="lazy" decoding="async" /></span>
           <span class="brand-text">
             <strong>SatoshiNakaCoin</strong>
             <small>Genesis Presale</small>
@@ -570,7 +576,7 @@
 
       <div class="wallet-options">
         <button type="button" class="wallet-option wallet-option-metamask" data-wallet="metamask">
-          <img src="metamask-logo.png" alt="Logo de MetaMask" class="wallet-option-logo" />
+          <img src="metamask-logo.png" loading="lazy" decoding="async" alt="Logo de MetaMask" class="wallet-option-logo" />
           <span class="wallet-option-text">
             <strong>MetaMask</strong>
             <small>Extensión EVM</small>
@@ -578,7 +584,7 @@
         </button>
 
         <button type="button" class="wallet-option wallet-option-best" data-wallet="best">
-          <img src="best-wallet.png" alt="Logo de Best Wallet" class="wallet-option-logo" />
+          <img src="best-wallet.png" loading="lazy" decoding="async" alt="Logo de Best Wallet" class="wallet-option-logo" />
           <span class="wallet-option-text">
             <strong>Best Wallet</strong>
             <small>Wallet recomendada</small>
@@ -586,7 +592,7 @@
         </button>
 
         <button type="button" class="wallet-option wallet-option-walletconnect" data-wallet="walletconnect">
-          <img src="walletconnect-logo.png" alt="Logo de WalletConnect" class="wallet-option-logo" />
+          <img src="walletconnect-logo.png" loading="lazy" decoding="async" alt="Logo de WalletConnect" class="wallet-option-logo" />
           <span class="wallet-option-text">
             <strong>WalletConnect</strong>
             <small>Escanear o enlazar</small>
@@ -594,7 +600,7 @@
         </button>
 
         <button type="button" class="wallet-option wallet-option-base" data-wallet="base">
-          <img src="base-wallet.png" alt="Logo de Base Wallet" class="wallet-option-logo" />
+          <img src="base-wallet.png" loading="lazy" decoding="async" alt="Logo de Base Wallet" class="wallet-option-logo" />
           <span class="wallet-option-text">
             <strong>Base Wallet</strong>
             <small>Wallet Base</small>

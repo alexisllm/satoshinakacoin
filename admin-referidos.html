@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Admin de referidos SatoshiNakaCoin." />
   <title>SNC | Admin Referidos</title>
+  <link rel="icon" type="image/png" href="snc-favicon.png" />
+  <link rel="apple-touch-icon" href="snc-favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="icon" type="image/x-icon" href="snc-coin.png"> 
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <script src="admin-referidos.js" defer></script>
@@ -37,9 +38,7 @@
               <button type="button" id="logoutAdminButton">Cerrar</button>
             </div>
           </div>
-
-          <a href="index.html" class="btn btn-ghost">Volver</a>
-        </div>
+</div>
       </header>
 
       <section class="admin-login-card" id="adminLoginCard">
@@ -61,76 +60,120 @@
       </section>
 
       <section id="adminProtectedPanel" class="admin-protected-panel admin-content-panel" hidden>
-        <div class="admin-panel-head">
+        <div class="admin-panel-head admin-panel-head-compact">
           <div>
             <p class="eyebrow">ADMIN</p>
-            <h1>Panel de referidos</h1>
+            <h1>Panel de pagos SNC</h1>
             <p>
-              Compras confirmadas con enlace de referido y comisión calculada en SNC.
+              Gestiona pagos de referidos y entrega de SNC comprados desde la misma wallet admin.
             </p>
           </div>
         </div>
 
-        <div class="referral-mini-stats">
-          <article>
-            <span>Referidores con compras</span>
-            <strong id="adminReferrers">0</strong>
+        <div class="admin-tab-menu" role="tablist" aria-label="Panel admin">
+          <button class="admin-tab-button active" id="tabReferidosButton" type="button" data-admin-tab="referidos" role="tab" aria-selected="true">
+            Referidos
+          </button>
+          <button class="admin-tab-button" id="tabCompradoresButton" type="button" data-admin-tab="compradores" role="tab" aria-selected="false">
+            Compradores
+          </button>
+        </div>
+
+        <div class="referral-mini-stats admin-wallet-stats">
+          <article class="wallet-connect-stat">
+            <span>Wallet SNC</span>
+            <strong id="adminPayoutWalletStatus">No conectada</strong>
+            <small id="adminTokenStatus">Conecta la wallet que tiene los tokens SNC.</small>
+            <button class="btn btn-outline admin-wallet-connect-button" id="connectPayoutWalletButton" type="button">
+              Conectar wallet
+            </button>
           </article>
           <article>
-            <span>Compras referidas</span>
-            <strong id="adminPurchases">0</strong>
+            <span id="adminPrimaryStatLabel">Compras referidas</span>
+            <strong id="adminPrimaryStatValue">0</strong>
+            <small id="adminPrimaryStatHelp">Compras que entraron con enlace de referido.</small>
           </article>
           <article>
-            <span>SNC pendientes</span>
-            <strong id="adminPending">0 SNC</strong>
+            <span id="adminSecondaryStatLabel">SNC referidos pendientes</span>
+            <strong id="adminSecondaryStatValue">0 SNC</strong>
+            <small id="adminSecondaryStatHelp">Comisiones SNC pendientes por pagar a referidores.</small>
           </article>
         </div>
 
-        <article class="referral-table-card">
-          <h2>Detalle por referidor</h2>
-          <div class="table-scroll">
-            <table class="referral-table">
-              <thead>
-                <tr>
-                  <th>Referidor</th>
-                  <th>Código</th>
-                  <th>Compras</th>
-                  <th>Volumen</th>
-                  <th>Pendiente SNC</th>
-                  <th>Pagado SNC</th>
-                </tr>
-              </thead>
-              <tbody id="adminTableBody">
-                <tr><td colspan="6" class="referral-empty">Ingresa tu ADMIN_KEY y carga los datos.</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </article>
+        <div class="admin-tab-panel" id="referidosPanel" data-admin-panel="referidos">
+          <article class="referral-table-card">
+            <h2>Detalle por referidor</h2>
+            <div class="table-scroll">
+              <table class="referral-table">
+                <thead>
+                  <tr>
+                    <th>Referidor</th>
+                    <th>Código</th>
+                    <th>Compras</th>
+                    <th>Volumen</th>
+                    <th>Pendiente SNC</th>
+                    <th>Pagado SNC</th>
+                    <th>Pagar</th>
+                  </tr>
+                </thead>
+                <tbody id="adminTableBody">
+                  <tr><td colspan="7" class="referral-empty">Ingresa tu ADMIN_KEY y carga los datos.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
 
-        <article class="referral-table-card">
-          <h2>Compras confirmadas</h2>
-          <p class="admin-table-note">
-            Aquí solo aparecen compras verificadas por txHash que entraron con enlace de referido.
-          </p>
-          <div class="table-scroll">
-            <table class="referral-table">
-              <thead>
-                <tr>
-                  <th>Referidor</th>
-                  <th>Comprador</th>
-                  <th>Monto</th>
-                  <th>Comisión 5% SNC</th>
-                  <th>TX</th>
-                  <th>Estado</th>
-                  <th>Fecha</th>
-                </tr>
-              </thead>
-              <tbody id="adminPurchasesBody">
-                <tr><td colspan="7" class="referral-empty">Ingresa tu ADMIN_KEY y carga los datos.</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </article>
+          <article class="referral-table-card">
+            <h2>Compras referidas confirmadas</h2>
+            <p class="admin-table-note">
+              Aquí solo aparecen compras verificadas por txHash que entraron con enlace de referido.
+            </p>
+            <div class="table-scroll">
+              <table class="referral-table">
+                <thead>
+                  <tr>
+                    <th>Referidor</th>
+                    <th>Comprador</th>
+                    <th>Monto</th>
+                    <th>Comisión 5% SNC</th>
+                    <th>TX</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                  </tr>
+                </thead>
+                <tbody id="adminPurchasesBody">
+                  <tr><td colspan="7" class="referral-empty">Ingresa tu ADMIN_KEY y carga los datos.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+
+        <div class="admin-tab-panel" id="compradoresPanel" data-admin-panel="compradores" hidden>
+          <article class="referral-table-card">
+            <h2>Compradores SNC</h2>
+            <p class="admin-table-note">
+              Aquí puedes enviar a cada comprador los SNC que compró y marcar la entrega como pagada.
+            </p>
+            <div class="table-scroll">
+              <table class="referral-table">
+                <thead>
+                  <tr>
+                    <th>Comprador</th>
+                    <th>Compras</th>
+                    <th>Total comprado</th>
+                    <th>Pendiente SNC</th>
+                    <th>Enviado SNC</th>
+                    <th>Enviar</th>
+                  </tr>
+                </thead>
+                <tbody id="adminBuyersBody">
+                  <tr><td colspan="6" class="referral-empty">Ingresa tu ADMIN_KEY y carga los datos.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
       </section>
     </div>
   </main>

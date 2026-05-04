@@ -16,7 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
     raisedBnb: 0,
     goalBnb: 5200,
     countdownDays: 31,
-    countdownHours: 6,
+    countdownHours: 24,
+    countdownMinutes: 60,
+    countdownSeconds: 60,
     saleReceiverAddress: "0x46E0076C4589882d3AC363Fbd658D0A39De12D89",
     walletConnectProjectId: "cc89970cef26c7900650e9bd88cb05e9",
     appName: "SatoshiNakaCoin",
@@ -283,7 +285,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ES: "ES",
     EN: "EN",
     PT: "PT",
-    FR: "FR"
+    FR: "FR",
+    ZH: "中文",
+    JA: "日本語",
+    KO: "한국어"
   };
 
   const languageTexts = {
@@ -308,7 +313,7 @@ document.addEventListener("DOMContentLoaded", () => {
       statRate: "1 BNB = SNC",
       presaleEyebrow: "RONDA GENESIS BSC",
       presaleTitle: "Compra SNC ahora",
-      bscReal: "BSC Real",
+      bscReal: "BSC",
       days: "Días",
       hours: "Horas",
       minutes: "Min",
@@ -413,7 +418,7 @@ document.addEventListener("DOMContentLoaded", () => {
       statRate: "1 BNB = SNC",
       presaleEyebrow: "GENESIS BSC ROUND",
       presaleTitle: "Buy SNC now",
-      bscReal: "Real BSC",
+      bscReal: "BSC",
       days: "Days",
       hours: "Hours",
       minutes: "Min",
@@ -518,7 +523,7 @@ document.addEventListener("DOMContentLoaded", () => {
       statRate: "1 BNB = SNC",
       presaleEyebrow: "RODADA GENESIS BSC",
       presaleTitle: "Compre SNC agora",
-      bscReal: "BSC Real",
+      bscReal: "BSC",
       days: "Dias",
       hours: "Horas",
       minutes: "Min",
@@ -623,7 +628,7 @@ document.addEventListener("DOMContentLoaded", () => {
       statRate: "1 BNB = SNC",
       presaleEyebrow: "ROUND GENESIS BSC",
       presaleTitle: "Acheter SNC maintenant",
-      bscReal: "BSC réel",
+      bscReal: "BSC",
       days: "Jours",
       hours: "Heures",
       minutes: "Min",
@@ -707,7 +712,322 @@ document.addEventListener("DOMContentLoaded", () => {
       referralPlaceholder: "Génération du lien...",
       close: "Fermer"
     }
-  };
+,
+    ZH: {
+      connectWallet: "连接钱包",
+      buySnc: "购买 SNC",
+      navInicio: "首页",
+      navAcerca: "关于",
+      navTokenomics: "代币经济",
+      navRoadmap: "路线图",
+      navComoComprar: "如何购买",
+      navFaq: "常见问题",
+      navWhitepaper: "白皮书",
+      brandSubtitle: "Genesis 预售",
+      heroEyebrow: "GENESIS 预售 · TOKEN SNC",
+      heroTitle: "受中本聪精神启发的致敬型 Meme 代币。",
+      heroDescription: "SatoshiNakaCoin 致敬 Bitcoin 文化：自托管、公开验证和 Genesis 社区，并通过 BNB Smart Chain 提供真实钱包连接和 BNB 购买流程。",
+      heroBuy: "购买 SNC",
+      heroHow: "查看流程",
+      statApy: "Genesis APY",
+      statCommunity: "Genesis 社区",
+      statRate: "1 BNB = SNC",
+      presaleEyebrow: "GENESIS BSC 轮",
+      presaleTitle: "立即购买 SNC",
+      bscReal: "BSC",
+      days: "天",
+      hours: "时",
+      minutes: "分",
+      seconds: "秒",
+      totalRaised: "已募集",
+      amountBnb: "BNB 数量",
+      amountPlaceholder: "例：0.05",
+      receiveApprox: "预计收到",
+      referEarn: "推荐并赚取",
+      trustAudit: "审计准备中",
+      trustContract: "BSC 合约就绪",
+      trustDashboard: "响应式面板",
+      trustReferral: "推荐管理面板",
+      trustCommunity: "全球社区",
+      aboutEyebrow: "关于 SNC",
+      aboutTitle: "SatoshiNakaCoin 是对 Nakamoto 文化的 Meme 致敬。",
+      feature1Title: "快速购买",
+      feature1Text: "BNB Smart Chain 预售，支持钱包连接、SNC 计算和清晰验证。",
+      feature2Title: "安全优先",
+      feature2Text: "风险提示、真实 EVM 连接，并检查网络、金额和收款地址。",
+      feature3Title: "Nakamoto 身份",
+      feature3Text: "深色界面、蓝色霓虹、金色点缀、高级卡片和流畅动画。",
+      tokenEyebrow: "GENESIS 分配",
+      tokenTitle: "SNC 代币经济",
+      totalSupply: "总供应量",
+      fixedSupply: "Genesis 固定供应",
+      presaleGenesis: "Genesis 预售",
+      buyersPercent: "50% 给买家",
+      mainNetwork: "主网络",
+      buyWithBnb: "使用 BNB 购买",
+      supplyLabel: "100M 供应",
+      totalDistribution: "总分配",
+      phase: "阶段",
+      liquidity: "初始流动性",
+      marketing: "营销",
+      development: "开发",
+      reserve: "储备",
+      tokenPresaleText: "50,000,000 SNC 分配给早期预售买家。",
+      tokenLiquidityText: "25,000,000 SNC 用于创建 SNC/BNB 流动性池。",
+      tokenMarketingText: "10,000,000 SNC 用于活动、推荐、社区和增长。",
+      tokenDevelopmentText: "10,000,000 SNC 用于技术支持、网站改进和项目运营。",
+      tokenReserveText: "5,000,000 SNC 用于应急、合作或未来需求。",
+      mini1Title: "主预售",
+      mini1Text: "50% 供应分配给 Genesis 买家，保持预售强度和可持续性。",
+      mini2Title: "独立流动性",
+      mini2Text: "25% 用于创建流动性，不动用预售代币。",
+      mini3Title: "资金分离",
+      mini3Text: "营销、开发和储备分开管理，避免临时抛售。",
+      roadmapEyebrow: "扩展计划",
+      roadmapTitle: "路线图阶段",
+      phase1: "阶段 1：启动",
+      phase2: "阶段 2：社区",
+      phase3: "阶段 3：扩展",
+      phase4: "阶段 4：上线 / 增长",
+      howEyebrow: "运作方式",
+      howTitle: "4 步购买",
+      step1Title: "连接钱包",
+      step1Text: "打开弹窗并连接兼容 BNB Smart Chain 的钱包。",
+      step2Title: "输入 BNB",
+      step2Text: "输入 BNB 数量并查看 SNC 与 USDT 估算。",
+      step3Title: "确认购买",
+      step3Text: "签名前检查网络、金额和收款钱包。",
+      step4Title: "Genesis 记录",
+      step4Text: "确认后的购买会关联到你的钱包和 txHash。",
+      faqEyebrow: "FAQ",
+      faqTitle: "常见问题",
+      footerCommunity: "社区",
+      footerSupport: "FAQ 支持",
+      legalTitle: "法律声明",
+      legalText: "所有加密项目都有风险。SatoshiNakaCoin 不构成财务建议，也不保证结果、未来价格、流动性或收益。确认交易前请始终检查网络、金额和收款地址。",
+      copyright: "© 2026 SatoshiNakaCoin. 保留所有权利。",
+      walletTitle: "连接钱包",
+      walletText: "选择钱包以连接并继续购买。",
+      metamaskSub: "EVM 扩展",
+      bestSub: "推荐钱包",
+      walletConnectSub: "扫码或连接",
+      baseSub: "Base 钱包",
+      referralEyebrow: "推荐并赚取",
+      referralTitle: "推荐链接",
+      referralText: "分享此链接。只有在 BNB Smart Chain 上通过 txHash 确认购买后，5% 才会计算并显示在管理面板中。",
+      referralPlaceholder: "正在生成链接...",
+      close: "关闭"
+    },
+    JA: {
+      connectWallet: "ウォレット接続",
+      buySnc: "SNCを購入",
+      navInicio: "ホーム",
+      navAcerca: "概要",
+      navTokenomics: "トークノミクス",
+      navRoadmap: "ロードマップ",
+      navComoComprar: "購入方法",
+      navFaq: "FAQ",
+      navWhitepaper: "ホワイトペーパー",
+      brandSubtitle: "Genesis Presale",
+      heroEyebrow: "GENESIS プレセール · TOKEN SNC",
+      heroTitle: "Satoshi Nakamoto のレガシーに着想を得たトリビュート Meme コイン。",
+      heroDescription: "SatoshiNakaCoin は Bitcoin 文化、自主保管、公開検証、Genesis コミュニティを称え、BNB Smart Chain 上で実ウォレット接続と BNB 購入フローを提供します。",
+      heroBuy: "SNCを購入",
+      heroHow: "仕組みを見る",
+      statApy: "Genesis APY",
+      statCommunity: "Genesis コミュニティ",
+      statRate: "1 BNB = SNC",
+      presaleEyebrow: "GENESIS BSC ラウンド",
+      presaleTitle: "今すぐSNCを購入",
+      bscReal: "BSC",
+      days: "日",
+      hours: "時",
+      minutes: "分",
+      seconds: "秒",
+      totalRaised: "調達合計",
+      amountBnb: "BNB数量",
+      amountPlaceholder: "例：0.05",
+      receiveApprox: "受取予定",
+      referEarn: "紹介して獲得",
+      trustAudit: "監査準備済み",
+      trustContract: "BSC契約準備済み",
+      trustDashboard: "レスポンシブ管理画面",
+      trustReferral: "紹介管理パネル",
+      trustCommunity: "グローバルコミュニティ",
+      aboutEyebrow: "SNCについて",
+      aboutTitle: "SatoshiNakaCoin は Nakamoto 文化への Meme トリビュートとして誕生しました。",
+      feature1Title: "高速購入",
+      feature1Text: "BNB Smart Chain プレセール、ウォレット接続、SNC計算、明確な検証。",
+      feature2Title: "安全重視",
+      feature2Text: "注意メッセージ、実EVM接続、ネットワーク・金額・送信先確認。",
+      feature3Title: "Nakamoto アイデンティティ",
+      feature3Text: "ダークUI、青いネオン、金色のアクセント、プレミアムカード、滑らかなアニメーション。",
+      tokenEyebrow: "GENESIS 配分",
+      tokenTitle: "SNC トークノミクス",
+      totalSupply: "総供給量",
+      fixedSupply: "Genesis固定供給",
+      presaleGenesis: "Genesis プレセール",
+      buyersPercent: "50% 購入者向け",
+      mainNetwork: "メインネット",
+      buyWithBnb: "BNBで購入",
+      supplyLabel: "100M supply",
+      totalDistribution: "総配分",
+      phase: "フェーズ",
+      liquidity: "初期流動性",
+      marketing: "マーケティング",
+      development: "開発",
+      reserve: "リザーブ",
+      tokenPresaleText: "50,000,000 SNC は初期プレセール購入者に割り当て。",
+      tokenLiquidityText: "25,000,000 SNC は SNC/BNB 流動性ペア作成用。",
+      tokenMarketingText: "10,000,000 SNC はキャンペーン、紹介、コミュニティ、成長用。",
+      tokenDevelopmentText: "10,000,000 SNC は技術サポート、Web改善、運営用。",
+      tokenReserveText: "5,000,000 SNC は予備、提携、将来ニーズ用。",
+      mini1Title: "メインプレセール",
+      mini1Text: "供給量の50%をGenesis購入者に割り当て、強く持続可能なプレセールを維持。",
+      mini2Title: "独立した流動性",
+      mini2Text: "25%を流動性作成に確保し、プレセール用トークンには触れません。",
+      mini3Title: "資金管理",
+      mini3Text: "マーケティング、開発、リザーブを分離し、場当たり的な売却に依存しません。",
+      roadmapEyebrow: "拡張計画",
+      roadmapTitle: "ロードマップ",
+      phase1: "フェーズ1：ローンチ",
+      phase2: "フェーズ2：コミュニティ",
+      phase3: "フェーズ3：拡張",
+      phase4: "フェーズ4：上場 / 成長",
+      howEyebrow: "仕組み",
+      howTitle: "4ステップで購入",
+      step1Title: "ウォレット接続",
+      step1Text: "モーダルを開き、BNB Smart Chain 対応ウォレットを接続します。",
+      step2Title: "BNBを入力",
+      step2Text: "BNB数量を入力し、SNCとUSDTの見積もりを確認します。",
+      step3Title: "購入を確認",
+      step3Text: "署名前にネットワーク、金額、受取ウォレットを確認します。",
+      step4Title: "Genesis 記録",
+      step4Text: "確認済み購入はあなたのウォレットとtxHashに関連付けられます。",
+      faqEyebrow: "FAQ",
+      faqTitle: "よくある質問",
+      footerCommunity: "コミュニティ",
+      footerSupport: "FAQサポート",
+      legalTitle: "法的注意",
+      legalText: "すべての暗号資産プロジェクトにはリスクがあります。SatoshiNakaCoin は投資助言ではなく、結果、将来価格、流動性、利益を保証しません。取引前にネットワーク、金額、受取アドレスを必ず確認してください。",
+      copyright: "© 2026 SatoshiNakaCoin. All rights reserved.",
+      walletTitle: "ウォレット接続",
+      walletText: "購入を続けるためにウォレットを選択してください。",
+      metamaskSub: "EVM拡張",
+      bestSub: "推奨ウォレット",
+      walletConnectSub: "スキャンまたは接続",
+      baseSub: "Base Wallet",
+      referralEyebrow: "紹介して獲得",
+      referralTitle: "紹介リンク",
+      referralText: "このリンクを共有してください。5%はBNB Smart ChainでtxHash確認済みの購入だけ管理パネルに表示されます。",
+      referralPlaceholder: "リンク生成中...",
+      close: "閉じる"
+    },
+    KO: {
+      connectWallet: "지갑 연결",
+      buySnc: "SNC 구매",
+      navInicio: "홈",
+      navAcerca: "소개",
+      navTokenomics: "토크노믹스",
+      navRoadmap: "로드맵",
+      navComoComprar: "구매 방법",
+      navFaq: "FAQ",
+      navWhitepaper: "백서",
+      brandSubtitle: "Genesis Presale",
+      heroEyebrow: "GENESIS 프리세일 · TOKEN SNC",
+      heroTitle: "Satoshi Nakamoto의 유산에서 영감을 받은 트리뷰트 Meme 코인.",
+      heroDescription: "SatoshiNakaCoin은 Bitcoin 문화, 자기 보관, 공개 검증, Genesis 커뮤니티를 기념하며 BNB Smart Chain에서 실제 지갑 연결과 BNB 구매 흐름을 제공합니다.",
+      heroBuy: "SNC 구매",
+      heroHow: "작동 방식 보기",
+      statApy: "Genesis APY",
+      statCommunity: "Genesis 커뮤니티",
+      statRate: "1 BNB = SNC",
+      presaleEyebrow: "GENESIS BSC 라운드",
+      presaleTitle: "지금 SNC 구매",
+      bscReal: "BSC",
+      days: "일",
+      hours: "시",
+      minutes: "분",
+      seconds: "초",
+      totalRaised: "총 모금액",
+      amountBnb: "BNB 수량",
+      amountPlaceholder: "예: 0.05",
+      receiveApprox: "예상 수령",
+      referEarn: "추천하고 보상받기",
+      trustAudit: "감사 준비",
+      trustContract: "BSC 계약 준비",
+      trustDashboard: "반응형 대시보드",
+      trustReferral: "추천 관리자 패널",
+      trustCommunity: "글로벌 커뮤니티",
+      aboutEyebrow: "SNC 소개",
+      aboutTitle: "SatoshiNakaCoin은 Nakamoto 문화에 대한 Meme 트리뷰트로 탄생했습니다.",
+      feature1Title: "빠른 구매",
+      feature1Text: "BNB Smart Chain 프리세일, 지갑 연결, SNC 계산, 명확한 검증.",
+      feature2Title: "보안 중심",
+      feature2Text: "예방 메시지, 실제 EVM 연결, 네트워크·금액·수신 주소 확인.",
+      feature3Title: "Nakamoto 아이덴티티",
+      feature3Text: "다크 인터페이스, 블루 네온, 골드 포인트, 프리미엄 카드, 부드러운 애니메이션.",
+      tokenEyebrow: "GENESIS 분배",
+      tokenTitle: "SNC 토크노믹스",
+      totalSupply: "총 공급량",
+      fixedSupply: "Genesis 고정 공급",
+      presaleGenesis: "Genesis 프리세일",
+      buyersPercent: "구매자 50%",
+      mainNetwork: "메인 네트워크",
+      buyWithBnb: "BNB로 구매",
+      supplyLabel: "100M supply",
+      totalDistribution: "총 분배",
+      phase: "단계",
+      liquidity: "초기 유동성",
+      marketing: "마케팅",
+      development: "개발",
+      reserve: "준비금",
+      tokenPresaleText: "50,000,000 SNC는 초기 프리세일 구매자에게 배정됩니다.",
+      tokenLiquidityText: "25,000,000 SNC는 SNC/BNB 유동성 페어 생성을 위해 예약됩니다.",
+      tokenMarketingText: "10,000,000 SNC는 캠페인, 추천, 커뮤니티, 성장에 사용됩니다.",
+      tokenDevelopmentText: "10,000,000 SNC는 기술 지원, 웹 개선, 프로젝트 운영에 사용됩니다.",
+      tokenReserveText: "5,000,000 SNC는 비상 상황, 파트너십, 미래 필요를 위해 보관됩니다.",
+      mini1Title: "메인 프리세일",
+      mini1Text: "공급량의 50%를 Genesis 구매자에게 배정하여 강하고 지속 가능한 프리세일을 유지합니다.",
+      mini2Title: "분리된 유동성",
+      mini2Text: "25%는 프리세일 토큰을 건드리지 않고 유동성 생성을 위해 예약됩니다.",
+      mini3Title: "통제된 자금",
+      mini3Text: "마케팅, 개발, 준비금을 분리하여 즉흥적인 매도에 의존하지 않습니다.",
+      roadmapEyebrow: "확장 계획",
+      roadmapTitle: "로드맵 단계",
+      phase1: "1단계: 출시",
+      phase2: "2단계: 커뮤니티",
+      phase3: "3단계: 확장",
+      phase4: "4단계: 상장 / 성장",
+      howEyebrow: "작동 방식",
+      howTitle: "4단계 구매",
+      step1Title: "지갑 연결",
+      step1Text: "모달을 열고 BNB Smart Chain 호환 지갑을 연결합니다.",
+      step2Title: "BNB 입력",
+      step2Text: "BNB 수량을 입력하고 SNC 및 USDT 예상치를 확인합니다.",
+      step3Title: "구매 확인",
+      step3Text: "서명 전에 네트워크, 금액, 수신 지갑을 확인합니다.",
+      step4Title: "Genesis 기록",
+      step4Text: "확인된 구매는 지갑과 txHash에 연결됩니다.",
+      faqEyebrow: "FAQ",
+      faqTitle: "자주 묻는 질문",
+      footerCommunity: "커뮤니티",
+      footerSupport: "FAQ 지원",
+      legalTitle: "법적 고지",
+      legalText: "모든 암호화폐 프로젝트에는 위험이 있습니다. SatoshiNakaCoin은 재정 조언이 아니며 결과, 미래 가격, 유동성 또는 수익을 보장하지 않습니다. 거래 전 네트워크, 금액, 수신 주소를 항상 확인하세요.",
+      copyright: "© 2026 SatoshiNakaCoin. 모든 권리 보유.",
+      walletTitle: "지갑 연결",
+      walletText: "구매를 계속하려면 지갑을 선택하세요.",
+      metamaskSub: "EVM 확장",
+      bestSub: "추천 지갑",
+      walletConnectSub: "스캔 또는 연결",
+      baseSub: "Base Wallet",
+      referralEyebrow: "추천하고 보상받기",
+      referralTitle: "추천 링크",
+      referralText: "이 링크를 공유하세요. 5%는 BNB Smart Chain에서 txHash로 구매가 확인된 경우에만 관리자 패널에 표시됩니다.",
+      referralPlaceholder: "링크 생성 중...",
+      close: "닫기"
+    }  };
 
   const getLang = () => {
     const saved = window.localStorage.getItem("sncLanguage");
@@ -778,6 +1098,39 @@ document.addEventListener("DOMContentLoaded", () => {
         ["SNC demande-t-il ma phrase seed ?", "Non. SatoshiNakaCoin ne demande jamais de phrase seed, de clé privée ou d'accès secret. Connectez seulement votre wallet via des fournisseurs compatibles."],
         ["La prévente comporte-t-elle des risques ?", "Oui. Toute prévente crypto comporte des risques. Vérifiez toujours le réseau, le montant et le wallet récepteur, et participez uniquement avec des fonds que vous acceptez de risquer."],
         ["Où puis-je voir le Whitepaper ?", "Vous pouvez ouvrir le Whitepaper depuis le lien du menu supérieur. Le document explique la vision Genesis, la prévente et la distribution du projet."]
+      ],
+      ZH: [
+        ["什么是 SatoshiNakaCoin？", "SatoshiNakaCoin 是受 Nakamoto 文化启发的致敬型 Meme 代币，在 BNB Smart Chain 上进行 Genesis 预售。"],
+        ["预售在哪个网络进行？", "预售在 BNB Smart Chain 上进行。购买前请确认你的钱包连接到正确网络。"],
+        ["可以用什么币购买 SNC？", "SNC 使用 BNB 购买。输入数量后，网站会显示预计收到的 SNC。"],
+        ["预售兑换率是多少？", "当前预售兑换率为 1 BNB = 12,500 SNC。未来阶段可能调整。"],
+        ["什么时候收到 SNC？", "SNC 会与已确认购买关联。领取或发放流程会随 Genesis 预售进展公布。"],
+        ["通过推荐链接购买会怎样？", "通过有效推荐链接购买后，系统可记录该购买并计算推荐人的 5% 奖励。"],
+        ["SNC 会要求助记词吗？", "不会。SatoshiNakaCoin 永远不会要求助记词、私钥或秘密访问权限。"],
+        ["预售有风险吗？", "有。所有加密预售都有风险。请始终检查网络、金额和收款地址。"],
+        ["在哪里查看白皮书？", "可以从顶部菜单打开白皮书，查看 Genesis 愿景、预售和项目分配。"]
+      ],
+      JA: [
+        ["SatoshiNakaCoinとは？", "SatoshiNakaCoin は Nakamoto 文化に着想を得たトリビュート Meme コインで、BNB Smart Chain 上の Genesis プレセールです。"],
+        ["プレセールはどのネットワークですか？", "プレセールは BNB Smart Chain で行われます。購入前に正しいネットワークを確認してください。"],
+        ["どの通貨で購入できますか？", "SNC は BNB で購入できます。数量を入力すると受取予定のSNCが表示されます。"],
+        ["プレセールレートは？", "現在のレートは 1 BNB = 12,500 SNC です。今後のフェーズで変更される場合があります。"],
+        ["いつSNCを受け取れますか？", "SNC は確認済み購入に関連付けられます。受取または請求方法はプレセールの進行に合わせて発表されます。"],
+        ["紹介リンクで購入すると？", "有効な紹介リンクから購入すると、紹介者の5%報酬計算のために記録されます。"],
+        ["SNCはシードフレーズを求めますか？", "いいえ。SatoshiNakaCoin はシードフレーズや秘密鍵を要求しません。"],
+        ["プレセールにリスクはありますか？", "はい。暗号資産のプレセールにはリスクがあります。ネットワーク、金額、受取先を必ず確認してください。"],
+        ["ホワイトペーパーはどこで見られますか？", "上部メニューからホワイトペーパーを開けます。Genesis構想、プレセール、配分を確認できます。"]
+      ],
+      KO: [
+        ["SatoshiNakaCoin이란?", "SatoshiNakaCoin은 Nakamoto 문화에서 영감을 받은 트리뷰트 Meme 코인이며 BNB Smart Chain의 Genesis 프리세일입니다."],
+        ["프리세일은 어떤 네트워크에서 진행되나요?", "프리세일은 BNB Smart Chain에서 진행됩니다. 구매 전 올바른 네트워크인지 확인하세요."],
+        ["어떤 코인으로 구매할 수 있나요?", "SNC는 BNB로 구매합니다. 수량을 입력하면 받을 SNC 예상치가 표시됩니다."],
+        ["프리세일 비율은 얼마인가요?", "현재 비율은 1 BNB = 12,500 SNC 입니다. 향후 단계에서 변경될 수 있습니다."],
+        ["언제 SNC를 받을 수 있나요?", "SNC는 확인된 구매와 연결됩니다. 수령 또는 클레임 절차는 프리세일 진행에 따라 공지됩니다."],
+        ["추천 링크로 구매하면 어떻게 되나요?", "유효한 추천 링크로 구매하면 추천자 5% 보상 계산을 위해 기록될 수 있습니다."],
+        ["SNC가 시드 문구를 요구하나요?", "아니요. SatoshiNakaCoin은 시드 문구, 개인키 또는 비밀 접근 권한을 요구하지 않습니다."],
+        ["프리세일에 위험이 있나요?", "네. 모든 암호화폐 프리세일에는 위험이 있습니다. 네트워크, 금액, 수신 주소를 항상 확인하세요."],
+        ["화이트페이퍼는 어디에서 볼 수 있나요?", "상단 메뉴에서 화이트페이퍼를 열 수 있습니다. Genesis 비전, 프리세일, 분배 내용을 확인할 수 있습니다."]
       ]
     };
 
@@ -974,21 +1327,62 @@ translateFaq();
   const menuToggle = $("#menuToggle");
   const navMenu = $("#navMenu");
 
+  let lockedMenuScrollY = 0;
+
+  const lockPageForMobileMenu = () => {
+    if (document.body.classList.contains("menu-open")) return;
+
+    lockedMenuScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    document.body.classList.add("menu-open");
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${lockedMenuScrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+  };
+
+  const unlockPageFromMobileMenu = () => {
+    if (!document.body.classList.contains("menu-open")) return;
+
+    document.body.classList.remove("menu-open");
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    window.scrollTo(0, lockedMenuScrollY);
+  };
+
   const closeMenu = () => {
     if (!menuToggle || !navMenu) return;
     menuToggle.classList.remove("active");
     navMenu.classList.remove("active");
     menuToggle.setAttribute("aria-expanded", "false");
-    document.body.classList.remove("menu-open");
+    if (languageMenu && languageToggle) {
+      languageMenu.classList.remove("open");
+      languageToggle.setAttribute("aria-expanded", "false");
+    }
+    unlockPageFromMobileMenu();
   };
 
   const toggleMenu = () => {
     if (!menuToggle || !navMenu) return;
-    const isOpen = navMenu.classList.toggle("active");
+    const isOpen = !navMenu.classList.contains("active");
+
+    navMenu.classList.toggle("active", isOpen);
     menuToggle.classList.toggle("active", isOpen);
     menuToggle.setAttribute("aria-expanded", String(isOpen));
-    document.body.classList.toggle("menu-open", isOpen);
+
+    if (isOpen) {
+      lockPageForMobileMenu();
+    } else {
+      closeMenu();
+    }
   };
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 1120) closeMenu();
+  });
 
   if (menuToggle) {
     menuToggle.addEventListener("click", toggleMenu);
@@ -1062,20 +1456,34 @@ translateFaq();
   }
 
   /* Contador regresivo */
-  const countdownTarget = new Date();
-  countdownTarget.setDate(countdownTarget.getDate() + CONFIG.countdownDays);
-  countdownTarget.setHours(countdownTarget.getHours() + CONFIG.countdownHours);
+  const countdownStartedAt = Date.now();
+  const countdownInitial = {
+    days: Number(CONFIG.countdownDays || 0),
+    hours: Number(CONFIG.countdownHours || 0),
+    minutes: Number(CONFIG.countdownMinutes || 0),
+    seconds: Number(CONFIG.countdownSeconds || 0)
+  };
+  const countdownTotalSeconds =
+    countdownInitial.days * 24 * 60 * 60 +
+    countdownInitial.hours * 60 * 60 +
+    countdownInitial.minutes * 60 +
+    countdownInitial.seconds;
+
+  const normalizeCountdown = (remainingSeconds) => {
+    let secondsLeft = Math.max(Number(remainingSeconds || 0), 0);
+    const days = Math.floor(secondsLeft / (24 * 60 * 60));
+    secondsLeft -= days * 24 * 60 * 60;
+    const hours = Math.floor(secondsLeft / (60 * 60));
+    secondsLeft -= hours * 60 * 60;
+    const minutes = Math.floor(secondsLeft / 60);
+    const seconds = secondsLeft - minutes * 60;
+    return { days, hours, minutes, seconds };
+  };
 
   const updateCountdown = () => {
-    const now = new Date().getTime();
-    const distance = Math.max(countdownTarget.getTime() - now, 0);
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((distance / (1000 * 60)) % 60);
-    const seconds = Math.floor((distance / 1000) % 60);
-
-    const values = { days, hours, minutes, seconds };
+    const elapsedSeconds = Math.floor((Date.now() - countdownStartedAt) / 1000);
+    const remainingSeconds = Math.max(countdownTotalSeconds - elapsedSeconds, 0);
+    const values = elapsedSeconds === 0 ? countdownInitial : normalizeCountdown(remainingSeconds);
 
     Object.entries(values).forEach(([id, value]) => {
       const element = $(`#${id}`);
