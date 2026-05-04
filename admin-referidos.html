@@ -51,7 +51,7 @@
         <div class="admin-login-form">
           <div class="admin-key-control">
             <label for="adminKeyInput">ADMIN_KEY</label>
-            <input id="adminKeyInput" type="password" placeholder="Clave admin del archivo .env" autocomplete="current-password" />
+            <input id="adminKeyInput" type="password" placeholder="Clave admin del creador" autocomplete="current-password" />
           </div>
           <button class="btn btn-primary" id="loadAdminButton" type="button">Cargar datos</button>
         </div>
@@ -177,5 +177,42 @@
       </section>
     </div>
   </main>
+  <div class="admin-confirm-overlay" id="adminConfirmOverlay" hidden>
+    <div class="admin-confirm-modal" role="dialog" aria-modal="true" aria-labelledby="adminConfirmTitle" aria-describedby="adminConfirmText">
+      <button class="admin-confirm-close" id="adminConfirmClose" type="button" aria-label="Cerrar confirmación">×</button>
+
+      <div class="admin-confirm-icon" aria-hidden="true">SNC</div>
+
+      <p class="eyebrow">CONFIRMACIÓN</p>
+      <h2 id="adminConfirmTitle">Confirmar envío SNC</h2>
+
+      <p class="admin-confirm-text" id="adminConfirmText">
+        Revisa cuidadosamente el monto y la wallet antes de firmar la transacción.
+      </p>
+
+      <div class="admin-confirm-summary">
+        <span>Monto a enviar</span>
+        <strong id="adminConfirmAmount">0 SNC</strong>
+      </div>
+
+      <div class="admin-confirm-wallet-box">
+        <span id="adminConfirmRecipientLabel">Wallet destino</span>
+        <div class="admin-confirm-wallet-row">
+          <code id="adminConfirmWallet">0x...</code>
+          <button class="wallet-copy-button admin-confirm-copy" id="adminConfirmCopyWallet" type="button" title="Copiar wallet">⧉</button>
+        </div>
+      </div>
+
+      <p class="admin-confirm-warning">
+        Confirma solo si la wallet conectada tiene suficientes SNC y estás seguro del destino.
+      </p>
+
+      <div class="admin-confirm-actions">
+        <button class="btn btn-ghost" id="adminConfirmCancel" type="button">Cancelar</button>
+        <button class="btn btn-primary" id="adminConfirmAccept" type="button">Confirmar y enviar</button>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

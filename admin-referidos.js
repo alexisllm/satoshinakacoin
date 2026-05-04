@@ -36,6 +36,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const adminBuyersBody = $("#adminBuyersBody");
   const tabButtons = Array.from(document.querySelectorAll("[data-admin-tab]"));
   const tabPanels = Array.from(document.querySelectorAll("[data-admin-panel]"));
+  const adminConfirmOverlay = $("#adminConfirmOverlay");
+  const adminConfirmClose = $("#adminConfirmClose");
+  const adminConfirmCancel = $("#adminConfirmCancel");
+  const adminConfirmAccept = $("#adminConfirmAccept");
+  const adminConfirmTitle = $("#adminConfirmTitle");
+  const adminConfirmText = $("#adminConfirmText");
+  const adminConfirmAmount = $("#adminConfirmAmount");
+  const adminConfirmRecipientLabel = $("#adminConfirmRecipientLabel");
+  const adminConfirmWallet = $("#adminConfirmWallet");
+  const adminConfirmCopyWallet = $("#adminConfirmCopyWallet");
 
   const state = {
     adminKey: "",
@@ -47,6 +57,42 @@ document.addEventListener("DOMContentLoaded", () => {
     buyersData: null,
     activeTab: "referidos",
     tokenDecimals: 18
+  };
+
+  let confirmResolver = null;
+
+  const closeAdminConfirmModal = (result = false) => {
+    if (!adminConfirmOverlay) return;
+
+    adminConfirmOverlay.hidden = true;
+    document.body.classList.remove("admin-modal-open");
+
+    if (typeof confirmResolver === "function") {
+      const resolver = confirmResolver;
+      confirmResolver = null;
+      resolver(result);
+    }
+  };
+
+  const openAdminConfirmModal = ({ title, text, amount, recipientLabel, wallet }) => {
+    if (!adminConfirmOverlay) {
+      return Promise.resolve(window.confirm(`${text || "Confirma el envío."}\n\n${amount || ""}\n${wallet || ""}`));
+    }
+
+    if (adminConfirmTitle) adminConfirmTitle.textContent = title || "Confirmar envío SNC";
+    if (adminConfirmText) adminConfirmText.textContent = text || "Revisa cuidadosamente el monto y la wallet antes de firmar la transacción.";
+    if (adminConfirmAmount) adminConfirmAmount.textContent = amount || "0 SNC";
+    if (adminConfirmRecipientLabel) adminConfirmRecipientLabel.textContent = recipientLabel || "Wallet destino";
+    if (adminConfirmWallet) adminConfirmWallet.textContent = wallet || "0x...";
+
+    adminConfirmOverlay.hidden = false;
+    document.body.classList.add("admin-modal-open");
+
+    setTimeout(() => adminConfirmAccept?.focus(), 0);
+
+    return new Promise((resolve) => {
+      confirmResolver = resolve;
+    });
   };
 
   const BSC_CHAIN_ID_HEX = "0x38";
@@ -261,9 +307,13 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const confirmPayment = window.confirm(
-      `Vas a enviar ${formatSnc(pendingSnc)} a:\\n${referrerWallet}\\n\\nConfirma solo si la wallet conectada tiene suficientes SNC.`
-    );
+    const confirmPayment = await openAdminConfirmModal({
+      title: "Enviar comisión de referido",
+      text: "Vas a enviar la comisión pendiente en SNC al referidor seleccionado.",
+      amount: formatSnc(pendingSnc),
+      recipientLabel: "Wallet del referidor",
+      wallet: referrerWallet
+    });
 
     if (!confirmPayment) return;
 
@@ -331,9 +381,13 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const confirmPayment = window.confirm(
-      `Vas a enviar ${formatSnc(pendingSnc)} al comprador:\n${buyerWallet}\n\nConfirma solo si la wallet conectada tiene suficientes SNC.`
-    );
+    const confirmPayment = await openAdminConfirmModal({
+      title: "Enviar SNC al comprador",
+      text: "Vas a enviar los SNC comprados a la wallet del comprador seleccionado.",
+      amount: formatSnc(pendingSnc),
+      recipientLabel: "Wallet del comprador",
+      wallet: buyerWallet
+    });
 
     if (!confirmPayment) return;
 
@@ -662,6 +716,66 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
+  if (adminConfirmClose) {
+    adminConfirmClose.addEventListener("click", () => closeAdminConfirmModal(false));
+  }
+
+  if (adminConfirmCancel) {
+    adminConfirmCancel.addEventListener("click", () => closeAdminConfirmModal(false));
+  }
+
+  if (adminConfirmAccept) {
+    adminConfirmAccept.addEventListener("click", () => closeAdminConfirmModal(true));
+  }
+
+  if (adminConfirmOverlay) {
+    adminConfirmOverlay.addEventListener("click", (event) => {
+      if (event.target === adminConfirmOverlay) {
+        closeAdminConfirmModal(false);
+      }
+    });
+  }
+
+  if (adminConfirmCopyWallet) {
+    adminConfirmCopyWallet.addEventListener("click", async () => {
+      const wallet = adminConfirmWallet?.textContent?.trim() || "";
+
+      if (!wallet) return;
+
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(wallet);
+        } else {
+          const tempInput = document.createElement("textarea");
+          tempInput.value = wallet;
+          tempInput.setAttribute("readonly", "");
+          tempInput.style.position = "fixed";
+          tempInput.style.opacity = "0";
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          document.execCommand("copy");
+          tempInput.remove();
+        }
+
+        adminConfirmCopyWallet.classList.add("copied");
+        adminConfirmCopyWallet.textContent = "✓";
+
+        window.setTimeout(() => {
+          adminConfirmCopyWallet.classList.remove("copied");
+          adminConfirmCopyWallet.textContent = "⧉";
+        }, 1200);
+      } catch (error) {
+        adminConfirmCopyWallet.classList.add("copy-error");
+        adminConfirmCopyWallet.textContent = "!";
+
+        window.setTimeout(() => {
+          adminConfirmCopyWallet.classList.remove("copy-error");
+          adminConfirmCopyWallet.textContent = "⧉";
+        }, 1200);
+      }
+    });
+  }
+
   tabButtons.forEach((button) => {
     button.addEventListener("click", () => setAdminTab(button.dataset.adminTab || "referidos"));
   });
@@ -695,7 +809,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && creatorDropdown && !creatorDropdown.hidden) {
+    if (event.key !== "Escape") return;
+
+    if (adminConfirmOverlay && !adminConfirmOverlay.hidden) {
+      closeAdminConfirmModal(false);
+      return;
+    }
+
+    if (creatorDropdown && !creatorDropdown.hidden) {
       creatorDropdown.hidden = true;
       if (creatorMenuButton) creatorMenuButton.setAttribute("aria-expanded", "false");
     }
