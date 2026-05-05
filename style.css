@@ -6801,3 +6801,5933 @@ body.admin-modal-open {
     font-size: 1.05rem;
   }
 }
+
+
+
+/* =========================================================
+   ADMIN PREMIUM UI - Tema SNC
+   Diseño compacto, moderno y responsive sin cambiar lógica
+   ========================================================= */
+
+body.admin-page-body {
+  background:
+    radial-gradient(circle at 9% 12%, rgba(0, 217, 255, 0.18), transparent 28rem),
+    radial-gradient(circle at 92% 8%, rgba(255, 216, 107, 0.12), transparent 30rem),
+    radial-gradient(circle at 55% 82%, rgba(44, 255, 155, 0.06), transparent 28rem),
+    linear-gradient(135deg, #04121c 0%, #050814 45%, #16150f 100%);
+  background-attachment: fixed;
+}
+
+.admin-page .container {
+  width: min(100% - 32px, 1540px);
+}
+
+.admin-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  width: min(100% - 32px, 1620px);
+  margin: 0 auto 20px;
+  padding: 18px 0 12px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.admin-topbar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.25), rgba(255, 216, 107, 0.18), transparent);
+  opacity: 0.75;
+}
+
+.admin-topbar .brand {
+  transform: translateZ(0);
+}
+
+.admin-topbar .brand-logo {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 16px rgba(255, 216, 107, 0.18));
+}
+
+.admin-topbar .brand-text strong {
+  color: #f5f8ff;
+  text-shadow: 0 0 18px rgba(0, 217, 255, 0.12);
+}
+
+.admin-login-card {
+  width: min(100%, 520px) !important;
+  min-height: 0 !important;
+  margin: clamp(18px, 4vh, 44px) auto 0 !important;
+  padding: clamp(24px, 3.2vw, 38px) !important;
+  gap: 15px !important;
+  border-radius: 30px !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025)),
+    radial-gradient(circle at 15% 0%, rgba(0, 217, 255, 0.20), transparent 42%),
+    radial-gradient(circle at 100% 100%, rgba(255, 216, 107, 0.12), transparent 42%) !important;
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(0, 217, 255, 0.12) inset,
+    0 0 70px rgba(0, 217, 255, 0.08) !important;
+}
+
+.admin-login-card::before,
+.admin-panel-head::before,
+.referral-table-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.14), transparent 32%, rgba(0,217,255,0.08));
+  opacity: 0.32;
+}
+
+.admin-login-card,
+.admin-panel-head,
+.referral-table-card,
+.referral-mini-stats article {
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-login-card h1 {
+  font-size: clamp(2.45rem, 7vw, 4.1rem) !important;
+  line-height: 0.92 !important;
+  letter-spacing: -0.045em !important;
+}
+
+.admin-login-card p:not(.eyebrow):not(.form-message) {
+  max-width: 38rem;
+  color: #c7d1df;
+}
+
+.admin-key-control label {
+  color: #d8e2f2;
+}
+
+.admin-key-control input,
+.admin-login-form input {
+  min-height: 56px;
+  border-radius: 16px !important;
+  background: rgba(2, 7, 17, 0.72) !important;
+  border: 1px solid rgba(0, 217, 255, 0.26) !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.025);
+  color: #f7fbff !important;
+}
+
+.admin-key-control input:focus,
+.admin-login-form input:focus {
+  border-color: rgba(0, 217, 255, 0.75) !important;
+  box-shadow:
+    0 0 0 4px rgba(0, 217, 255, 0.10),
+    0 0 34px rgba(0, 217, 255, 0.15) !important;
+}
+
+.admin-login-form .btn-primary {
+  min-height: 56px;
+  border-radius: 18px;
+  font-weight: 900;
+}
+
+.admin-content-panel {
+  width: min(100%, 1480px);
+  margin: 0 auto;
+  display: grid;
+  gap: 24px;
+}
+
+.admin-panel-head {
+  min-height: 0 !important;
+  padding: clamp(24px, 3.4vw, 46px) !important;
+  border-radius: 32px !important;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(0, 217, 255, 0.18), transparent 26rem),
+    radial-gradient(circle at 96% 20%, rgba(255, 216, 107, 0.12), transparent 28rem),
+    linear-gradient(135deg, rgba(255,255,255,0.085), rgba(255,255,255,0.025)) !important;
+  box-shadow:
+    0 28px 90px rgba(0,0,0,.34),
+    inset 0 0 0 1px rgba(255,255,255,0.035) !important;
+}
+
+.admin-panel-head h1 {
+  font-size: clamp(2.6rem, 7vw, 5.2rem) !important;
+  line-height: 0.92 !important;
+  letter-spacing: -0.055em !important;
+  max-width: 980px;
+}
+
+.admin-panel-head p:not(.eyebrow) {
+  max-width: 820px;
+  color: #c7d1df;
+  font-size: clamp(1rem, 1.5vw, 1.22rem);
+}
+
+.admin-session-menu {
+  position: relative;
+}
+
+.admin-creator-button {
+  background:
+    linear-gradient(135deg, rgba(0, 217, 255, 0.16), rgba(255, 216, 107, 0.08)),
+    rgba(6, 18, 31, 0.82) !important;
+  border: 1px solid rgba(0, 217, 255, 0.32) !important;
+  color: #f8fbff !important;
+  box-shadow: 0 14px 34px rgba(0, 217, 255, 0.09);
+}
+
+.admin-creator-dropdown {
+  border: 1px solid rgba(255, 216, 107, 0.22);
+  background: rgba(6, 11, 22, 0.94);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+
+.admin-tab-menu {
+  justify-content: center;
+  padding: 8px;
+  margin: 0 auto;
+  width: max-content;
+  max-width: 100%;
+  border: 1px solid rgba(0, 217, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(4, 11, 22, 0.56);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.025);
+}
+
+.admin-tab-button {
+  min-width: 150px;
+  border-color: transparent !important;
+  background: transparent !important;
+  color: #b7c2d2 !important;
+}
+
+.admin-tab-button:hover {
+  transform: translateY(-1px);
+  color: #ffffff !important;
+  background: rgba(255,255,255,0.045) !important;
+}
+
+.admin-tab-button.active {
+  background:
+    linear-gradient(135deg, rgba(255, 216, 107, 0.95), rgba(0, 217, 255, 0.86)) !important;
+  color: #04111a !important;
+  box-shadow:
+    0 14px 34px rgba(0, 217, 255, 0.16),
+    0 8px 24px rgba(255, 216, 107, 0.12);
+}
+
+.admin-wallet-stats {
+  grid-template-columns: minmax(280px, 1.08fr) repeat(2, minmax(230px, 1fr)) !important;
+  gap: 16px !important;
+  margin-top: 0 !important;
+}
+
+.referral-mini-stats article {
+  min-height: 150px;
+  padding: 22px !important;
+  border: 1px solid rgba(255,255,255,0.11) !important;
+  border-radius: 24px !important;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(0, 217, 255, 0.11), transparent 38%),
+    linear-gradient(135deg, rgba(255,255,255,0.072), rgba(255,255,255,0.024)) !important;
+  box-shadow: 0 18px 56px rgba(0,0,0,0.24) !important;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.referral-mini-stats article:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 217, 255, 0.34) !important;
+  box-shadow: 0 24px 70px rgba(0,0,0,0.28), 0 0 34px rgba(0,217,255,0.08) !important;
+}
+
+.referral-mini-stats article > span {
+  color: #b9c4d4 !important;
+  font-weight: 900;
+}
+
+.referral-mini-stats article > strong {
+  color: #15e6ff !important;
+  text-shadow: 0 0 24px rgba(0,217,255,0.16);
+}
+
+.wallet-connect-stat.is-connected,
+.admin-wallet-card.is-connected {
+  border-color: rgba(44, 255, 155, 0.34) !important;
+  background:
+    radial-gradient(circle at 12% 15%, rgba(44, 255, 155, 0.20), transparent 36%),
+    radial-gradient(circle at 92% 16%, rgba(255, 216, 107, 0.12), transparent 32%),
+    linear-gradient(135deg, rgba(7, 43, 42, 0.88), rgba(10, 18, 33, 0.96)) !important;
+}
+
+#adminPayoutWalletStatus {
+  font-size: clamp(1rem, 1.7vw, 1.25rem);
+}
+
+#adminTokenStatus {
+  color: #d7e0ee !important;
+}
+
+#adminTokenStatus strong {
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: rgba(255,216,107,0.08);
+}
+
+.admin-wallet-connect-button {
+  margin-top: auto;
+  border-radius: 16px !important;
+}
+
+.admin-tab-panel {
+  display: grid;
+  gap: 22px;
+}
+
+.admin-tab-panel[hidden] {
+  display: none !important;
+}
+
+.referral-table-card {
+  padding: clamp(18px, 2.5vw, 28px) !important;
+  border-radius: 30px !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(0, 217, 255, 0.10), transparent 26rem),
+    linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.024)) !important;
+  box-shadow: 0 24px 82px rgba(0,0,0,0.27) !important;
+}
+
+.referral-table-card h2 {
+  margin-bottom: 16px !important;
+  color: #f4f8ff;
+  font-size: clamp(1.35rem, 2.3vw, 2rem) !important;
+  letter-spacing: -0.025em;
+}
+
+.admin-table-note {
+  margin: -6px 0 18px;
+  color: #aeb9ca;
+}
+
+.table-scroll {
+  border-radius: 22px !important;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(2, 7, 16, 0.38);
+}
+
+.referral-table {
+  border-collapse: separate !important;
+  border-spacing: 0;
+}
+
+.referral-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(17, 28, 46, 0.98), rgba(8, 13, 25, 0.98)) !important;
+  color: var(--gold-light) !important;
+  border-bottom: 1px solid rgba(255, 216, 107, 0.18) !important;
+}
+
+.referral-table tbody tr {
+  transition: background 0.16s ease;
+}
+
+.referral-table tbody tr:hover {
+  background: rgba(0, 217, 255, 0.045);
+}
+
+.referral-table td,
+.referral-table th {
+  padding: 16px 18px !important;
+}
+
+.referral-empty {
+  color: #bac5d5 !important;
+}
+
+.wallet-copy-button,
+.admin-confirm-copy {
+  background: rgba(0, 217, 255, 0.10) !important;
+  border: 1px solid rgba(0, 217, 255, 0.28) !important;
+  color: #eafaff !important;
+}
+
+.wallet-copy-button:hover,
+.admin-confirm-copy:hover {
+  background: rgba(0, 217, 255, 0.18) !important;
+  border-color: rgba(255, 216, 107, 0.46) !important;
+}
+
+.admin-confirm-modal {
+  border-radius: 30px !important;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(0,217,255,0.18), transparent 36%),
+    radial-gradient(circle at 100% 0%, rgba(255,216,107,0.12), transparent 38%),
+    linear-gradient(135deg, rgba(14, 28, 45, 0.98), rgba(7, 10, 22, 0.98)) !important;
+}
+
+@media (max-width: 980px) {
+  .admin-topbar {
+    width: min(100% - 24px, 1620px);
+  }
+
+  .admin-wallet-stats {
+    grid-template-columns: 1fr !important;
+  }
+
+  .admin-panel-head h1 {
+    font-size: clamp(2.35rem, 10vw, 4.1rem) !important;
+  }
+
+  .admin-tab-menu {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .admin-tab-button {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  body.admin-page-body {
+    background-attachment: scroll;
+  }
+
+  .admin-page .container {
+    width: min(100% - 20px, 1540px);
+  }
+
+  .admin-topbar {
+    position: relative;
+    width: min(100% - 20px, 1620px);
+    padding-top: 14px;
+    margin-bottom: 12px;
+  }
+
+  .admin-topbar .brand-logo {
+    width: 46px;
+    height: 46px;
+  }
+
+  .admin-top-actions {
+    gap: 8px;
+  }
+
+  .admin-creator-button {
+    padding: 0.72rem 0.88rem !important;
+    font-size: 0.82rem !important;
+  }
+
+  .admin-login-card {
+    width: min(100%, 430px) !important;
+    margin-top: 10px !important;
+    padding: 22px 18px !important;
+    border-radius: 24px !important;
+  }
+
+  .admin-login-card h1 {
+    font-size: clamp(2.2rem, 15vw, 3.35rem) !important;
+  }
+
+  .admin-content-panel {
+    gap: 16px;
+  }
+
+  .admin-panel-head {
+    padding: 22px 18px !important;
+    border-radius: 24px !important;
+  }
+
+  .admin-panel-head h1 {
+    font-size: clamp(2.15rem, 14vw, 3.45rem) !important;
+  }
+
+  .admin-panel-head p:not(.eyebrow) {
+    font-size: 0.96rem;
+  }
+
+  .admin-tab-menu {
+    padding: 6px;
+    gap: 6px;
+    border-radius: 20px;
+  }
+
+  .admin-tab-button {
+    padding: 0.78rem 0.7rem !important;
+    font-size: 0.78rem !important;
+    border-radius: 16px !important;
+  }
+
+  .referral-mini-stats article {
+    min-height: 128px;
+    padding: 18px !important;
+    border-radius: 22px !important;
+  }
+
+  .referral-table-card {
+    padding: 16px 12px !important;
+    border-radius: 24px !important;
+  }
+
+  .table-scroll {
+    border-radius: 18px !important;
+  }
+
+  .referral-table td,
+  .referral-table th {
+    padding: 13px 14px !important;
+    font-size: 0.86rem;
+  }
+}
+
+
+/* =========================================================
+   ADMIN FIX FINAL - compacto, bonito y sin scroll excesivo
+   Mantiene colores SNC, corrige logo del admin y reduce espacios
+   ========================================================= */
+
+body.admin-page-body {
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(0, 217, 255, 0.16), transparent 26rem),
+    radial-gradient(circle at 94% 10%, rgba(255, 216, 107, 0.10), transparent 28rem),
+    linear-gradient(135deg, #04121c 0%, #050814 48%, #14130f 100%) !important;
+}
+
+/* Evita que las etiquetas section hereden 110px de padding de la landing */
+.admin-page section {
+  padding: 0 !important;
+}
+
+.admin-page {
+  min-height: 100svh !important;
+  padding: 8px 0 28px !important;
+}
+
+.admin-page .container {
+  width: min(calc(100% - 28px), 1320px) !important;
+}
+
+.admin-topbar {
+  position: relative !important;
+  top: auto !important;
+  z-index: 20;
+  width: min(calc(100% - 28px), 1500px) !important;
+  margin: 0 auto 10px !important;
+  padding: 8px 0 10px !important;
+  min-height: 66px !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.admin-topbar::after {
+  opacity: 0.35 !important;
+}
+
+/* Logo del admin limpio: sin giro, sin ponerse de lado ni ovalado */
+.admin-page .admin-topbar .brand {
+  gap: 10px !important;
+  transform: none !important;
+}
+
+.admin-page .admin-topbar .brand-mark {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  animation: none !important;
+  transform: none !important;
+  perspective: none !important;
+  filter: drop-shadow(0 0 14px rgba(255, 216, 107, 0.18));
+}
+
+.admin-page .admin-topbar .brand-mark::before,
+.admin-page .admin-topbar .brand-mark::after {
+  display: none !important;
+}
+
+.admin-page .admin-topbar .brand-logo {
+  width: 48px !important;
+  height: 48px !important;
+  max-width: 48px !important;
+  max-height: 48px !important;
+  display: block !important;
+  object-fit: contain !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  animation: none !important;
+  transform: none !important;
+  backface-visibility: visible !important;
+  -webkit-backface-visibility: visible !important;
+}
+
+.admin-page .admin-topbar .brand-text strong {
+  font-size: 0.92rem !important;
+  letter-spacing: -0.02em !important;
+}
+
+.admin-page .admin-topbar .brand-text small {
+  font-size: 0.76rem !important;
+  color: #aeb8ca !important;
+}
+
+.admin-top-actions {
+  gap: 10px !important;
+}
+
+.admin-creator-button {
+  min-height: 46px !important;
+  padding: 0.72rem 1rem !important;
+  border-radius: 999px !important;
+  font-size: 0.9rem !important;
+}
+
+/* Login compacto y centrado sin scroll */
+.admin-login-card {
+  width: min(100%, 460px) !important;
+  margin: 18px auto 0 !important;
+  padding: 24px !important;
+  gap: 14px !important;
+  border-radius: 26px !important;
+  min-height: auto !important;
+}
+
+.admin-login-card h1 {
+  font-size: clamp(2rem, 8vw, 3.15rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.045em !important;
+}
+
+.admin-login-card p:not(.eyebrow):not(.form-message) {
+  font-size: 0.96rem !important;
+  line-height: 1.45 !important;
+}
+
+.admin-login-form {
+  gap: 12px !important;
+}
+
+.admin-key-control input,
+.admin-login-form input {
+  min-height: 50px !important;
+}
+
+.admin-login-form .btn-primary {
+  min-height: 50px !important;
+}
+
+/* Panel interno más elegante, pero compacto */
+.admin-content-panel {
+  width: min(100%, 1180px) !important;
+  margin: 0 auto !important;
+  gap: 14px !important;
+  display: grid !important;
+}
+
+.admin-content-panel[hidden] {
+  display: none !important;
+}
+
+.admin-panel-head {
+  width: 100% !important;
+  margin: 6px auto 0 !important;
+  padding: 20px 26px !important;
+  min-height: 0 !important;
+  border-radius: 24px !important;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(0, 217, 255, 0.14), transparent 22rem),
+    radial-gradient(circle at 96% 18%, rgba(255, 216, 107, 0.10), transparent 24rem),
+    linear-gradient(135deg, rgba(255,255,255,0.078), rgba(255,255,255,0.024)) !important;
+  box-shadow: 0 16px 52px rgba(0,0,0,.24), inset 0 0 0 1px rgba(255,255,255,.03) !important;
+}
+
+.admin-panel-head h1 {
+  margin: 4px 0 8px !important;
+  max-width: none !important;
+  font-size: clamp(1.85rem, 4.1vw, 3.15rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.045em !important;
+}
+
+.admin-panel-head p:not(.eyebrow) {
+  max-width: 760px !important;
+  font-size: 0.98rem !important;
+  line-height: 1.45 !important;
+  color: #c5cfde !important;
+}
+
+.admin-tab-menu {
+  width: max-content !important;
+  max-width: 100% !important;
+  margin: 2px auto 4px !important;
+  padding: 6px !important;
+  border-radius: 999px !important;
+}
+
+.admin-tab-button {
+  min-width: 138px !important;
+  min-height: 44px !important;
+  padding: 0.7rem 1rem !important;
+  border-radius: 999px !important;
+  font-size: 0.84rem !important;
+}
+
+.admin-wallet-stats {
+  width: 100% !important;
+  grid-template-columns: minmax(250px, 1.08fr) repeat(2, minmax(220px, 1fr)) !important;
+  gap: 12px !important;
+  margin: 0 auto !important;
+}
+
+.referral-mini-stats article {
+  min-height: 112px !important;
+  padding: 16px !important;
+  border-radius: 20px !important;
+  box-shadow: 0 12px 38px rgba(0,0,0,0.22) !important;
+}
+
+.referral-mini-stats article > span {
+  font-size: 0.78rem !important;
+}
+
+.referral-mini-stats article > strong {
+  font-size: clamp(1.15rem, 2.1vw, 1.45rem) !important;
+  line-height: 1.1 !important;
+}
+
+.referral-mini-stats article small {
+  font-size: 0.78rem !important;
+  line-height: 1.35 !important;
+}
+
+.wallet-connect-stat {
+  gap: 0.45rem !important;
+}
+
+#adminPayoutWalletStatus {
+  font-size: 0.95rem !important;
+}
+
+#adminTokenStatus {
+  font-size: 0.9rem !important;
+}
+
+#adminTokenStatus strong {
+  font-size: 1rem !important;
+}
+
+.admin-wallet-connect-button,
+#connectPayoutWalletButton {
+  min-height: 42px !important;
+  border-radius: 999px !important;
+  margin-top: 4px !important;
+  color: #ffffff !important;
+}
+
+.admin-tab-panel {
+  width: 100% !important;
+  gap: 14px !important;
+}
+
+.referral-table-card {
+  width: 100% !important;
+  padding: 16px !important;
+  border-radius: 22px !important;
+  box-shadow: 0 14px 44px rgba(0,0,0,0.22) !important;
+}
+
+.referral-table-card h2 {
+  margin-bottom: 10px !important;
+  font-size: clamp(1.22rem, 2vw, 1.65rem) !important;
+}
+
+.admin-table-note {
+  margin: -2px 0 12px !important;
+  font-size: 0.9rem !important;
+}
+
+.table-scroll {
+  max-height: min(42vh, 430px) !important;
+  overflow: auto !important;
+  border-radius: 18px !important;
+}
+
+.referral-table td,
+.referral-table th {
+  padding: 12px 14px !important;
+  font-size: 0.86rem !important;
+}
+
+.admin-confirm-modal {
+  max-width: 520px !important;
+}
+
+/* Menos movimiento y menos consumo en admin */
+.admin-page-body .page-glow {
+  opacity: 0.55 !important;
+  filter: blur(8px) !important;
+}
+
+.admin-page .referral-mini-stats article:hover {
+  transform: none !important;
+}
+
+@media (max-width: 980px) {
+  .admin-wallet-stats {
+    grid-template-columns: 1fr !important;
+  }
+
+  .admin-content-panel {
+    width: min(100%, 760px) !important;
+  }
+
+  .admin-panel-head {
+    padding: 18px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-page {
+    padding: 6px 0 20px !important;
+  }
+
+  .admin-page .container,
+  .admin-topbar {
+    width: min(calc(100% - 18px), 760px) !important;
+  }
+
+  .admin-topbar {
+    padding: 8px 0 !important;
+    min-height: 58px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .admin-page .admin-topbar .brand-mark,
+  .admin-page .admin-topbar .brand-logo {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+  }
+
+  .admin-topbar .brand-text strong {
+    font-size: 0.78rem !important;
+  }
+
+  .admin-topbar .brand-text small {
+    font-size: 0.68rem !important;
+  }
+
+  .admin-creator-button {
+    min-height: 40px !important;
+    padding: 0.62rem 0.8rem !important;
+    font-size: 0.78rem !important;
+  }
+
+  .admin-login-card {
+    width: min(100%, 390px) !important;
+    margin-top: 8px !important;
+    padding: 18px !important;
+    border-radius: 22px !important;
+  }
+
+  .admin-login-card h1 {
+    font-size: clamp(1.9rem, 12vw, 2.75rem) !important;
+  }
+
+  .admin-content-panel {
+    gap: 10px !important;
+  }
+
+  .admin-panel-head {
+    margin-top: 4px !important;
+    padding: 16px !important;
+    border-radius: 20px !important;
+  }
+
+  .admin-panel-head h1 {
+    font-size: clamp(1.75rem, 10vw, 2.6rem) !important;
+  }
+
+  .admin-panel-head p:not(.eyebrow) {
+    font-size: 0.88rem !important;
+  }
+
+  .admin-tab-menu {
+    width: 100% !important;
+    padding: 5px !important;
+    gap: 5px !important;
+  }
+
+  .admin-tab-button {
+    min-width: 0 !important;
+    flex: 1 1 0 !important;
+    min-height: 40px !important;
+    padding: 0.62rem 0.45rem !important;
+    font-size: 0.72rem !important;
+  }
+
+  .referral-mini-stats article {
+    min-height: 98px !important;
+    padding: 14px !important;
+  }
+
+  .referral-table-card {
+    padding: 12px !important;
+    border-radius: 18px !important;
+  }
+
+  .table-scroll {
+    max-height: 46vh !important;
+    border-radius: 16px !important;
+  }
+
+  .referral-table td,
+  .referral-table th {
+    padding: 10px 12px !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+
+/* =========================================================
+   ADMIN SATOSHI NAKAMOTO REDESIGN
+   Panel de pagos SNC premium inspirado en el mockup aprobado.
+   ========================================================= */
+
+body.admin-page-body {
+  --satoshi-black: #050604;
+  --satoshi-panel: rgba(10, 12, 10, 0.86);
+  --satoshi-panel-strong: rgba(13, 14, 12, 0.96);
+  --satoshi-gold: #e0b74f;
+  --satoshi-gold-soft: #f4d57f;
+  --satoshi-copper: #a96b26;
+  --satoshi-green: #34d66f;
+  --satoshi-blue: #3b8bff;
+  --satoshi-line: rgba(224, 183, 79, 0.18);
+  --satoshi-muted: #aeb1aa;
+  --satoshi-text: #fbf5df;
+  min-height: 100svh !important;
+  color: var(--satoshi-text) !important;
+  background:
+    radial-gradient(circle at 8% 10%, rgba(224, 183, 79, 0.15), transparent 30rem),
+    radial-gradient(circle at 88% 8%, rgba(244, 213, 127, 0.18), transparent 28rem),
+    radial-gradient(circle at 70% 82%, rgba(52, 214, 111, 0.09), transparent 26rem),
+    linear-gradient(135deg, #020302 0%, #090a08 48%, #171006 100%) !important;
+  background-attachment: fixed !important;
+}
+
+.satoshi-bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(224, 183, 79, 0.035) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(224, 183, 79, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 18% 28%, rgba(224, 183, 79, 0.10), transparent 18rem),
+    repeating-linear-gradient(135deg, rgba(224, 183, 79, 0.04) 0 1px, transparent 1px 16px);
+  background-size: 56px 56px, 56px 56px, auto, auto;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,0.9), rgba(0,0,0,0.25));
+}
+
+body.admin-page-body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 90% 24%, rgba(224, 183, 79, 0.08), transparent 16rem),
+    linear-gradient(90deg, transparent 0 20%, rgba(224, 183, 79, 0.04) 20.2%, transparent 20.4% 100%);
+  opacity: 0.88;
+}
+
+.satoshi-admin-page {
+  min-height: 100svh !important;
+  width: 100% !important;
+  padding: 10px 0 26px !important;
+}
+
+.satoshi-admin-page section {
+  padding: 0 !important;
+}
+
+.satoshi-admin-topbar {
+  position: sticky !important;
+  top: 10px !important;
+  z-index: 80 !important;
+  width: min(calc(100% - 20px), 1740px) !important;
+  min-height: 72px !important;
+  margin: 0 auto 14px !important;
+  padding: 10px 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 18px !important;
+  border: 1px solid rgba(224, 183, 79, 0.14) !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+    rgba(5, 7, 6, 0.86) !important;
+  box-shadow:
+    0 18px 70px rgba(0, 0, 0, 0.48),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025),
+    0 0 50px rgba(224, 183, 79, 0.05) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+}
+
+.satoshi-admin-topbar::after {
+  opacity: 0 !important;
+}
+
+.satoshi-admin-brand,
+.admin-page .satoshi-admin-topbar .brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  min-width: max-content !important;
+  text-decoration: none !important;
+  transform: none !important;
+}
+
+.admin-page .satoshi-admin-topbar .brand-mark,
+.satoshi-brand-mark {
+  width: 54px !important;
+  height: 54px !important;
+  min-width: 54px !important;
+  display: grid !important;
+  place-items: center !important;
+  border: 1px solid rgba(224, 183, 79, 0.28) !important;
+  border-radius: 50% !important;
+  background:
+    radial-gradient(circle, rgba(224, 183, 79, 0.18), transparent 62%),
+    rgba(5, 6, 4, 0.82) !important;
+  box-shadow:
+    0 0 20px rgba(224, 183, 79, 0.18),
+    inset 0 0 18px rgba(224, 183, 79, 0.09) !important;
+  overflow: hidden !important;
+}
+
+.admin-page .satoshi-admin-topbar .brand-mark::before,
+.admin-page .satoshi-admin-topbar .brand-mark::after {
+  display: none !important;
+}
+
+.admin-page .satoshi-admin-topbar .brand-logo,
+.satoshi-brand-mark .brand-logo {
+  width: 52px !important;
+  height: 52px !important;
+  max-width: 52px !important;
+  max-height: 52px !important;
+  object-fit: contain !important;
+  border-radius: 50% !important;
+  transform: none !important;
+  animation: none !important;
+  filter: drop-shadow(0 0 12px rgba(224, 183, 79, 0.28)) !important;
+}
+
+.satoshi-admin-topbar .brand-text strong {
+  display: block !important;
+  color: var(--satoshi-gold-soft) !important;
+  font-family: "Orbitron", sans-serif !important;
+  font-size: 1.05rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  text-shadow: 0 0 20px rgba(224, 183, 79, 0.20) !important;
+}
+
+.satoshi-admin-topbar .brand-text small {
+  display: block !important;
+  margin-top: 2px !important;
+  color: #c7b98b !important;
+  font-size: 0.72rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+}
+
+.satoshi-top-stats {
+  flex: 1 1 auto;
+  max-width: 760px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.satoshi-top-stats article {
+  min-height: 48px;
+  padding: 8px 12px;
+  border-left: 1px solid rgba(224, 183, 79, 0.10);
+  background: linear-gradient(90deg, rgba(255,255,255,0.026), transparent);
+}
+
+.satoshi-top-stats span {
+  display: block;
+  margin-bottom: 3px;
+  color: #8d9089;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.satoshi-top-stats strong {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #f6edd1;
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+.satoshi-top-stats i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--satoshi-green);
+  box-shadow: 0 0 16px rgba(52, 214, 111, 0.85);
+}
+
+.satoshi-top-stats em {
+  padding: 2px 6px;
+  border-radius: 999px;
+  color: var(--satoshi-green);
+  background: rgba(52, 214, 111, 0.10);
+  font-size: 0.72rem;
+  font-style: normal;
+}
+
+.satoshi-top-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(224, 183, 79, 0.18);
+  border-radius: 14px;
+  color: var(--satoshi-gold-soft);
+  background: rgba(255,255,255,0.035);
+  font-weight: 900;
+}
+
+.satoshi-admin-topbar .admin-top-actions {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.satoshi-admin-topbar .admin-session-menu[hidden] {
+  display: none !important;
+}
+
+.satoshi-admin-topbar .admin-session-menu {
+  position: relative !important;
+}
+
+.satoshi-admin-topbar .admin-creator-button {
+  min-height: 52px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 7px 12px 7px 8px !important;
+  border: 1px solid rgba(224, 183, 79, 0.22) !important;
+  border-radius: 999px !important;
+  color: #f9f1d7 !important;
+  background:
+    linear-gradient(135deg, rgba(224, 183, 79, 0.13), rgba(255,255,255,0.025)),
+    rgba(9, 10, 8, 0.86) !important;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.34) !important;
+}
+
+.satoshi-admin-topbar .admin-creator-button img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 10px rgba(224, 183, 79, 0.25));
+}
+
+.satoshi-admin-topbar .admin-creator-button span {
+  display: grid;
+  color: inherit !important;
+  text-align: left;
+  line-height: 1.1;
+  margin-left: 0 !important;
+}
+
+.satoshi-admin-topbar .admin-creator-button strong {
+  font-size: 0.9rem;
+}
+
+.satoshi-admin-topbar .admin-creator-button small {
+  color: #aeb1aa;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.satoshi-admin-topbar .admin-creator-button b {
+  color: var(--satoshi-gold-soft);
+  font-size: 1rem;
+}
+
+.satoshi-admin-topbar .admin-creator-dropdown {
+  top: calc(100% + 10px) !important;
+  right: 0 !important;
+  min-width: 180px !important;
+  border: 1px solid rgba(224, 183, 79, 0.18) !important;
+  border-radius: 16px !important;
+  background: rgba(6, 7, 6, 0.96) !important;
+  box-shadow: 0 22px 60px rgba(0,0,0,0.48) !important;
+}
+
+.satoshi-admin-topbar .admin-creator-dropdown[hidden] {
+  display: none !important;
+}
+
+.satoshi-admin-topbar .admin-creator-dropdown button {
+  color: #f7edd1 !important;
+  border-radius: 12px !important;
+}
+
+.admin-global-message {
+  width: min(calc(100% - 20px), 980px);
+  min-height: 0;
+  margin: 0 auto 12px;
+  text-align: center;
+  color: #d9d1b8;
+}
+
+.admin-global-message:empty {
+  display: none;
+}
+
+.admin-global-message.success {
+  color: var(--satoshi-green) !important;
+}
+
+.admin-global-message.error {
+  color: #ff7676 !important;
+}
+
+.satoshi-login-card {
+  position: relative !important;
+  width: min(calc(100% - 28px), 540px) !important;
+  min-height: auto !important;
+  margin: clamp(24px, 9vh, 92px) auto 0 !important;
+  padding: clamp(26px, 4vw, 42px) !important;
+  display: grid !important;
+  gap: 16px !important;
+  border: 1px solid rgba(224, 183, 79, 0.22) !important;
+  border-radius: 32px !important;
+  background:
+    radial-gradient(circle at 22% 0%, rgba(224, 183, 79, 0.18), transparent 17rem),
+    radial-gradient(circle at 100% 100%, rgba(52, 214, 111, 0.07), transparent 16rem),
+    linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.018)),
+    rgba(7, 8, 6, 0.86) !important;
+  box-shadow:
+    0 34px 110px rgba(0,0,0,0.52),
+    0 0 0 1px rgba(255,255,255,0.024) inset,
+    0 0 70px rgba(224, 183, 79, 0.09) !important;
+  overflow: hidden !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+}
+
+.satoshi-login-card[hidden] {
+  display: none !important;
+}
+
+.satoshi-login-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.10), transparent 28%, rgba(224, 183, 79, 0.08)),
+    repeating-linear-gradient(90deg, rgba(224, 183, 79, 0.04) 0 1px, transparent 1px 20px);
+  opacity: 0.55;
+}
+
+.satoshi-login-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.satoshi-login-coin {
+  width: 92px;
+  height: 92px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 4px;
+  border: 1px solid rgba(224, 183, 79, 0.24);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(224, 183, 79, 0.18), rgba(0,0,0,0.12));
+  box-shadow: 0 0 34px rgba(224, 183, 79, 0.18);
+}
+
+.satoshi-login-coin img {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.satoshi-login-card .eyebrow,
+.snc-dashboard-hero .eyebrow,
+.admin-confirm-modal .eyebrow {
+  color: var(--satoshi-gold-soft) !important;
+  letter-spacing: 0.18em !important;
+}
+
+.satoshi-login-card h1 {
+  margin: 0 !important;
+  max-width: 460px;
+  color: #fff2bd !important;
+  font-family: "Orbitron", sans-serif !important;
+  font-size: clamp(2rem, 7vw, 3.45rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase;
+  text-shadow: 0 0 30px rgba(224, 183, 79, 0.18);
+}
+
+.satoshi-login-card p:not(.eyebrow) {
+  color: #c9c4b3 !important;
+  line-height: 1.65 !important;
+}
+
+.satoshi-login-card .admin-login-form {
+  display: grid !important;
+  gap: 14px !important;
+  margin-top: 6px !important;
+}
+
+.satoshi-login-card .admin-key-control label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--satoshi-gold-soft) !important;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.satoshi-login-card input {
+  width: 100%;
+  min-height: 56px !important;
+  padding: 0 16px;
+  border: 1px solid rgba(224, 183, 79, 0.24) !important;
+  border-radius: 16px !important;
+  color: #fdf5df !important;
+  background: rgba(0, 0, 0, 0.34) !important;
+  outline: none !important;
+}
+
+.satoshi-login-card input:focus {
+  border-color: rgba(224, 183, 79, 0.74) !important;
+  box-shadow: 0 0 0 4px rgba(224, 183, 79, 0.10) !important;
+}
+
+.satoshi-login-card .btn-primary,
+.admin-confirm-actions .btn-primary {
+  border: 0 !important;
+  color: #151006 !important;
+  background: linear-gradient(135deg, #ffe29a, #d9a735 55%, #a96b26) !important;
+  box-shadow:
+    0 18px 36px rgba(224, 183, 79, 0.18),
+    inset 0 1px 0 rgba(255,255,255,0.55) !important;
+  font-weight: 900 !important;
+}
+
+.satoshi-login-security {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2px;
+  color: #bcb39a;
+}
+
+.satoshi-login-security span {
+  color: var(--satoshi-green);
+  filter: drop-shadow(0 0 10px rgba(52, 214, 111, 0.70));
+}
+
+/* Dashboard principal */
+.snc-admin-dashboard {
+  width: min(calc(100% - 20px), 1740px) !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: 280px minmax(0, 1fr) 330px !important;
+  gap: 16px !important;
+  align-items: start !important;
+}
+
+.snc-admin-dashboard[hidden] {
+  display: none !important;
+}
+
+.snc-admin-sidebar,
+.snc-admin-rightbar,
+.snc-admin-main {
+  min-width: 0;
+}
+
+.snc-admin-sidebar {
+  position: sticky;
+  top: 98px;
+  min-height: calc(100svh - 126px);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border: 1px solid rgba(224, 183, 79, 0.16);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(224, 183, 79, 0.14), transparent 14rem),
+    linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.018)),
+    rgba(6, 7, 5, 0.82);
+  box-shadow: 0 22px 80px rgba(0,0,0,0.42), inset 0 0 0 1px rgba(255,255,255,0.025);
+  overflow: hidden;
+}
+
+.snc-admin-sidebar::before {
+  content: "";
+  position: absolute;
+  inset: auto 18px 96px 18px;
+  height: 170px;
+  background:
+    linear-gradient(135deg, transparent 0 30%, rgba(224, 183, 79, 0.10) 31% 32%, transparent 33% 100%),
+    radial-gradient(circle, rgba(224, 183, 79, 0.12), transparent 62%);
+  clip-path: polygon(50% 0, 100% 28%, 100% 72%, 50% 100%, 0 72%, 0 28%);
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.snc-sidebar-brand {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 6px 0 12px;
+  text-align: center;
+}
+
+.snc-sidebar-brand img {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 22px rgba(224, 183, 79, 0.24));
+}
+
+.snc-sidebar-brand strong {
+  color: var(--satoshi-gold-soft);
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.96rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.snc-sidebar-brand small {
+  color: #b8ad8c;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+}
+
+.snc-sidebar-nav {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 6px;
+}
+
+.snc-sidebar-nav button {
+  min-height: 42px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  color: #bebeb6;
+  background: transparent;
+  font-family: "Inter", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.16s ease, color 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+}
+
+.snc-sidebar-nav button span {
+  width: 22px;
+  display: inline-grid;
+  place-items: center;
+  color: var(--satoshi-gold);
+}
+
+.snc-sidebar-nav button:hover,
+.snc-sidebar-nav button[aria-selected="true"],
+.snc-sidebar-nav .nav-gold {
+  color: #fff4cf;
+  border-color: rgba(224, 183, 79, 0.18);
+  background: linear-gradient(90deg, rgba(224, 183, 79, 0.20), rgba(224, 183, 79, 0.035));
+  box-shadow: inset 3px 0 0 rgba(224, 183, 79, 0.92), 0 0 26px rgba(224, 183, 79, 0.08);
+}
+
+.snc-sidebar-nav button:hover {
+  transform: translateX(2px);
+}
+
+.snc-sidebar-footer {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  display: grid;
+  gap: 4px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(224, 183, 79, 0.12);
+  color: #a8a69e;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.snc-sidebar-footer span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.snc-sidebar-footer i,
+.snc-updated i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--satoshi-green);
+  box-shadow: 0 0 14px rgba(52, 214, 111, 0.8);
+}
+
+.snc-sidebar-footer b {
+  color: var(--satoshi-gold-soft);
+}
+
+.snc-admin-main {
+  display: grid;
+  gap: 14px;
+}
+
+.snc-dashboard-hero {
+  position: relative !important;
+  min-height: 154px !important;
+  margin: 0 !important;
+  padding: clamp(24px, 3.2vw, 40px) !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 190px !important;
+  gap: 20px !important;
+  align-items: center !important;
+  border: 1px solid rgba(224, 183, 79, 0.16) !important;
+  border-radius: 24px !important;
+  background:
+    radial-gradient(circle at 88% 35%, rgba(224, 183, 79, 0.22), transparent 15rem),
+    linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.018)),
+    rgba(8, 9, 7, 0.82) !important;
+  box-shadow: 0 22px 70px rgba(0,0,0,0.38), inset 0 0 0 1px rgba(255,255,255,0.024) !important;
+  overflow: hidden !important;
+}
+
+.snc-dashboard-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0 52%, rgba(224, 183, 79, 0.08) 52.2%, transparent 52.4% 100%),
+    repeating-linear-gradient(0deg, rgba(224, 183, 79, 0.04) 0 1px, transparent 1px 18px);
+  opacity: 0.7;
+}
+
+.snc-dashboard-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.snc-dashboard-hero h1 {
+  margin: 6px 0 10px !important;
+  color: #fff0bd !important;
+  font-family: "Orbitron", sans-serif !important;
+  font-size: clamp(2rem, 4.2vw, 3.8rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: 0.10em !important;
+  text-transform: uppercase;
+  text-shadow: 0 0 28px rgba(224, 183, 79, 0.20);
+}
+
+.snc-dashboard-hero p:not(.eyebrow) {
+  max-width: 850px !important;
+  color: #c8c3b4 !important;
+  font-size: 1rem !important;
+  line-height: 1.65 !important;
+}
+
+.snc-hero-coin {
+  display: grid;
+  place-items: center;
+}
+
+.snc-hero-coin img {
+  width: clamp(118px, 12vw, 170px);
+  height: clamp(118px, 12vw, 170px);
+  object-fit: contain;
+  border-radius: 50%;
+  opacity: 0.98;
+  filter: drop-shadow(0 0 32px rgba(224, 183, 79, 0.28));
+}
+
+.snc-tab-menu,
+.admin-page .snc-tab-menu {
+  width: max-content !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 6px !important;
+  justify-content: flex-start !important;
+  gap: 6px !important;
+  border: 1px solid rgba(224, 183, 79, 0.16) !important;
+  border-radius: 18px !important;
+  background: rgba(6, 7, 5, 0.70) !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.024) !important;
+}
+
+.snc-tab-menu .admin-tab-button {
+  min-width: 170px !important;
+  min-height: 48px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 9px !important;
+  padding: 0 22px !important;
+  border-radius: 14px !important;
+  border: 1px solid transparent !important;
+  color: #bcb8ad !important;
+  background: transparent !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 0.88rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+
+.snc-tab-menu .admin-tab-button.active {
+  color: #171105 !important;
+  border-color: rgba(255,255,255,0.16) !important;
+  background: linear-gradient(135deg, #ffe29a, #d6a331 56%, #9f6121) !important;
+  box-shadow: 0 14px 34px rgba(224, 183, 79, 0.18), inset 0 1px 0 rgba(255,255,255,0.46) !important;
+}
+
+.snc-stat-grid,
+.admin-page .snc-stat-grid {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: 1.35fr repeat(2, minmax(220px, 1fr)) !important;
+  gap: 12px !important;
+  margin: 0 !important;
+}
+
+.snc-stat-card,
+.referral-mini-stats .snc-stat-card {
+  position: relative !important;
+  min-height: 148px !important;
+  padding: 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  border: 1px solid rgba(224, 183, 79, 0.14) !important;
+  border-radius: 20px !important;
+  background:
+    radial-gradient(circle at 12% 16%, rgba(224, 183, 79, 0.11), transparent 13rem),
+    linear-gradient(135deg, rgba(255,255,255,0.052), rgba(255,255,255,0.016)),
+    rgba(7, 8, 6, 0.82) !important;
+  box-shadow: 0 18px 56px rgba(0,0,0,0.32), inset 0 0 0 1px rgba(255,255,255,0.022) !important;
+  overflow: hidden !important;
+}
+
+.snc-stat-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255,255,255,0.09), transparent 36%, rgba(224, 183, 79, 0.065));
+  opacity: 0.8;
+}
+
+.snc-stat-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.snc-card-kicker {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--satoshi-gold-soft);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.snc-card-kicker span:first-child {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(224, 183, 79, 0.18);
+  border-radius: 9px;
+  background: rgba(224, 183, 79, 0.08);
+}
+
+.snc-stat-card > strong,
+.referral-mini-stats .snc-stat-card > strong {
+  color: #fff0bd !important;
+  font-family: "Orbitron", sans-serif !important;
+  font-size: clamp(1.35rem, 2vw, 2.05rem) !important;
+  line-height: 1.1 !important;
+  text-shadow: 0 0 20px rgba(224, 183, 79, 0.18) !important;
+}
+
+.snc-stat-card small {
+  color: #aaa89f !important;
+  font-size: 0.84rem !important;
+  line-height: 1.45 !important;
+}
+
+.snc-wallet-card {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(52, 214, 111, 0.12), transparent 12rem),
+    radial-gradient(circle at 100% 12%, rgba(224, 183, 79, 0.14), transparent 14rem),
+    linear-gradient(135deg, rgba(255,255,255,0.055), rgba(255,255,255,0.018)),
+    rgba(7, 8, 6, 0.86) !important;
+}
+
+.snc-wallet-card.is-connected,
+.wallet-connect-stat.is-connected {
+  border-color: rgba(52, 214, 111, 0.35) !important;
+  box-shadow: 0 18px 58px rgba(0,0,0,0.34), 0 0 34px rgba(52, 214, 111, 0.06) !important;
+}
+
+#adminPayoutWalletStatus {
+  color: var(--satoshi-green) !important;
+  font-size: 1.06rem !important;
+}
+
+.wallet-ok-dot {
+  background: var(--satoshi-green) !important;
+  box-shadow: 0 0 18px rgba(52, 214, 111, 0.9) !important;
+}
+
+#adminTokenStatus strong {
+  color: var(--satoshi-gold-soft) !important;
+  background: rgba(224, 183, 79, 0.08) !important;
+}
+
+.snc-wallet-card .admin-wallet-connect-button,
+#connectPayoutWalletButton {
+  width: max-content;
+  min-height: 42px !important;
+  margin-top: auto !important;
+  padding: 0 18px !important;
+  border: 1px solid rgba(224, 183, 79, 0.36) !important;
+  border-radius: 999px !important;
+  color: var(--satoshi-gold-soft) !important;
+  background: rgba(224, 183, 79, 0.08) !important;
+  font-size: 0.8rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+#connectPayoutWalletButton.is-connected,
+#connectPayoutWalletButton.is-connected:disabled {
+  color: #061006 !important;
+  background: linear-gradient(135deg, #84f0a6, #34d66f) !important;
+}
+
+.snc-sparkline {
+  height: 38px;
+  display: flex;
+  align-items: end;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.snc-sparkline i {
+  flex: 1;
+  min-width: 8px;
+  border-radius: 999px 999px 4px 4px;
+  background: linear-gradient(180deg, rgba(244, 213, 127, 0.9), rgba(224, 183, 79, 0.18));
+  box-shadow: 0 0 12px rgba(224, 183, 79, 0.12);
+}
+
+.snc-sparkline i:nth-child(1) { height: 38%; }
+.snc-sparkline i:nth-child(2) { height: 58%; }
+.snc-sparkline i:nth-child(3) { height: 46%; }
+.snc-sparkline i:nth-child(4) { height: 76%; }
+.snc-sparkline i:nth-child(5) { height: 92%; }
+
+.snc-sparkline-green i {
+  background: linear-gradient(180deg, rgba(52, 214, 111, 0.9), rgba(52, 214, 111, 0.16));
+}
+
+.admin-tab-panel {
+  width: 100% !important;
+  display: grid !important;
+  gap: 14px !important;
+}
+
+.admin-tab-panel[hidden] {
+  display: none !important;
+}
+
+.snc-table-card,
+.admin-page .snc-table-card {
+  position: relative !important;
+  width: 100% !important;
+  padding: 16px !important;
+  border: 1px solid rgba(224, 183, 79, 0.13) !important;
+  border-radius: 20px !important;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(224, 183, 79, 0.09), transparent 22rem),
+    linear-gradient(135deg, rgba(255,255,255,0.048), rgba(255,255,255,0.014)),
+    rgba(7, 8, 6, 0.84) !important;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.022) !important;
+  overflow: hidden !important;
+}
+
+.snc-table-card::before {
+  background: linear-gradient(135deg, rgba(255,255,255,0.07), transparent 35%, rgba(224, 183, 79, 0.05)) !important;
+  opacity: 0.7 !important;
+}
+
+.snc-section-title {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.snc-section-title span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--satoshi-gold);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.snc-section-title h2,
+.snc-table-card h2 {
+  margin: 0 !important;
+  color: #fff1c8 !important;
+  font-family: "Orbitron", sans-serif !important;
+  font-size: clamp(1rem, 1.45vw, 1.34rem) !important;
+  letter-spacing: 0.09em !important;
+  text-transform: uppercase;
+}
+
+.snc-section-title small {
+  color: #a6a49b;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.admin-table-note {
+  position: relative;
+  z-index: 1;
+  color: #aaa79c !important;
+}
+
+.snc-table-card .table-scroll {
+  position: relative;
+  z-index: 1;
+  max-height: min(42vh, 440px) !important;
+  overflow: auto !important;
+  border: 1px solid rgba(224, 183, 79, 0.11) !important;
+  border-radius: 16px !important;
+  background: rgba(0, 0, 0, 0.20) !important;
+}
+
+.snc-table-card .table-scroll::-webkit-scrollbar,
+.snc-admin-sidebar::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+.snc-table-card .table-scroll::-webkit-scrollbar-thumb,
+.snc-admin-sidebar::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(224, 183, 79, 0.24);
+}
+
+.snc-table-card .referral-table {
+  min-width: 880px;
+  width: 100%;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+.snc-table-card .referral-table th,
+.snc-table-card .referral-table td {
+  padding: 13px 14px !important;
+  border-bottom: 1px solid rgba(224, 183, 79, 0.075) !important;
+  color: #e8e2cf !important;
+  font-size: 0.84rem !important;
+  vertical-align: middle !important;
+}
+
+.snc-table-card .referral-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  color: var(--satoshi-gold-soft) !important;
+  background:
+    linear-gradient(180deg, rgba(22, 20, 13, 0.98), rgba(9, 10, 7, 0.98)) !important;
+  border-bottom-color: rgba(224, 183, 79, 0.19) !important;
+  font-size: 0.73rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+.snc-table-card .referral-table tbody tr {
+  transition: background 0.16s ease, transform 0.16s ease;
+}
+
+.snc-table-card .referral-table tbody tr:hover {
+  background: rgba(224, 183, 79, 0.055) !important;
+}
+
+.snc-table-card .referral-table a {
+  color: var(--satoshi-gold-soft) !important;
+  font-weight: 900 !important;
+}
+
+.wallet-copy-wrap {
+  align-items: center;
+  gap: 8px;
+}
+
+.wallet-full-value {
+  color: #e8e0c8 !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 0.82rem !important;
+}
+
+.wallet-copy-button,
+.admin-confirm-copy {
+  border: 1px solid rgba(224, 183, 79, 0.28) !important;
+  color: var(--satoshi-gold-soft) !important;
+  background: rgba(224, 183, 79, 0.08) !important;
+}
+
+.wallet-copy-button:hover,
+.admin-confirm-copy:hover {
+  border-color: rgba(52, 214, 111, 0.42) !important;
+  color: var(--satoshi-green) !important;
+  background: rgba(52, 214, 111, 0.10) !important;
+}
+
+.admin-pay-cell {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.admin-pay-cell > span {
+  display: none !important;
+}
+
+.admin-pay-button {
+  min-height: 34px;
+  padding: 0 13px;
+  border: 1px solid rgba(224, 183, 79, 0.34);
+  border-radius: 10px;
+  color: #171105;
+  background: linear-gradient(135deg, #ffe29a, #d6a331);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.admin-pay-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.35);
+}
+
+.referral-empty {
+  color: #aaa69c !important;
+  text-align: center !important;
+}
+
+/* Rightbar */
+.snc-admin-rightbar {
+  position: sticky;
+  top: 98px;
+  display: grid;
+  gap: 14px;
+}
+
+.snc-right-card {
+  position: relative;
+  padding: 18px;
+  border: 1px solid rgba(224, 183, 79, 0.14);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(224, 183, 79, 0.10), transparent 14rem),
+    linear-gradient(135deg, rgba(255,255,255,0.052), rgba(255,255,255,0.014)),
+    rgba(7, 8, 6, 0.84);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.34), inset 0 0 0 1px rgba(255,255,255,0.022);
+  overflow: hidden;
+}
+
+.snc-right-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255,255,255,0.07), transparent 38%, rgba(224, 183, 79, 0.05));
+  opacity: 0.72;
+}
+
+.snc-right-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.snc-right-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.snc-right-head span {
+  color: var(--satoshi-gold-soft);
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.snc-right-head button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(224, 183, 79, 0.20);
+  border-radius: 10px;
+  color: var(--satoshi-gold-soft);
+  background: rgba(224, 183, 79, 0.07);
+  cursor: pointer;
+}
+
+.snc-donut-wrap {
+  display: grid;
+  grid-template-columns: 128px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+
+.snc-donut {
+  width: 128px;
+  height: 128px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle closest-side, #10100c 67%, transparent 68% 100%),
+    conic-gradient(var(--satoshi-gold) 0 58%, var(--satoshi-green) 58% 92%, var(--satoshi-blue) 92% 100%);
+  box-shadow: 0 0 26px rgba(224, 183, 79, 0.10);
+}
+
+.snc-donut span {
+  display: grid;
+  justify-items: center;
+  line-height: 1.1;
+}
+
+.snc-donut small {
+  color: #aaa69a;
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.snc-donut strong {
+  max-width: 88px;
+  color: #fff0bd;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.02rem;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.snc-donut-legend {
+  display: grid;
+  gap: 10px;
+}
+
+.snc-donut-legend p {
+  display: grid;
+  grid-template-columns: 10px 1fr;
+  column-gap: 8px;
+  row-gap: 2px;
+  margin: 0;
+  color: #bbb8ac;
+  font-size: 0.78rem;
+}
+
+.snc-donut-legend i {
+  width: 8px;
+  height: 8px;
+  margin-top: 5px;
+  border-radius: 50%;
+}
+
+.snc-donut-legend .gold { background: var(--satoshi-gold); }
+.snc-donut-legend .green { background: var(--satoshi-green); }
+.snc-donut-legend .blue { background: var(--satoshi-blue); }
+
+.snc-donut-legend b {
+  grid-column: 2;
+  color: #f4eedc;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.snc-updated {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(224, 183, 79, 0.10);
+  color: #aaa69b;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.snc-updated b {
+  color: #e8e0c8;
+}
+
+.snc-activity-list {
+  display: grid;
+  gap: 12px;
+}
+
+.snc-activity-list p {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: start;
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(224, 183, 79, 0.08);
+  color: #d4cfbe;
+  font-size: 0.82rem;
+}
+
+.snc-activity-list p:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.snc-activity-list i {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  color: var(--satoshi-gold-soft);
+  background: rgba(224, 183, 79, 0.08);
+  font-style: normal;
+}
+
+.snc-activity-list span {
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.snc-activity-list b {
+  color: var(--satoshi-green);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.snc-activity-list small {
+  display: block;
+  margin-top: 3px;
+  color: #888a82;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.snc-security-card {
+  display: grid;
+  gap: 9px;
+}
+
+.snc-security-card > span {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(224, 183, 79, 0.18);
+  border-radius: 16px;
+  color: var(--satoshi-gold-soft);
+  background: rgba(224, 183, 79, 0.08);
+  font-size: 1.4rem;
+}
+
+.snc-security-card strong {
+  color: var(--satoshi-gold-soft);
+  font-size: 0.95rem;
+}
+
+.snc-security-card p {
+  color: #aaa79c;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.snc-security-card b {
+  width: max-content;
+  padding: 7px 12px;
+  border: 1px solid rgba(52, 214, 111, 0.22);
+  border-radius: 10px;
+  color: var(--satoshi-green);
+  background: rgba(52, 214, 111, 0.09);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+}
+
+/* Modal de confirmación estilo Satoshi */
+.admin-confirm-overlay {
+  background:
+    radial-gradient(circle at 15% 12%, rgba(224, 183, 79, 0.16), transparent 30rem),
+    radial-gradient(circle at 82% 16%, rgba(52, 214, 111, 0.09), transparent 26rem),
+    rgba(2, 3, 2, 0.82) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+.admin-confirm-modal {
+  width: min(100%, 540px) !important;
+  padding: 28px !important;
+  border: 1px solid rgba(224, 183, 79, 0.22) !important;
+  border-radius: 26px !important;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(224, 183, 79, 0.16), transparent 16rem),
+    linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.018)),
+    rgba(7, 8, 6, 0.96) !important;
+  box-shadow: 0 34px 100px rgba(0,0,0,0.62), 0 0 60px rgba(224, 183, 79, 0.08) !important;
+}
+
+.admin-confirm-icon {
+  width: 62px !important;
+  height: 62px !important;
+  padding: 0 !important;
+  border-color: rgba(224, 183, 79, 0.26) !important;
+  border-radius: 50% !important;
+  background: rgba(224, 183, 79, 0.08) !important;
+  overflow: hidden !important;
+}
+
+.admin-confirm-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-confirm-modal h2 {
+  color: #fff0bd !important;
+  font-family: "Orbitron", sans-serif !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.admin-confirm-text,
+.admin-confirm-warning {
+  color: #c8c2b1 !important;
+}
+
+.admin-confirm-summary {
+  border-color: rgba(224, 183, 79, 0.20) !important;
+  background: rgba(224, 183, 79, 0.08) !important;
+}
+
+.admin-confirm-summary strong {
+  color: var(--satoshi-gold-soft) !important;
+}
+
+.admin-confirm-wallet-box {
+  border-color: rgba(224, 183, 79, 0.16) !important;
+  background: rgba(0, 0, 0, 0.23) !important;
+}
+
+.admin-confirm-wallet-row code {
+  color: #f7efd6 !important;
+  background: rgba(0,0,0,0.28) !important;
+}
+
+.admin-confirm-warning {
+  border-left-color: rgba(224, 183, 79, 0.68) !important;
+}
+
+.admin-confirm-actions .btn-ghost {
+  border: 1px solid rgba(224, 183, 79, 0.16) !important;
+  color: #d7cfb8 !important;
+  background: rgba(255,255,255,0.04) !important;
+}
+
+/* Responsive */
+@media (max-width: 1420px) {
+  .snc-admin-dashboard {
+    grid-template-columns: 250px minmax(0, 1fr) !important;
+  }
+
+  .snc-admin-rightbar {
+    grid-column: 1 / -1;
+    position: relative;
+    top: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .snc-general-summary {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 1180px) {
+  .satoshi-top-stats {
+    display: none;
+  }
+
+  .snc-admin-dashboard {
+    grid-template-columns: 1fr !important;
+  }
+
+  .snc-admin-sidebar {
+    position: relative;
+    top: auto;
+    min-height: 0;
+  }
+
+  .snc-sidebar-brand {
+    grid-template-columns: auto 1fr;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .snc-sidebar-brand img {
+    grid-row: span 2;
+    width: 64px;
+    height: 64px;
+  }
+
+  .snc-sidebar-nav {
+    grid-template-columns: repeat(4, minmax(150px, 1fr));
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .snc-sidebar-footer {
+    grid-template-columns: repeat(3, max-content);
+    justify-content: space-between;
+  }
+
+  .snc-admin-rightbar {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .satoshi-admin-topbar {
+    top: 0 !important;
+    width: min(calc(100% - 14px), 1740px) !important;
+    border-radius: 16px !important;
+  }
+
+  .satoshi-top-icon {
+    display: none;
+  }
+
+  .snc-dashboard-hero {
+    grid-template-columns: 1fr !important;
+  }
+
+  .snc-hero-coin {
+    display: none;
+  }
+
+  .snc-stat-grid,
+  .admin-page .snc-stat-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .snc-tab-menu,
+  .admin-page .snc-tab-menu {
+    width: 100% !important;
+  }
+
+  .snc-tab-menu .admin-tab-button {
+    flex: 1;
+    min-width: 0 !important;
+  }
+
+  .snc-donut-wrap {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .snc-donut-legend {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .satoshi-admin-page {
+    padding-bottom: 18px !important;
+  }
+
+  .satoshi-admin-topbar {
+    min-height: 62px !important;
+    padding: 8px !important;
+    gap: 10px !important;
+  }
+
+  .admin-page .satoshi-admin-topbar .brand-mark,
+  .satoshi-brand-mark,
+  .admin-page .satoshi-admin-topbar .brand-logo,
+  .satoshi-brand-mark .brand-logo {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    max-width: 42px !important;
+    max-height: 42px !important;
+  }
+
+  .satoshi-admin-topbar .brand-text strong {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .satoshi-admin-topbar .brand-text small {
+    font-size: 0.58rem !important;
+  }
+
+  .satoshi-admin-topbar .admin-creator-button {
+    min-height: 42px !important;
+    padding: 5px 8px 5px 5px !important;
+  }
+
+  .satoshi-admin-topbar .admin-creator-button img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .satoshi-admin-topbar .admin-creator-button small {
+    display: none;
+  }
+
+  .satoshi-admin-topbar .admin-creator-button strong {
+    font-size: 0.74rem;
+  }
+
+  .satoshi-login-card {
+    width: min(calc(100% - 18px), 430px) !important;
+    margin-top: 18px !important;
+    padding: 22px 18px !important;
+    border-radius: 24px !important;
+  }
+
+  .satoshi-login-coin {
+    width: 72px;
+    height: 72px;
+  }
+
+  .satoshi-login-coin img {
+    width: 68px;
+    height: 68px;
+  }
+
+  .satoshi-login-card h1 {
+    font-size: clamp(1.8rem, 12vw, 2.55rem) !important;
+  }
+
+  .snc-admin-dashboard {
+    width: min(calc(100% - 14px), 1740px) !important;
+    gap: 10px !important;
+  }
+
+  .snc-admin-sidebar,
+  .snc-dashboard-hero,
+  .snc-stat-card,
+  .snc-table-card,
+  .snc-right-card {
+    border-radius: 18px !important;
+  }
+
+  .snc-sidebar-nav {
+    grid-template-columns: repeat(2, minmax(138px, 1fr));
+  }
+
+  .snc-sidebar-nav button {
+    min-height: 40px;
+    font-size: 0.78rem;
+  }
+
+  .snc-sidebar-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .snc-dashboard-hero {
+    padding: 20px 16px !important;
+  }
+
+  .snc-dashboard-hero h1 {
+    font-size: clamp(1.65rem, 10vw, 2.5rem) !important;
+    letter-spacing: 0.06em !important;
+  }
+
+  .snc-dashboard-hero p:not(.eyebrow) {
+    font-size: 0.9rem !important;
+  }
+
+  .snc-tab-menu .admin-tab-button {
+    min-height: 42px !important;
+    padding: 0 10px !important;
+    font-size: 0.74rem !important;
+  }
+
+  .snc-section-title {
+    align-items: start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .snc-table-card .table-scroll {
+    max-height: 48vh !important;
+  }
+
+  .snc-table-card .referral-table th,
+  .snc-table-card .referral-table td {
+    padding: 10px 12px !important;
+    font-size: 0.78rem !important;
+  }
+
+  .admin-confirm-modal {
+    padding: 22px 18px !important;
+    border-radius: 22px !important;
+  }
+}
+
+
+/* =========================================================
+   FIX FINAL LOGIN ADMIN SNC
+   - Oculta la barra superior en la pantalla de acceso.
+   - Centra y limpia el login.
+   - Mantiene el dashboard completo solo después de iniciar sesión.
+========================================================= */
+
+body.admin-page-body:not(.admin-unlocked) {
+  min-height: 100svh !important;
+  overflow: hidden !important;
+  background:
+    radial-gradient(circle at 50% -8%, rgba(224, 183, 79, 0.20), transparent 28rem),
+    radial-gradient(circle at 12% 24%, rgba(52, 214, 111, 0.10), transparent 25rem),
+    radial-gradient(circle at 92% 66%, rgba(224, 183, 79, 0.14), transparent 27rem),
+    linear-gradient(135deg, #030403 0%, #070806 50%, #140f05 100%) !important;
+}
+
+body.admin-page-body:not(.admin-unlocked) .satoshi-admin-topbar {
+  display: none !important;
+}
+
+body.admin-page-body:not(.admin-unlocked) .satoshi-admin-page {
+  min-height: 100svh !important;
+  width: 100% !important;
+  padding: clamp(20px, 5vw, 56px) 16px !important;
+  display: grid !important;
+  place-items: center !important;
+  align-content: center !important;
+  gap: 14px !important;
+}
+
+body.admin-page-body:not(.admin-unlocked) .admin-global-message {
+  order: 2 !important;
+  width: min(100%, 480px) !important;
+  min-height: 0 !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  color: var(--satoshi-green) !important;
+  font-size: 0.92rem !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+}
+
+body.admin-page-body:not(.admin-unlocked) .admin-global-message.error {
+  padding: 10px 14px !important;
+  border: 1px solid rgba(255, 118, 118, 0.22) !important;
+  border-radius: 14px !important;
+  color: #ff9b9b !important;
+  background: rgba(255, 89, 89, 0.08) !important;
+}
+
+body.admin-page-body:not(.admin-unlocked) .admin-global-message.success {
+  color: var(--satoshi-green) !important;
+}
+
+body.admin-page-body:not(.admin-unlocked) .satoshi-login-card {
+  order: 1 !important;
+  width: min(100%, 470px) !important;
+  margin: 0 auto !important;
+  padding: clamp(24px, 4.5vw, 34px) !important;
+  justify-items: center !important;
+  text-align: center !important;
+  gap: 14px !important;
+  border-radius: 28px !important;
+  background:
+    radial-gradient(circle at 50% -10%, rgba(255, 226, 154, 0.18), transparent 14rem),
+    radial-gradient(circle at 100% 100%, rgba(52, 214, 111, 0.07), transparent 13rem),
+    linear-gradient(145deg, rgba(255,255,255,0.065), rgba(255,255,255,0.018)),
+    rgba(5, 6, 4, 0.88) !important;
+  box-shadow:
+    0 32px 110px rgba(0,0,0,0.58),
+    0 0 0 1px rgba(255, 226, 154, 0.08) inset,
+    0 0 76px rgba(224, 183, 79, 0.11) !important;
+}
+
+body.admin-page-body:not(.admin-unlocked) .satoshi-login-card::after {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(224, 183, 79, 0.08);
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+body.admin-page-body:not(.admin-unlocked) .satoshi-login-coin {
+  width: 84px !important;
+  height: 84px !important;
+  margin: 0 auto 2px !important;
+}
+
+body.admin-page-body:not(.admin-unlocked) .satoshi-login-coin img {
+  width: 80px !important;
+  height: 80px !important;
+}
+
+body.admin-page-body:not(.admin-unlocked) .satoshi-login-card .eyebrow {
+  margin-top: 2px !important;
+  color: #ffe29a !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.20em !important;
+}
+
+body.admin-page-body:not(.admin-unlocked) .satoshi-login-card h1 {
+  max-width: 100% !important;
+  margin: 0 !important;
+  color: #fff0bd !important;
+  font-size: clamp(2rem, 7vw, 3rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+body.admin-page-body:not(.admin-unlocked) .satoshi-login-card p:not(.eyebrow) {
+  max-width: 390px !important;
+  margin: 0 auto !important;
+  color: #cbc2a9 !important;
+  font-size: 0.96rem !important;
+  line-height: 1.58 !important;
+}
+
+body.admin-page-body:not(.admin-unlocked) .satoshi-login-card .admin-login-form {
+  width: 100% !important;
+  max-width: 390px !important;
+  margin-top: 4px !important;
+  gap: 12px !important;
+}
+
+body.admin-page-body:not(.admin-unlocked) .satoshi-login-card .admin-key-control {
+  text-align: left !important;
+}
+
+body.admin-page-body:not(.admin-unlocked) .satoshi-login-card input {
+  min-height: 54px !important;
+  border-radius: 14px !important;
+  font-size: 0.98rem !important;
+}
+
+body.admin-page-body:not(.admin-unlocked) .satoshi-login-card .btn-primary {
+  min-height: 54px !important;
+  width: 100% !important;
+  border-radius: 14px !important;
+  font-size: 0.98rem !important;
+}
+
+body.admin-page-body:not(.admin-unlocked) .satoshi-login-security {
+  justify-content: center !important;
+  max-width: 390px !important;
+  margin-top: 0 !important;
+  font-size: 0.82rem !important;
+}
+
+@media (max-width: 560px) {
+  body.admin-page-body:not(.admin-unlocked) {
+    overflow-y: auto !important;
+  }
+
+  body.admin-page-body:not(.admin-unlocked) .satoshi-admin-page {
+    padding: 18px 14px !important;
+  }
+
+  body.admin-page-body:not(.admin-unlocked) .satoshi-login-card {
+    border-radius: 24px !important;
+    padding: 24px 18px !important;
+  }
+
+  body.admin-page-body:not(.admin-unlocked) .satoshi-login-card h1 {
+    font-size: clamp(1.75rem, 12vw, 2.45rem) !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  body.admin-page-body:not(.admin-unlocked) .satoshi-login-card p:not(.eyebrow) {
+    font-size: 0.92rem !important;
+  }
+}
+
+
+/* =========================================================
+   SNC ADMIN NEXUS REDESIGN - aplicación final
+   ========================================================= */
+:root {
+  --nexus-bg: #050705;
+  --nexus-panel: rgba(7, 10, 9, 0.86);
+  --nexus-panel-soft: rgba(12, 18, 16, 0.78);
+  --nexus-line: rgba(216, 170, 54, 0.22);
+  --nexus-line-strong: rgba(230, 190, 86, 0.48);
+  --nexus-gold: #f1c85b;
+  --nexus-gold-2: #b98322;
+  --nexus-cream: #fff2bf;
+  --nexus-green: #40d871;
+  --nexus-green-soft: rgba(64, 216, 113, 0.14);
+  --nexus-muted: #a8a391;
+  --nexus-text: #f6f2e4;
+  --nexus-danger: #ff6767;
+  --nexus-radius: 18px;
+  --nexus-shadow: 0 28px 90px rgba(0, 0, 0, 0.56);
+}
+
+body.snc-nexus-body {
+  min-height: 100vh !important;
+  margin: 0 !important;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(9, 84, 70, 0.28), transparent 34%),
+    radial-gradient(circle at 78% 12%, rgba(231, 176, 41, 0.16), transparent 36%),
+    linear-gradient(135deg, #040605 0%, #080b08 52%, #020302 100%) !important;
+  color: var(--nexus-text) !important;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  overflow-x: hidden !important;
+}
+
+.snc-nexus-body [hidden],
+.snc-nexus-body .nexus-dashboard[hidden],
+.snc-nexus-body .nexus-auth[hidden],
+.snc-nexus-body .admin-creator-dropdown[hidden],
+.snc-nexus-body .admin-session-menu[hidden],
+.snc-nexus-body .admin-confirm-overlay[hidden] {
+  display: none !important;
+}
+
+.snc-nexus-body *,
+.snc-nexus-body *::before,
+.snc-nexus-body *::after {
+  box-sizing: border-box;
+}
+
+.nexus-bg,
+.nexus-bg::before,
+.nexus-bg::after {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -3;
+}
+
+.nexus-bg {
+  background-image:
+    linear-gradient(rgba(241, 200, 91, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(241, 200, 91, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 82% 54%, rgba(214, 165, 45, 0.10), transparent 28%);
+  background-size: 42px 42px, 42px 42px, cover;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0.55));
+}
+
+.nexus-bg::before {
+  content: "";
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 14px),
+    linear-gradient(90deg, transparent, rgba(64, 216, 113, 0.08), transparent);
+  opacity: 0.65;
+}
+
+.nexus-bg::after {
+  content: "";
+  inset: auto 0 0 auto;
+  width: min(48vw, 760px);
+  height: min(72vh, 720px);
+  background:
+    linear-gradient(30deg, transparent 0 30%, rgba(241, 200, 91, 0.10) 30% 31%, transparent 31%),
+    linear-gradient(150deg, transparent 0 36%, rgba(64, 216, 113, 0.08) 36% 37%, transparent 37%);
+  filter: blur(0.2px);
+  opacity: 0.76;
+}
+
+.nexus-orb {
+  position: fixed;
+  width: 420px;
+  height: 420px;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(55px);
+  z-index: -2;
+  opacity: 0.28;
+}
+
+.nexus-orb-left {
+  left: -150px;
+  top: 110px;
+  background: rgba(20, 196, 138, 0.42);
+}
+
+.nexus-orb-right {
+  right: -130px;
+  top: 20px;
+  background: rgba(219, 164, 35, 0.40);
+}
+
+.snc-nexus-root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.nexus-admin-message {
+  position: fixed !important;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5000;
+  width: min(520px, calc(100% - 28px));
+  margin: 0 !important;
+  padding: 12px 18px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(241, 200, 91, 0.26) !important;
+  background: rgba(4, 7, 6, 0.88) !important;
+  color: var(--nexus-cream) !important;
+  box-shadow: 0 18px 54px rgba(0,0,0,0.38), 0 0 0 1px rgba(255,255,255,0.04) inset !important;
+  text-align: center;
+  backdrop-filter: blur(18px);
+}
+
+.nexus-admin-message:empty {
+  display: none !important;
+}
+
+.nexus-admin-message.success {
+  border-color: rgba(64, 216, 113, 0.38) !important;
+  color: var(--nexus-green) !important;
+}
+
+.nexus-admin-message.error {
+  border-color: rgba(255, 103, 103, 0.48) !important;
+  color: #ffd1d1 !important;
+}
+
+/* Login limpio sin barra superior */
+.snc-nexus-body .nexus-auth {
+  min-height: 100vh !important;
+  width: 100% !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 34px 18px !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.nexus-auth-shell {
+  width: min(100%, 560px);
+  display: grid;
+  gap: 22px;
+}
+
+.nexus-auth-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  justify-self: center;
+  color: var(--nexus-text);
+  text-decoration: none;
+}
+
+.nexus-auth-brand img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 18px rgba(241, 200, 91, 0.24));
+}
+
+.nexus-auth-brand strong,
+.nexus-sidebar-brand strong {
+  display: block;
+  font-family: "Orbitron", sans-serif;
+  color: var(--nexus-cream);
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+}
+
+.nexus-auth-brand small,
+.nexus-sidebar-brand small {
+  display: block;
+  margin-top: 4px;
+  color: var(--nexus-green);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+}
+
+.nexus-auth-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  padding: clamp(28px, 5vw, 46px);
+  border-radius: 30px;
+  border: 1px solid rgba(241, 200, 91, 0.28);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.055), rgba(255,255,255,0.015)),
+    radial-gradient(circle at top left, rgba(241, 200, 91, 0.16), transparent 36%),
+    rgba(5, 8, 7, 0.88);
+  box-shadow:
+    0 34px 110px rgba(0,0,0,0.62),
+    0 0 0 1px rgba(255,255,255,0.045) inset,
+    0 0 80px rgba(207, 153, 38, 0.12);
+  backdrop-filter: blur(20px);
+}
+
+.nexus-auth-card::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(241, 200, 91, 0.10);
+  border-radius: 22px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.nexus-auth-card::after {
+  content: "";
+  position: absolute;
+  right: -90px;
+  bottom: -120px;
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(64, 216, 113, 0.13), transparent 68%);
+  z-index: -2;
+}
+
+.nexus-auth-coin {
+  width: 92px;
+  height: 92px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(241, 200, 91, 0.08);
+  box-shadow: 0 0 50px rgba(241, 200, 91, 0.20);
+}
+
+.nexus-auth-coin img {
+  width: 86px;
+  height: 86px;
+  object-fit: contain;
+}
+
+.nexus-auth-card .eyebrow,
+.nexus-confirm-modal .eyebrow {
+  margin: 0 0 12px !important;
+  color: var(--nexus-gold) !important;
+  font-family: "Orbitron", sans-serif !important;
+  letter-spacing: 0.24em !important;
+  font-size: 0.75rem !important;
+  text-align: center;
+}
+
+.nexus-auth-card h1 {
+  margin: 0 !important;
+  color: var(--nexus-cream) !important;
+  font-family: "Orbitron", sans-serif !important;
+  text-align: center !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em !important;
+  line-height: 1.04 !important;
+  font-size: clamp(2.05rem, 6vw, 3.45rem) !important;
+}
+
+.nexus-auth-card p:not(.eyebrow) {
+  max-width: 430px;
+  margin: 18px auto 0 !important;
+  color: #c9c1ab !important;
+  text-align: center;
+  line-height: 1.65;
+  font-size: 0.98rem;
+}
+
+.nexus-auth-form {
+  max-width: 430px;
+  margin: 26px auto 0 !important;
+  display: grid !important;
+  gap: 14px !important;
+}
+
+.snc-nexus-body .admin-key-control label {
+  display: block;
+  color: var(--nexus-gold);
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 9px;
+}
+
+.snc-nexus-body .admin-key-control input,
+.snc-nexus-body .nexus-search input {
+  width: 100%;
+  border: 1px solid rgba(241, 200, 91, 0.30);
+  outline: none;
+  background: rgba(0,0,0,0.32);
+  color: var(--nexus-text);
+  border-radius: 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.snc-nexus-body .admin-key-control input {
+  min-height: 58px;
+  padding: 0 18px;
+  font-size: 1rem;
+}
+
+.snc-nexus-body .admin-key-control input:focus,
+.snc-nexus-body .nexus-search:focus-within {
+  border-color: rgba(241, 200, 91, 0.72);
+  box-shadow: 0 0 0 4px rgba(241, 200, 91, 0.10);
+  background: rgba(0,0,0,0.46);
+}
+
+.snc-nexus-body .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease, background 0.18s ease;
+}
+
+.snc-nexus-body .btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.snc-nexus-body .btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.snc-nexus-body .btn-primary {
+  min-height: 58px !important;
+  border-radius: 16px !important;
+  color: #120e05 !important;
+  background: linear-gradient(135deg, #fff0a9, #d7a337 55%, #a86d13) !important;
+  box-shadow: 0 18px 34px rgba(189, 133, 22, 0.24), 0 0 0 1px rgba(255,255,255,0.18) inset !important;
+}
+
+.snc-nexus-body .btn-outline {
+  border: 1px solid rgba(241, 200, 91, 0.42) !important;
+  background: rgba(241, 200, 91, 0.08) !important;
+  color: var(--nexus-cream) !important;
+  min-height: 42px;
+  padding: 0 14px;
+  border-radius: 12px;
+}
+
+.snc-nexus-body .btn-ghost {
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.06) !important;
+  color: var(--nexus-text) !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+}
+
+.nexus-auth-status {
+  margin: 22px auto 0;
+  max-width: 430px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  color: var(--nexus-muted);
+  font-size: 0.82rem;
+}
+
+.nexus-auth-status span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nexus-auth-status i,
+.nexus-sidebar-footer i,
+.nexus-mainnet i,
+.nexus-security-card i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  background: var(--nexus-green);
+  box-shadow: 0 0 14px rgba(64, 216, 113, 0.75);
+}
+
+/* Dashboard estilo Admin Nexus */
+.snc-nexus-body .nexus-dashboard {
+  min-height: 100vh !important;
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: 280px minmax(0, 1fr);
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.nexus-sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 28px 14px 18px;
+  border-right: 1px solid rgba(241, 200, 91, 0.18);
+  background:
+    linear-gradient(180deg, rgba(6, 12, 12, 0.94), rgba(5, 7, 7, 0.88)),
+    radial-gradient(circle at top, rgba(241, 200, 91, 0.12), transparent 32%);
+  box-shadow: 18px 0 80px rgba(0,0,0,0.36);
+}
+
+.nexus-sidebar-brand {
+  text-align: center;
+  padding: 0 8px 22px;
+}
+
+.nexus-sidebar-brand img {
+  width: 108px;
+  height: 108px;
+  object-fit: contain;
+  margin: 0 auto 8px;
+  filter: drop-shadow(0 0 28px rgba(241, 200, 91, 0.25));
+}
+
+.nexus-sidebar-brand strong {
+  font-size: 1rem;
+  color: var(--nexus-gold);
+}
+
+.nexus-nav {
+  display: grid;
+  gap: 7px;
+}
+
+.nexus-nav button {
+  position: relative;
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: #bdb7a6;
+  font: 700 0.96rem/1 "Inter", sans-serif;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nexus-nav button span {
+  width: 22px;
+  color: var(--nexus-gold);
+  text-align: center;
+  font-size: 1.15rem;
+}
+
+.nexus-nav button:hover,
+.nexus-nav button.active {
+  color: var(--nexus-cream);
+  border-color: rgba(241, 200, 91, 0.32);
+  background: linear-gradient(90deg, rgba(241, 200, 91, 0.17), rgba(241, 200, 91, 0.025));
+  box-shadow: 0 0 30px rgba(241, 200, 91, 0.10), inset 3px 0 0 rgba(241, 200, 91, 0.86);
+}
+
+.nexus-satoshi-art {
+  position: relative;
+  min-height: 214px;
+  margin: 28px 6px 16px;
+  display: grid;
+  place-items: end center;
+  overflow: hidden;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 50% 72%, rgba(241, 200, 91, 0.22), transparent 44%),
+    linear-gradient(180deg, transparent, rgba(241, 200, 91, 0.055));
+}
+
+.nexus-satoshi-art::before {
+  content: "₿";
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(241, 200, 91, 0.90);
+  font: 900 4.8rem/1 "Orbitron", sans-serif;
+  text-shadow: 0 0 40px rgba(241, 200, 91, 0.34);
+}
+
+.nexus-satoshi-art span {
+  position: absolute;
+  left: 10px;
+  bottom: 62px;
+  writing-mode: vertical-rl;
+  color: rgba(241, 200, 91, 0.72);
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.18em;
+}
+
+.nexus-satoshi-art strong {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 18px;
+  color: var(--nexus-gold);
+  font: 800 0.63rem/1 "Orbitron", sans-serif;
+  letter-spacing: 0.26em;
+}
+
+.nexus-hood {
+  position: absolute;
+  width: 150px;
+  height: 130px;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 80px 80px 20px 20px;
+  background:
+    radial-gradient(circle at 50% 20%, transparent 0 35%, rgba(241, 200, 91, 0.10) 36% 37%, transparent 38%),
+    linear-gradient(180deg, rgba(241, 200, 91, 0.18), rgba(0,0,0,0.0));
+  border: 1px solid rgba(241, 200, 91, 0.14);
+  opacity: 0.8;
+}
+
+.nexus-sidebar-footer {
+  margin: 0 6px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(241, 200, 91, 0.18);
+  background: rgba(0,0,0,0.20);
+  color: var(--nexus-muted);
+  display: grid;
+  gap: 6px;
+  font-size: 0.78rem;
+}
+
+.nexus-sidebar-footer span {
+  color: var(--nexus-cream);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+}
+
+.nexus-main {
+  min-width: 0;
+  padding: 24px;
+  display: grid;
+  gap: 18px;
+}
+
+.nexus-topbar {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(241, 200, 91, 0.18);
+}
+
+.nexus-title-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nexus-topbar h1 {
+  margin: 0;
+  color: var(--nexus-gold);
+  font: 800 clamp(1.35rem, 2.4vw, 2rem)/1.1 "Orbitron", sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.nexus-topbar p {
+  margin: 7px 0 0;
+  color: #bcb5a5;
+  font-size: 0.95rem;
+}
+
+.nexus-mainnet {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 34px;
+  padding: 0 15px;
+  border: 1px solid rgba(64, 216, 113, 0.32);
+  border-radius: 10px;
+  color: var(--nexus-green);
+  background: rgba(64, 216, 113, 0.07);
+  font: 800 0.80rem/1 "Orbitron", sans-serif;
+  letter-spacing: 0.08em;
+}
+
+.nexus-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nexus-search {
+  width: min(340px, 28vw);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  border: 1px solid rgba(241, 200, 91, 0.22);
+  border-radius: 12px;
+  background: rgba(0,0,0,0.25);
+  color: var(--nexus-gold);
+}
+
+.nexus-search input {
+  min-height: 42px;
+  padding: 0;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--nexus-text);
+}
+
+.nexus-bell {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(241, 200, 91, 0.26);
+  border-radius: 50%;
+  background: rgba(0,0,0,0.22);
+  color: var(--nexus-gold);
+  cursor: pointer;
+}
+
+.nexus-bell b {
+  position: absolute;
+  right: -1px;
+  top: -5px;
+  min-width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--nexus-green);
+  color: #061009;
+  font-size: 0.72rem;
+}
+
+.nexus-session {
+  position: relative;
+}
+
+.snc-nexus-body .nexus-session .admin-creator-button {
+  min-height: 48px !important;
+  padding: 5px 10px 5px 5px !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--nexus-text) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  cursor: pointer;
+}
+
+.snc-nexus-body .nexus-session .admin-creator-button img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(241, 200, 91, 0.35);
+  object-fit: contain;
+}
+
+.snc-nexus-body .nexus-session .admin-creator-button strong {
+  display: block;
+  color: var(--nexus-gold);
+  font-size: 0.95rem;
+}
+
+.snc-nexus-body .nexus-session .admin-creator-button small {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #bdb6a3;
+  font-size: 0.76rem;
+}
+
+.snc-nexus-body .nexus-session .admin-creator-button small::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--nexus-green);
+  box-shadow: 0 0 12px rgba(64, 216, 113, 0.75);
+}
+
+.snc-nexus-body .admin-creator-dropdown {
+  position: absolute !important;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 180px;
+  padding: 8px;
+  border-radius: 14px;
+  border: 1px solid rgba(241, 200, 91, 0.22);
+  background: rgba(6, 9, 8, 0.96);
+  box-shadow: var(--nexus-shadow);
+  z-index: 50;
+}
+
+.snc-nexus-body .admin-creator-dropdown button {
+  width: 100%;
+  min-height: 38px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(241, 200, 91, 0.08);
+  color: var(--nexus-cream);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.nexus-tab-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  padding: 5px;
+  border: 1px solid rgba(241, 200, 91, 0.18);
+  border-radius: 999px;
+  background: rgba(0,0,0,0.22);
+}
+
+.nexus-tab-switch .admin-tab-button {
+  min-height: 34px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--nexus-muted);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.nexus-tab-switch .admin-tab-button.active {
+  color: #120e05;
+  background: linear-gradient(135deg, #fff0a9, #d7a337 55%, #a86d13);
+}
+
+.nexus-stats {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  margin: 0 !important;
+}
+
+.nexus-stat-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 136px;
+  padding: 18px 18px 16px;
+  border-radius: var(--nexus-radius);
+  border: 1px solid rgba(241, 200, 91, 0.22);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.055), rgba(255,255,255,0.014)),
+    rgba(5, 9, 8, 0.76);
+  box-shadow: 0 18px 52px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.nexus-stat-card::after,
+.nexus-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, transparent 0 40%, rgba(241, 200, 91, 0.05) 50%, transparent 62%),
+    radial-gradient(circle at 82% 20%, rgba(64, 216, 113, 0.08), transparent 26%);
+  pointer-events: none;
+}
+
+.nexus-stat-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(241, 200, 91, 0.34);
+  background: radial-gradient(circle, rgba(241, 200, 91, 0.16), rgba(241, 200, 91, 0.03));
+  color: var(--nexus-gold);
+  box-shadow: 0 0 32px rgba(241, 200, 91, 0.12);
+  font-size: 1.25rem;
+  margin-bottom: 13px;
+}
+
+.nexus-stat-card span {
+  position: relative;
+  z-index: 2;
+  display: block;
+  color: var(--nexus-gold);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  font-size: 0.83rem;
+  text-transform: uppercase;
+}
+
+.nexus-stat-card strong {
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin: 6px 0 4px;
+  color: var(--nexus-text);
+  font: 700 clamp(1.35rem, 2.25vw, 1.95rem)/1 "Orbitron", sans-serif;
+  letter-spacing: 0.06em;
+}
+
+.nexus-stat-card small {
+  position: relative;
+  z-index: 2;
+  display: block;
+  color: var(--nexus-muted);
+  font-size: 0.78rem;
+}
+
+.nexus-stat-card em {
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin-top: 8px;
+  color: var(--nexus-green);
+  font-style: normal;
+  font-weight: 900;
+  font-size: 0.80rem;
+}
+
+.nexus-wallet-stat {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0 12px;
+}
+
+.nexus-wallet-stat .nexus-stat-icon {
+  margin-bottom: 0;
+}
+
+.nexus-wallet-stat button {
+  position: relative;
+  z-index: 3;
+  grid-column: 1 / -1;
+  margin-top: 12px;
+  width: max-content;
+}
+
+.nexus-spark {
+  position: absolute;
+  right: 16px;
+  bottom: 15px;
+  width: 120px;
+  height: 42px;
+  opacity: 0.74;
+  background:
+    linear-gradient(135deg, transparent 0 11%, currentColor 11% 13%, transparent 13% 28%, currentColor 28% 31%, transparent 31% 46%, currentColor 46% 48%, transparent 48% 60%, currentColor 60% 63%, transparent 63% 78%, currentColor 78% 81%, transparent 81%);
+  clip-path: polygon(0 68%, 14% 64%, 26% 54%, 38% 58%, 50% 34%, 62% 48%, 75% 30%, 88% 38%, 100% 15%, 100% 100%, 0 100%);
+  color: rgba(241, 200, 91, 0.72);
+}
+
+.nexus-spark-green {
+  color: rgba(64, 216, 113, 0.64);
+}
+
+.nexus-content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.42fr) minmax(360px, 0.88fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.nexus-left-stack,
+.nexus-right-stack {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.nexus-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--nexus-radius);
+  border: 1px solid rgba(241, 200, 91, 0.22);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.042), rgba(255,255,255,0.012)),
+    rgba(5, 9, 8, 0.82);
+  box-shadow: 0 22px 62px rgba(0,0,0,0.36), inset 0 1px 0 rgba(255,255,255,0.035);
+}
+
+.referral-table-card.nexus-panel {
+  padding: 0 !important;
+}
+
+.nexus-panel-head {
+  position: relative;
+  z-index: 2;
+  min-height: 58px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid rgba(241, 200, 91, 0.12);
+}
+
+.nexus-panel-head div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nexus-panel-head span:first-child {
+  color: var(--nexus-gold);
+  font-size: 1.2rem;
+}
+
+.nexus-panel-head h2 {
+  margin: 0 !important;
+  color: var(--nexus-gold) !important;
+  font: 800 1.05rem/1.2 "Orbitron", sans-serif !important;
+  letter-spacing: 0.06em;
+}
+
+.nexus-panel-head button,
+.nexus-panel-head small {
+  border: 0;
+  background: transparent;
+  color: var(--nexus-gold);
+  font-weight: 800;
+}
+
+.snc-nexus-body .admin-table-note {
+  position: relative;
+  z-index: 2;
+  margin: 0 !important;
+  padding: 0 18px 12px !important;
+  color: var(--nexus-muted) !important;
+  font-size: 0.86rem !important;
+}
+
+.snc-nexus-body .table-scroll {
+  position: relative;
+  z-index: 2;
+  overflow-x: auto;
+  scrollbar-color: rgba(241, 200, 91, 0.42) rgba(255,255,255,0.04);
+}
+
+.snc-nexus-body .nexus-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  color: #e7e0cf;
+}
+
+.snc-nexus-body .nexus-table th,
+.snc-nexus-body .nexus-table td {
+  padding: 13px 18px !important;
+  border-bottom: 1px solid rgba(241, 200, 91, 0.09) !important;
+  vertical-align: middle;
+  text-align: left;
+  background: transparent !important;
+}
+
+.snc-nexus-body .nexus-table th {
+  color: var(--nexus-gold) !important;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.snc-nexus-body .nexus-table td {
+  color: #ddd6c5 !important;
+  font-size: 0.88rem;
+}
+
+.snc-nexus-body .nexus-table tbody tr:hover {
+  background: rgba(241, 200, 91, 0.035) !important;
+}
+
+.snc-nexus-body .nexus-table a {
+  color: var(--nexus-gold) !important;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.snc-nexus-body .wallet-copy-wrap {
+  max-width: 250px;
+}
+
+.snc-nexus-body .wallet-full-value {
+  display: inline-block;
+  max-width: 185px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+
+.snc-nexus-body .wallet-copy-button {
+  border: 1px solid rgba(241, 200, 91, 0.25) !important;
+  background: rgba(241, 200, 91, 0.08) !important;
+  color: var(--nexus-gold) !important;
+  border-radius: 8px !important;
+}
+
+.snc-nexus-body .admin-pay-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.snc-nexus-body .admin-pay-cell span {
+  display: none;
+}
+
+.snc-nexus-body .admin-pay-button {
+  min-height: 34px;
+  min-width: 92px;
+  border-radius: 10px;
+  border: 1px solid rgba(241, 200, 91, 0.42);
+  background: rgba(241, 200, 91, 0.07);
+  color: var(--nexus-gold);
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.snc-nexus-body .admin-pay-button:not(:disabled):hover {
+  transform: translateY(-1px);
+  background: rgba(241, 200, 91, 0.15);
+}
+
+.snc-nexus-body .admin-pay-button:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.snc-nexus-body .referral-empty {
+  color: var(--nexus-muted) !important;
+  text-align: center !important;
+  padding: 28px !important;
+}
+
+.nexus-summary-card {
+  min-height: 304px;
+}
+
+.nexus-summary-layout {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 22px;
+  align-items: center;
+  padding: 18px;
+}
+
+.nexus-donut {
+  position: relative;
+  width: 178px;
+  height: 178px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background:
+    conic-gradient(from 230deg, #41c565 0 65%, #25a787 65% 72%, #e2bd54 72% 100%) !important;
+  box-shadow: 0 0 0 1px rgba(241, 200, 91, 0.26) inset, 0 0 42px rgba(64, 216, 113, 0.16);
+}
+
+.nexus-donut::before {
+  content: "";
+  position: absolute;
+  inset: 43px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(241, 200, 91, 0.10), transparent 62%),
+    #050807;
+  border: 1px solid rgba(241, 200, 91, 0.20);
+}
+
+.nexus-donut span {
+  position: absolute;
+  inset: 44px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  color: var(--nexus-cream);
+  z-index: 2;
+  text-align: center;
+}
+
+.nexus-donut small {
+  color: var(--nexus-muted);
+  text-transform: uppercase;
+  font-size: 0.62rem;
+  letter-spacing: 0.10em;
+}
+
+.nexus-donut strong {
+  max-width: 90px;
+  overflow: hidden;
+  color: var(--nexus-gold);
+  font: 800 1.02rem/1 "Orbitron", sans-serif;
+}
+
+.nexus-legend {
+  display: grid;
+  gap: 14px;
+}
+
+.nexus-legend p {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 10px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  color: #cfc7b7;
+}
+
+.nexus-legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.nexus-legend i.gold { background: var(--nexus-gold); }
+.nexus-legend i.green { background: var(--nexus-green); }
+.nexus-legend i.cyan { background: #41c7a7; }
+
+.nexus-legend p span {
+  color: var(--nexus-gold);
+}
+
+.nexus-legend p b {
+  color: var(--nexus-text);
+  font-weight: 900;
+}
+
+.nexus-legend > strong {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(241, 200, 91, 0.14);
+  color: #d8d0c0;
+}
+
+.nexus-legend > strong em {
+  color: var(--nexus-gold);
+  font-style: normal;
+}
+
+.nexus-activity-list {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 0;
+  padding: 10px 18px 16px;
+}
+
+.nexus-activity-list p {
+  position: relative;
+  margin: 0 !important;
+  display: grid !important;
+  grid-template-columns: 34px 1fr auto !important;
+  gap: 12px !important;
+  align-items: center;
+  padding: 11px 0 !important;
+  border-bottom: 1px solid rgba(241, 200, 91, 0.08);
+  color: #dcd5c6 !important;
+}
+
+.nexus-activity-list p:last-child {
+  border-bottom: 0;
+}
+
+.nexus-activity-list i {
+  width: 32px;
+  height: 32px;
+  display: grid !important;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(241, 200, 91, 0.22);
+  background: rgba(241, 200, 91, 0.06);
+  color: var(--nexus-gold);
+  font-style: normal;
+}
+
+.nexus-activity-list span {
+  min-width: 0;
+  font-weight: 800;
+}
+
+.nexus-activity-list small {
+  display: block;
+  margin-top: 3px;
+  color: var(--nexus-muted);
+  font-weight: 600;
+}
+
+.nexus-activity-list b {
+  color: var(--nexus-green);
+  font-size: 0.80rem;
+  white-space: nowrap;
+}
+
+.nexus-security-card {
+  min-height: 128px;
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  padding: 18px;
+}
+
+.nexus-shield {
+  width: 92px;
+  height: 92px;
+  display: grid;
+  place-items: center;
+  border-radius: 28px;
+  border: 1px solid rgba(241, 200, 91, 0.30);
+  color: var(--nexus-cream);
+  font: 900 2rem/1 "Orbitron", sans-serif;
+  background:
+    radial-gradient(circle, rgba(241, 200, 91, 0.18), transparent 60%),
+    rgba(241, 200, 91, 0.06);
+  box-shadow: 0 0 46px rgba(241, 200, 91, 0.14);
+}
+
+.nexus-security-card h2 {
+  margin: 0 0 8px;
+  color: var(--nexus-gold);
+  font: 800 1.1rem/1 "Orbitron", sans-serif;
+}
+
+.nexus-security-card p {
+  margin: 0 0 10px;
+  color: #cfc7b7;
+  line-height: 1.45;
+}
+
+.nexus-security-card strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--nexus-green);
+  font-size: 0.86rem;
+}
+
+.nexus-footer-quote {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: var(--nexus-gold);
+  text-align: center;
+  font-size: 0.90rem;
+  letter-spacing: 0.04em;
+}
+
+.nexus-footer-quote strong {
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.26em;
+  font-size: 0.72rem;
+}
+
+.snc-nexus-body .admin-tab-panel[hidden] {
+  display: none !important;
+}
+
+/* Modal */
+.snc-nexus-body .admin-modal-open {
+  overflow: hidden;
+}
+
+.snc-nexus-body .admin-confirm-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 6000;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(0,0,0,0.70);
+  backdrop-filter: blur(14px);
+}
+
+.snc-nexus-body .nexus-confirm-modal {
+  position: relative;
+  width: min(450px, 100%);
+  overflow: hidden;
+  padding: 28px;
+  border-radius: 24px;
+  border: 1px solid rgba(241, 200, 91, 0.34);
+  background:
+    radial-gradient(circle at top, rgba(241, 200, 91, 0.14), transparent 38%),
+    rgba(5, 8, 7, 0.96);
+  box-shadow: var(--nexus-shadow), 0 0 74px rgba(241, 200, 91, 0.16);
+  color: var(--nexus-text);
+}
+
+.snc-nexus-body .admin-confirm-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  color: var(--nexus-cream);
+  cursor: pointer;
+}
+
+.snc-nexus-body .admin-confirm-icon {
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 12px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(241, 200, 91, 0.08);
+  box-shadow: 0 0 44px rgba(241, 200, 91, 0.22);
+}
+
+.snc-nexus-body .admin-confirm-icon img {
+  width: 74px;
+  height: 74px;
+  object-fit: contain;
+}
+
+.snc-nexus-body .nexus-confirm-modal h2 {
+  margin: 0 !important;
+  color: var(--nexus-cream) !important;
+  font: 800 1.5rem/1.1 "Orbitron", sans-serif !important;
+  text-align: center;
+}
+
+.snc-nexus-body .admin-confirm-text {
+  margin: 14px 0 !important;
+  color: #cfc7b7 !important;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.snc-nexus-body .admin-confirm-summary,
+.snc-nexus-body .admin-confirm-wallet-box {
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(241, 200, 91, 0.18);
+  background: rgba(0,0,0,0.24);
+}
+
+.snc-nexus-body .admin-confirm-summary span,
+.snc-nexus-body .admin-confirm-wallet-box > span {
+  display: block;
+  color: var(--nexus-muted);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.snc-nexus-body .admin-confirm-summary strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--nexus-gold);
+  font: 900 1.35rem/1 "Orbitron", sans-serif;
+}
+
+.snc-nexus-body .admin-confirm-wallet-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.snc-nexus-body .admin-confirm-wallet-row code {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--nexus-cream);
+}
+
+.snc-nexus-body .admin-confirm-warning {
+  margin: 14px 0 !important;
+  color: #ffd79a !important;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.snc-nexus-body .admin-confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Responsive */
+@media (max-width: 1280px) {
+  .snc-nexus-body .nexus-dashboard {
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+
+  .nexus-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .nexus-content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nexus-summary-layout {
+    grid-template-columns: 180px 1fr;
+  }
+
+  .nexus-search {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .snc-nexus-body .nexus-dashboard {
+    display: block !important;
+  }
+
+  .nexus-sidebar {
+    position: relative;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid rgba(241, 200, 91, 0.18);
+    padding: 18px;
+  }
+
+  .nexus-sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    padding: 0 0 14px;
+  }
+
+  .nexus-sidebar-brand img {
+    width: 58px;
+    height: 58px;
+    margin: 0;
+  }
+
+  .nexus-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nexus-satoshi-art {
+    display: none;
+  }
+
+  .nexus-main {
+    padding: 18px;
+  }
+
+  .nexus-topbar,
+  .nexus-top-actions,
+  .nexus-title-row {
+    align-items: flex-start;
+  }
+
+  .nexus-topbar {
+    flex-direction: column;
+  }
+
+  .nexus-top-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .nexus-session {
+    margin-left: auto;
+  }
+
+  .nexus-stats {
+    grid-template-columns: 1fr !important;
+  }
+
+  .nexus-summary-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .nexus-security-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .nexus-auth-card {
+    padding: 26px 18px;
+    border-radius: 24px;
+  }
+
+  .nexus-auth-card h1 {
+    font-size: clamp(1.75rem, 12vw, 2.6rem) !important;
+  }
+
+  .nexus-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .nexus-main {
+    padding: 14px;
+  }
+
+  .nexus-topbar h1 {
+    font-size: 1.35rem;
+  }
+
+  .nexus-tab-switch {
+    width: 100%;
+  }
+
+  .nexus-tab-switch .admin-tab-button {
+    flex: 1;
+  }
+
+  .nexus-stat-card {
+    min-height: 126px;
+  }
+
+  .nexus-footer-quote {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .snc-nexus-body .admin-confirm-actions {
+    flex-direction: column;
+  }
+
+  .snc-nexus-body .admin-confirm-actions .btn {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   FIX VISUAL ADMIN NEXUS COMPACTO
+   Ajuste aplicado para que el panel se parezca al diseño
+   aprobado: menos tamaño, sin scroll global y cards compactas.
+   ========================================================= */
+
+body.snc-nexus-body.admin-unlocked {
+  overflow: hidden !important;
+}
+
+body.snc-nexus-body.admin-unlocked .snc-nexus-root {
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+body.snc-nexus-body.admin-unlocked #adminProtectedPanel.nexus-dashboard {
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 0 !important;
+  display: grid !important;
+  grid-template-columns: 236px minmax(0, 1fr) !important;
+  overflow: hidden !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-admin-message {
+  top: auto !important;
+  left: auto !important;
+  right: 18px !important;
+  bottom: 18px !important;
+  width: min(360px, calc(100% - 36px)) !important;
+  transform: none !important;
+  padding: 10px 14px !important;
+  border-radius: 16px !important;
+  font-size: 0.82rem !important;
+  text-align: left !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-sidebar {
+  position: relative !important;
+  top: auto !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  padding: 20px 12px 14px !important;
+  display: grid !important;
+  grid-template-rows: auto auto minmax(0, 1fr) auto !important;
+  gap: 14px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-sidebar-brand {
+  padding: 0 4px 10px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-sidebar-brand img {
+  width: 104px !important;
+  height: 104px !important;
+  margin: 0 auto 10px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-sidebar-brand strong {
+  font-size: 0.86rem !important;
+  letter-spacing: 0.05em !important;
+  white-space: nowrap !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-sidebar-brand small {
+  font-size: 0.60rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-nav {
+  gap: 7px !important;
+  min-height: 0 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-nav button {
+  min-height: 39px !important;
+  padding: 0 13px !important;
+  border-radius: 12px !important;
+  gap: 10px !important;
+  font-size: 0.82rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-satoshi-art {
+  align-self: end !important;
+  min-height: 132px !important;
+  margin-top: 0 !important;
+  padding: 12px 8px !important;
+  opacity: 0.82 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-satoshi-art .nexus-hood {
+  width: 118px !important;
+  height: 96px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-satoshi-art strong {
+  font-size: 0.54rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-sidebar-footer {
+  padding: 10px 12px !important;
+  border-radius: 13px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-sidebar-footer span,
+body.snc-nexus-body.admin-unlocked .nexus-sidebar-footer small {
+  font-size: 0.66rem !important;
+  line-height: 1.25 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-main {
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  padding: 18px 22px !important;
+  gap: 12px !important;
+  display: grid !important;
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-topbar {
+  min-height: 52px !important;
+  padding-bottom: 10px !important;
+  gap: 14px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-title-row {
+  gap: 14px !important;
+  flex-wrap: nowrap !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-topbar h1 {
+  font-size: clamp(1.25rem, 1.58vw, 1.72rem) !important;
+  line-height: 1.05 !important;
+  white-space: nowrap !important;
+  letter-spacing: 0.035em !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-topbar p {
+  margin-top: 5px !important;
+  font-size: 0.84rem !important;
+  line-height: 1.25 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-mainnet {
+  min-height: 28px !important;
+  padding: 0 12px !important;
+  font-size: 0.68rem !important;
+  border-radius: 10px !important;
+  white-space: nowrap !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-top-actions {
+  flex: 0 0 auto !important;
+  gap: 10px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-search {
+  width: min(330px, 25vw) !important;
+  min-height: 40px !important;
+  border-radius: 12px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-search input {
+  height: 40px !important;
+  font-size: 0.84rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-bell {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-session .admin-creator-button {
+  min-width: 176px !important;
+  height: 44px !important;
+  padding: 6px 10px !important;
+  gap: 9px !important;
+  border-radius: 14px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-session .admin-creator-button img {
+  width: 34px !important;
+  height: 34px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-session .admin-creator-button span {
+  min-width: 0 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-session .admin-creator-button strong,
+body.snc-nexus-body.admin-unlocked .nexus-session .admin-creator-button small {
+  display: block !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-height: 1.1 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-session .admin-creator-button strong {
+  font-size: 0.82rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-session .admin-creator-button small {
+  font-size: 0.68rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-tab-switch {
+  height: 40px !important;
+  padding: 4px !important;
+  border-radius: 14px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-tab-switch .admin-tab-button {
+  min-height: 30px !important;
+  padding: 0 22px !important;
+  font-size: 0.74rem !important;
+  border-radius: 11px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stats {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  min-height: 0 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-card {
+  min-height: 108px !important;
+  height: 108px !important;
+  padding: 14px 14px 12px !important;
+  border-radius: 16px !important;
+  display: grid !important;
+  grid-template-columns: 42px minmax(0, 1fr) !important;
+  grid-template-rows: auto !important;
+  column-gap: 12px !important;
+  align-content: start !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-card > div:not(.nexus-stat-icon):not(.nexus-spark) {
+  min-width: 0 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-icon {
+  width: 42px !important;
+  height: 42px !important;
+  margin: 0 !important;
+  grid-row: 1 / span 4 !important;
+  font-size: 1rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-card span {
+  font-size: 0.68rem !important;
+  letter-spacing: 0.065em !important;
+  line-height: 1.15 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-card strong {
+  margin: 5px 0 2px !important;
+  font-size: clamp(1.12rem, 1.28vw, 1.46rem) !important;
+  line-height: 1.05 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  word-break: normal !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-card small {
+  font-size: 0.70rem !important;
+  line-height: 1.2 !important;
+  max-height: 2.4em !important;
+  overflow: hidden !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-card em {
+  margin-top: 6px !important;
+  font-size: 0.69rem !important;
+  line-height: 1.1 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-spark {
+  right: 10px !important;
+  bottom: 9px !important;
+  width: 86px !important;
+  height: 28px !important;
+  opacity: 0.42 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-wallet-stat {
+  grid-template-columns: 42px minmax(0, 1fr) !important;
+  align-items: start !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-wallet-stat button {
+  grid-column: 2 !important;
+  justify-self: start !important;
+  width: auto !important;
+  min-height: 30px !important;
+  margin-top: 6px !important;
+  padding: 0 12px !important;
+  font-size: 0.66rem !important;
+  border-radius: 10px !important;
+  letter-spacing: 0.055em !important;
+}
+
+body.snc-nexus-body.admin-unlocked #adminPayoutWalletStatus {
+  display: block !important;
+  max-width: 100% !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  word-break: normal !important;
+}
+
+body.snc-nexus-body.admin-unlocked #adminPayoutWalletStatus .wallet-ok-dot {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  margin-right: 6px !important;
+  width: 8px !important;
+  height: 8px !important;
+}
+
+body.snc-nexus-body.admin-unlocked #adminTokenStatus {
+  display: block !important;
+  max-height: 2.35em !important;
+  overflow: hidden !important;
+  font-size: 0.68rem !important;
+  line-height: 1.18 !important;
+}
+
+body.snc-nexus-body.admin-unlocked #adminTokenStatus strong {
+  font-size: 0.74rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-content-grid {
+  min-height: 0 !important;
+  height: 100% !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.58fr) minmax(330px, 0.82fr) !important;
+  gap: 12px !important;
+  align-items: stretch !important;
+  overflow: hidden !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-left-stack,
+body.snc-nexus-body.admin-unlocked .nexus-right-stack,
+body.snc-nexus-body.admin-unlocked .admin-tab-panel {
+  min-height: 0 !important;
+  height: 100% !important;
+}
+
+body.snc-nexus-body.admin-unlocked #referidosPanel:not([hidden]) {
+  display: grid !important;
+  grid-template-rows: minmax(0, 0.95fr) minmax(0, 1fr) !important;
+  gap: 12px !important;
+}
+
+body.snc-nexus-body.admin-unlocked #compradoresPanel:not([hidden]) {
+  display: grid !important;
+  grid-template-rows: minmax(0, 1fr) !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-right-stack {
+  display: grid !important;
+  grid-template-rows: minmax(0, 0.95fr) minmax(0, 0.86fr) auto !important;
+  gap: 12px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-panel {
+  min-height: 0 !important;
+  border-radius: 16px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .referral-table-card.nexus-panel {
+  display: grid !important;
+  grid-template-rows: auto auto minmax(0, 1fr) !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-panel-head {
+  min-height: 44px !important;
+  padding: 10px 14px !important;
+  gap: 10px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-panel-head h2 {
+  font-size: 0.92rem !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0.05em !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-panel-head span:first-child {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  font-size: 0.82rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .admin-table-note {
+  display: none !important;
+}
+
+body.snc-nexus-body.admin-unlocked .table-scroll {
+  min-height: 0 !important;
+  max-height: 100% !important;
+  overflow: auto !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-table {
+  min-width: 710px !important;
+  width: 100% !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-table th,
+body.snc-nexus-body.admin-unlocked .nexus-table td {
+  padding: 8px 12px !important;
+  font-size: 0.76rem !important;
+  line-height: 1.2 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-table th {
+  font-size: 0.62rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .referral-empty {
+  padding: 16px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .admin-pay-button,
+body.snc-nexus-body.admin-unlocked .nexus-table .btn,
+body.snc-nexus-body.admin-unlocked [data-pay-referrer],
+body.snc-nexus-body.admin-unlocked [data-pay-buyer] {
+  min-height: 28px !important;
+  padding: 0 12px !important;
+  font-size: 0.66rem !important;
+  border-radius: 8px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .wallet-copy-wrap {
+  max-width: 170px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .wallet-full-value {
+  max-width: 132px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-summary-layout {
+  grid-template-columns: 128px minmax(0, 1fr) !important;
+  gap: 14px !important;
+  padding: 12px 14px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-donut {
+  width: 126px !important;
+  height: 126px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-donut::before {
+  inset: 31px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-donut span {
+  inset: 33px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-donut strong {
+  font-size: 0.74rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-legend {
+  gap: 8px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-legend p {
+  gap: 8px !important;
+  font-size: 0.75rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-legend b {
+  font-size: 0.76rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-legend > strong {
+  margin-top: 2px !important;
+  padding-top: 8px !important;
+  font-size: 0.72rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-activity-list {
+  min-height: 0 !important;
+  max-height: 100% !important;
+  overflow: hidden !important;
+  padding: 8px 14px 10px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-activity-list p {
+  grid-template-columns: 28px minmax(0, 1fr) auto !important;
+  gap: 9px !important;
+  padding: 7px 0 !important;
+  font-size: 0.72rem !important;
+  line-height: 1.22 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-activity-list i {
+  width: 26px !important;
+  height: 26px !important;
+  font-size: 0.70rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-activity-list b {
+  font-size: 0.70rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-security-card {
+  min-height: 96px !important;
+  padding: 12px 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-shield {
+  width: 64px !important;
+  height: 64px !important;
+  min-width: 64px !important;
+  font-size: 1.12rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-security-card h2 {
+  margin: 0 0 4px !important;
+  font-size: 0.95rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-security-card p {
+  margin: 0 0 7px !important;
+  font-size: 0.72rem !important;
+  line-height: 1.25 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-security-card strong {
+  font-size: 0.70rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-footer-quote {
+  min-height: 28px !important;
+  padding: 0 !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.04em !important;
+}
+
+body.snc-nexus-body.admin-unlocked ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.snc-nexus-body.admin-unlocked ::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.04);
+}
+
+body.snc-nexus-body.admin-unlocked ::-webkit-scrollbar-thumb {
+  background: rgba(241, 200, 91, 0.34);
+  border-radius: 999px;
+}
+
+@media (max-height: 900px) and (min-width: 1025px) {
+  body.snc-nexus-body.admin-unlocked .nexus-satoshi-art,
+  body.snc-nexus-body.admin-unlocked .nexus-footer-quote {
+    display: none !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked .nexus-sidebar {
+    grid-template-rows: auto auto minmax(0, 1fr) auto !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked .nexus-stat-card {
+    min-height: 102px !important;
+    height: 102px !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked .nexus-main {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked .nexus-topbar p {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1350px) {
+  body.snc-nexus-body.admin-unlocked #adminProtectedPanel.nexus-dashboard {
+    grid-template-columns: 220px minmax(0, 1fr) !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked .nexus-content-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    overflow-y: auto !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked .nexus-right-stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: auto auto !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked .nexus-security-card {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  body.snc-nexus-body.admin-unlocked {
+    overflow: auto !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked .snc-nexus-root,
+  body.snc-nexus-body.admin-unlocked #adminProtectedPanel.nexus-dashboard,
+  body.snc-nexus-body.admin-unlocked .nexus-main {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow: visible !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked #adminProtectedPanel.nexus-dashboard {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked .nexus-sidebar {
+    position: relative !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked .nexus-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked .nexus-content-grid,
+  body.snc-nexus-body.admin-unlocked .nexus-right-stack {
+    grid-template-columns: 1fr !important;
+    overflow: visible !important;
+  }
+}
+
+@media (max-width: 680px) {
+  body.snc-nexus-body.admin-unlocked .nexus-stats {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked .nexus-stat-card {
+    height: auto !important;
+    min-height: 112px !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked .nexus-topbar,
+  body.snc-nexus-body.admin-unlocked .nexus-top-actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked .nexus-search,
+  body.snc-nexus-body.admin-unlocked .nexus-session .admin-creator-button {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+
+.nexus-sidebar-visual {
+  margin-top: auto;
+  width: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(232, 184, 62, 0.22);
+  background: linear-gradient(180deg, rgba(10, 16, 22, 0.98), rgba(7, 11, 18, 0.98));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 10px 28px rgba(0,0,0,0.28);
+}
+
+.nexus-sidebar-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.nexus-satoshi-art,
+.nexus-sidebar-footer {
+  display: none !important;
+}
+
+@media (max-width: 980px) {
+  .nexus-sidebar-visual {
+    max-width: 260px;
+    margin-inline: auto;
+  }
+}
+
+
+/* Ajustes compactos solicitados */
+body.snc-nexus-body.admin-unlocked .nexus-stat-card {
+  min-height: 132px !important;
+  height: auto !important;
+  grid-template-columns: 42px minmax(0, 1fr) !important;
+  align-items: start !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-card span {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: initial !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  line-height: 1.18 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-card strong {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: initial !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+  max-width: 100% !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-card small {
+  max-height: none !important;
+  overflow: visible !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-card em {
+  white-space: normal !important;
+  overflow: visible !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-wallet-stat {
+  min-height: 144px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-wallet-stat button {
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+  justify-self: stretch !important;
+}
+
+@media (max-width: 680px) {
+  body.snc-nexus-body.admin-unlocked .nexus-stat-card,
+  body.snc-nexus-body.admin-unlocked .nexus-wallet-stat {
+    min-height: 132px !important;
+  }
+}
+
+
+/* Panel Resumen */
+.nexus-overview-panel {
+  min-height: 100%;
+}
+
+.nexus-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 18px;
+}
+
+.nexus-overview-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(241, 200, 91, 0.20);
+  background:
+    linear-gradient(135deg, rgba(31, 202, 106, 0.08), rgba(241, 200, 91, 0.045)),
+    rgba(4, 10, 10, 0.72);
+  padding: 18px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.035);
+}
+
+.nexus-overview-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -20% -45% 25%;
+  height: 140px;
+  background: radial-gradient(circle, rgba(241, 200, 91, 0.12), transparent 60%);
+  pointer-events: none;
+}
+
+.nexus-overview-title {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.nexus-overview-title > span {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(241, 200, 91, 0.35);
+  color: var(--nexus-gold);
+  background: rgba(241, 200, 91, 0.08);
+}
+
+.nexus-overview-title h3 {
+  color: var(--nexus-gold);
+  font: 900 1rem/1.15 "Orbitron", sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.nexus-overview-title p {
+  margin-top: 5px;
+  color: var(--nexus-muted);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.nexus-overview-metrics {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 10px;
+}
+
+.nexus-overview-metrics p {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(241, 200, 91, 0.12);
+  color: var(--nexus-muted);
+}
+
+.nexus-overview-metrics p:last-child {
+  border-bottom: 0;
+}
+
+.nexus-overview-metrics span {
+  font-size: 0.86rem;
+}
+
+.nexus-overview-metrics strong {
+  color: var(--nexus-cream);
+  font-weight: 900;
+  text-align: right;
+}
+
+@media (max-width: 920px) {
+  .nexus-overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+#adminStatsSection[hidden] {
+  display: none !important;
+}
+
+
+/* Limpieza solicitada: sin tabs superiores, sin buscador ni mainnet/bell */
+body.snc-nexus-body.admin-unlocked .nexus-topbar {
+  align-items: center !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-title-row {
+  gap: 0 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-top-actions {
+  justify-content: flex-end !important;
+  gap: 0 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-topbar p {
+  margin-top: 6px !important;
+}
+
+
+#adminSummaryCard[hidden],
+#adminActivityCard[hidden] {
+  display: none !important;
+}
+
+.nexus-wallet-side-card {
+  min-height: 0;
+}
+
+.nexus-wallet-side-body {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 18px;
+}
+
+.nexus-wallet-side-icon {
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(241, 200, 91, 0.30);
+  color: var(--nexus-gold);
+  background: radial-gradient(circle, rgba(241, 200, 91, 0.12), rgba(241, 200, 91, 0.03));
+  font-size: 1.25rem;
+}
+
+.nexus-wallet-side-info strong {
+  display: block;
+  color: var(--nexus-text);
+  font: 700 clamp(1.3rem, 2vw, 1.9rem)/1.05 "Orbitron", sans-serif;
+}
+
+.nexus-wallet-side-info p {
+  margin-top: 6px;
+  color: var(--nexus-green);
+  font-weight: 800;
+  font-size: 0.96rem;
+}
+
+.nexus-wallet-side-info small {
+  display: block;
+  margin-top: 6px;
+  color: var(--nexus-muted);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.nexus-wallet-side-card .admin-wallet-connect-button {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 4px;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-right-stack {
+  grid-template-rows: auto minmax(0, 0.95fr) minmax(0, 0.86fr) !important;
+}
+
+@media (max-width: 1024px) {
+  body.snc-nexus-body.admin-unlocked .nexus-right-stack {
+    grid-template-rows: none !important;
+  }
+}
+
+
+/* Wallet separada de la barra superior */
+.nexus-wallet-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 12px 0 16px;
+}
+
+.nexus-wallet-row .nexus-wallet-side-card {
+  width: min(100%, 520px);
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-right-stack {
+  grid-template-rows: minmax(0, 0.95fr) minmax(0, 0.86fr) !important;
+}
+
+@media (max-width: 1024px) {
+  .nexus-wallet-row {
+    justify-content: stretch;
+  }
+
+  .nexus-wallet-row .nexus-wallet-side-card {
+    width: 100%;
+  }
+}
+
+
+/* Wallet alineada a la derecha del titulo */
+.nexus-topbar-heading {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.nexus-wallet-top-card {
+  flex: 0 0 460px;
+  max-width: 460px;
+  margin-left: auto;
+}
+
+.nexus-wallet-top-card .nexus-panel-head {
+  min-height: 48px;
+  padding: 12px 16px;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-body {
+  padding: 14px 16px 16px;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 12px;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-icon {
+  width: 52px;
+  height: 52px;
+  font-size: 1.05rem;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-info strong {
+  font-size: clamp(1.05rem, 1.5vw, 1.6rem);
+}
+
+.nexus-wallet-top-card .admin-wallet-connect-button {
+  min-height: 40px;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-topbar {
+  align-items: flex-start !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-top-actions {
+  align-self: flex-start !important;
+  margin-left: 8px;
+}
+
+@media (max-width: 1280px) {
+  .nexus-wallet-top-card {
+    flex-basis: 400px;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .nexus-wallet-top-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  body.snc-nexus-body.admin-unlocked .nexus-topbar {
+    flex-wrap: wrap !important;
+  }
+}
+
+
+/* Ajuste horizontal solicitado para la card de wallet */
+.nexus-wallet-top-card {
+  flex: 0 0 440px !important;
+  max-width: 440px !important;
+}
+
+.nexus-wallet-top-card .nexus-panel-head {
+  min-height: 44px !important;
+  padding: 10px 14px !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-body {
+  grid-template-columns: 44px minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  padding: 12px 14px !important;
+  gap: 12px !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-icon {
+  width: 44px !important;
+  height: 44px !important;
+  font-size: 0.95rem !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-info strong {
+  font-size: clamp(0.95rem, 1.2vw, 1.35rem) !important;
+  line-height: 1.05 !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-info p {
+  margin-top: 4px !important;
+  font-size: 0.8rem !important;
+  line-height: 1.15 !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-info small {
+  display: inline-block !important;
+  margin-top: 4px !important;
+  font-size: 0.72rem !important;
+  line-height: 1.15 !important;
+}
+
+.nexus-wallet-top-card .admin-wallet-connect-button {
+  grid-column: auto !important;
+  width: auto !important;
+  min-height: 38px !important;
+  margin-top: 0 !important;
+  padding: 0 16px !important;
+  justify-self: end !important;
+  align-self: center !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 1180px) {
+  .nexus-wallet-top-card {
+    flex: 0 0 400px !important;
+    max-width: 400px !important;
+  }
+
+  .nexus-wallet-top-card .nexus-wallet-side-body {
+    grid-template-columns: 40px minmax(0, 1fr) auto !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nexus-wallet-top-card {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+  }
+
+  .nexus-wallet-top-card .nexus-wallet-side-body {
+    grid-template-columns: 44px minmax(0, 1fr) !important;
+  }
+
+  .nexus-wallet-top-card .admin-wallet-connect-button {
+    grid-column: 1 / -1 !important;
+    justify-self: start !important;
+    margin-top: 6px !important;
+  }
+}
+
+
+/* Ajuste final: wallet más pequeña y sin encabezado */
+.nexus-wallet-top-card {
+  flex: 0 0 370px !important;
+  max-width: 370px !important;
+  min-height: auto !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-body {
+  grid-template-columns: 40px minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  padding: 12px 14px !important;
+  gap: 10px !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-icon {
+  width: 40px !important;
+  height: 40px !important;
+  font-size: 0.88rem !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-info strong {
+  font-size: 0.92rem !important;
+  line-height: 1.05 !important;
+  margin: 0 !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-info p {
+  margin-top: 4px !important;
+  font-size: 0.74rem !important;
+  line-height: 1.1 !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-info small {
+  margin-top: 3px !important;
+  font-size: 0.68rem !important;
+  line-height: 1.1 !important;
+}
+
+.nexus-wallet-top-card .admin-wallet-connect-button {
+  min-height: 34px !important;
+  padding: 0 14px !important;
+  font-size: 0.74rem !important;
+}
+
+@media (max-width: 1280px) {
+  .nexus-wallet-top-card {
+    flex-basis: 340px !important;
+    max-width: 340px !important;
+  }
+}
+
+
+/* Ajuste extra: wallet aún más pequeña y sin texto Leyendo */
+.nexus-wallet-top-card {
+  flex: 0 0 300px !important;
+  max-width: 300px !important;
+  border-radius: 18px !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-body {
+  grid-template-columns: 34px minmax(0, 1fr) auto !important;
+  padding: 10px 12px !important;
+  gap: 8px !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-icon {
+  width: 34px !important;
+  height: 34px !important;
+  font-size: 0.76rem !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-info strong {
+  display: none !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-info p {
+  margin-top: 0 !important;
+  font-size: 0.72rem !important;
+  line-height: 1.08 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-info small {
+  display: block !important;
+  margin-top: 4px !important;
+  font-size: 0.63rem !important;
+  line-height: 1.05 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.nexus-wallet-top-card .admin-wallet-connect-button {
+  min-height: 30px !important;
+  padding: 0 12px !important;
+  font-size: 0.68rem !important;
+  border-radius: 999px !important;
+}
+
+@media (max-width: 1280px) {
+  .nexus-wallet-top-card {
+    flex-basis: 280px !important;
+    max-width: 280px !important;
+  }
+}
+
+
+/* Ajuste solicitado: menos alto, más ancho y un poco más arriba */
+.nexus-wallet-top-card {
+  flex: 0 0 360px !important;
+  max-width: 360px !important;
+  margin-top: -4px !important;
+  align-self: flex-start !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-body {
+  grid-template-columns: 32px minmax(0, 1fr) auto !important;
+  padding: 8px 12px !important;
+  gap: 8px !important;
+  min-height: 0 !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-icon {
+  width: 32px !important;
+  height: 32px !important;
+  font-size: 0.72rem !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-info p {
+  font-size: 0.78rem !important;
+  line-height: 1.05 !important;
+}
+
+.nexus-wallet-top-card .nexus-wallet-side-info small {
+  margin-top: 2px !important;
+  font-size: 0.62rem !important;
+  line-height: 1 !important;
+}
+
+.nexus-wallet-top-card .admin-wallet-connect-button {
+  min-height: 28px !important;
+  padding: 0 14px !important;
+  font-size: 0.66rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-topbar {
+  align-items: flex-start !important;
+}
+
+@media (max-width: 1280px) {
+  .nexus-wallet-top-card {
+    flex-basis: 340px !important;
+    max-width: 340px !important;
+  }
+}
+
+
+/* Ajuste de tablas a pantalla completa en Referidos y Compradores */
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .nexus-content-grid,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .nexus-content-grid {
+  grid-template-columns: minmax(0, 1fr) !important;
+  align-items: start !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .nexus-right-stack,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .nexus-right-stack {
+  display: none !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .nexus-left-stack,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .nexus-left-stack,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .admin-tab-panel,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .admin-tab-panel {
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] #referidosPanel:not([hidden]),
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] #compradoresPanel:not([hidden]) {
+  display: block !important;
+  grid-template-rows: none !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .referral-table-card.nexus-panel,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .referral-table-card.nexus-panel {
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .table-scroll,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .table-scroll {
+  width: 100% !important;
+  max-height: none !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .nexus-table,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .nexus-table {
+  width: 100% !important;
+  min-width: 100% !important;
+  table-layout: auto !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .nexus-table th,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .nexus-table td,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .nexus-table th,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .nexus-table td {
+  padding: 10px 12px !important;
+  font-size: 0.78rem !important;
+  line-height: 1.25 !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .wallet-copy-wrap,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .wallet-copy-wrap {
+  max-width: 100% !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .wallet-full-value,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .wallet-full-value {
+  max-width: 260px !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .admin-pay-button,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .admin-pay-button {
+  min-width: 82px !important;
+  padding: 0 10px !important;
+  white-space: nowrap !important;
+}
+
+@media (max-width: 900px) {
+  body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .nexus-table,
+  body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .nexus-table {
+    min-width: 720px !important;
+  }
+}
+
+
+/* Transacciones usa el mismo espacio ancho que Referidos y Compradores */
+body.snc-nexus-body.admin-unlocked[data-admin-tab="transacciones"] .nexus-content-grid {
+  grid-template-columns: minmax(0, 1fr) !important;
+  align-items: start !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="transacciones"] .nexus-right-stack {
+  display: none !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="transacciones"] .nexus-left-stack,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="transacciones"] .admin-tab-panel {
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="transacciones"] #transaccionesPanel:not([hidden]) {
+  display: block !important;
+  grid-template-rows: none !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="transacciones"] .referral-table-card.nexus-panel {
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="transacciones"] .table-scroll {
+  width: 100% !important;
+  max-height: none !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="transacciones"] .nexus-table {
+  width: 100% !important;
+  min-width: 100% !important;
+  table-layout: auto !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="transacciones"] .nexus-table th,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="transacciones"] .nexus-table td {
+  padding: 10px 12px !important;
+  font-size: 0.78rem !important;
+  line-height: 1.25 !important;
+}
+
+@media (max-width: 900px) {
+  body.snc-nexus-body.admin-unlocked[data-admin-tab="transacciones"] .nexus-table {
+    min-width: 720px !important;
+  }
+}
+
+
+/* Scroll interno solo para los paneles de tablas */
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"],
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] {
+  overflow: hidden !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .snc-nexus-root,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .snc-nexus-root,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] #adminProtectedPanel.nexus-dashboard,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] #adminProtectedPanel.nexus-dashboard,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .nexus-main,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .nexus-main {
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .nexus-left-stack,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .nexus-left-stack {
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] #referidosPanel,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] #compradoresPanel {
+  min-height: 0 !important;
+  height: auto !important;
+  overflow: hidden !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .referral-table-card.nexus-panel,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .referral-table-card.nexus-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  max-height: calc(100vh - 318px) !important;
+  overflow: hidden !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .referral-table-card.nexus-panel .table-scroll,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .referral-table-card.nexus-panel .table-scroll {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .referral-table-card.nexus-panel .nexus-panel-head,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .referral-table-card.nexus-panel .admin-table-note,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .referral-table-card.nexus-panel .nexus-panel-head,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .referral-table-card.nexus-panel .admin-table-note {
+  flex: 0 0 auto !important;
+}
+
+body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .referral-table thead th,
+body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .referral-table thead th {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 5 !important;
+}
+
+@media (max-height: 760px) {
+  body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .referral-table-card.nexus-panel,
+  body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .referral-table-card.nexus-panel {
+    max-height: calc(100vh - 286px) !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"],
+  body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] {
+    overflow: auto !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .snc-nexus-root,
+  body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .snc-nexus-root,
+  body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] #adminProtectedPanel.nexus-dashboard,
+  body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] #adminProtectedPanel.nexus-dashboard,
+  body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .nexus-main,
+  body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .nexus-main {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  body.snc-nexus-body.admin-unlocked[data-admin-tab="referidos"] .referral-table-card.nexus-panel,
+  body.snc-nexus-body.admin-unlocked[data-admin-tab="compradores"] .referral-table-card.nexus-panel {
+    max-height: 62vh !important;
+  }
+}
+
+
+/* Tarjetas de métricas más compactas y sin porcentajes decorativos */
+body.snc-nexus-body.admin-unlocked .nexus-stats {
+  gap: 10px !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-card {
+  min-height: 74px !important;
+  height: auto !important;
+  padding: 9px 12px 8px !important;
+  grid-template-columns: 36px minmax(0, 1fr) !important;
+  gap: 9px !important;
+  align-items: start !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-icon {
+  width: 36px !important;
+  height: 36px !important;
+  font-size: 0.82rem !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-card span {
+  font-size: 0.62rem !important;
+  line-height: 1.05 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-card strong {
+  margin: 3px 0 1px !important;
+  font-size: clamp(0.96rem, 1.04vw, 1.22rem) !important;
+  line-height: 1.02 !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-card small {
+  font-size: 0.64rem !important;
+  line-height: 1.08 !important;
+  max-height: 2.16em !important;
+  overflow: hidden !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-stat-card em {
+  display: none !important;
+}
+
+body.snc-nexus-body.admin-unlocked .nexus-spark {
+  right: 10px !important;
+  bottom: 8px !important;
+  transform: scale(0.66) !important;
+  transform-origin: right bottom !important;
+  opacity: 0.72 !important;
+}
+
+.admin-status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 84px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.admin-status-badge.is-pending {
+  color: #ffd86b;
+  border: 1px solid rgba(255, 216, 107, 0.42);
+  background: rgba(255, 216, 107, 0.10);
+  box-shadow: inset 0 0 0 1px rgba(255, 216, 107, 0.05);
+}
+
+.admin-status-badge.is-paid {
+  color: #48f28a;
+  border: 1px solid rgba(72, 242, 138, 0.38);
+  background: rgba(72, 242, 138, 0.10);
+  box-shadow: inset 0 0 0 1px rgba(72, 242, 138, 0.05);
+}
+
+.admin-type-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 92px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  color: #f6d36b;
+  border: 1px solid rgba(246, 211, 107, 0.32);
+  background: rgba(246, 211, 107, 0.08);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}

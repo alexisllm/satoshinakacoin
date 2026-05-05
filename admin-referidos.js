@@ -47,6 +47,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const adminConfirmRecipientLabel = $("#adminConfirmRecipientLabel");
   const adminConfirmWallet = $("#adminConfirmWallet");
   const adminConfirmCopyWallet = $("#adminConfirmCopyWallet");
+  const adminStatsSection = $("#adminStatsSection");
+  const adminSummaryCard = $("#adminSummaryCard");
+  const adminActivityCard = $("#adminActivityCard");
+  const summaryReferrersCount = $("#summaryReferrersCount");
+  const summaryReferralPurchases = $("#summaryReferralPurchases");
+  const summaryPendingRewards = $("#summaryPendingRewards");
+  const summaryPaidRewards = $("#summaryPaidRewards");
+  const summaryBuyersCount = $("#summaryBuyersCount");
+  const summaryPurchasedSnc = $("#summaryPurchasedSnc");
+  const summaryPendingDelivery = $("#summaryPendingDelivery");
+  const summaryDeliveredSnc = $("#summaryDeliveredSnc");
+  const adminTotalSncValue = $("#adminTotalSncValue");
+  const adminPendingTotalValue = $("#adminPendingTotalValue");
+  const adminPaidTotalValue = $("#adminPaidTotalValue");
+  const adminProcessTotalValue = $("#adminProcessTotalValue");
+  const adminRecentActivity = $("#adminRecentActivity");
+  const adminSyncTime = $("#adminSyncTime");
+  const adminSentSncValue = $("#adminSentSncValue");
+  const adminWalletBalanceValue = $("#adminWalletBalanceValue");
+  const adminAvailableSncValue = $("#adminAvailableSncValue");
+  const adminAvailableSncHelp = $("#adminAvailableSncHelp");
+  const adminAvailableSncStatus = $("#adminAvailableSncStatus");
 
   const state = {
     adminKey: "",
@@ -58,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     referralsData: null,
     purchasesData: null,
     buyersData: null,
-    activeTab: "referidos",
+    activeTab: "resumen",
     tokenDecimals: 18
   };
 
@@ -260,11 +282,36 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   };
 
+  let adminMessageTimer = null;
+
   const setMessage = (message, type = "success") => {
     if (!adminMessage) return;
-    adminMessage.textContent = message;
+
+    const cleanMessage = String(message || "").trim();
+
+    if (adminMessageTimer) {
+      window.clearTimeout(adminMessageTimer);
+      adminMessageTimer = null;
+    }
+
+    adminMessage.textContent = cleanMessage;
     adminMessage.classList.remove("success", "error");
-    adminMessage.classList.add(type);
+
+    if (!cleanMessage) {
+      return;
+    }
+
+    if (type) {
+      adminMessage.classList.add(type);
+    }
+
+    if (type === "success") {
+      adminMessageTimer = window.setTimeout(() => {
+        adminMessage.textContent = "";
+        adminMessage.classList.remove("success", "error");
+        adminMessageTimer = null;
+      }, 2600);
+    }
   };
 
   const apiRequest = async (endpoint, options = {}) => {
@@ -324,6 +371,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const updatePayoutWalletUi = () => {
     const isConnected = Boolean(state.payoutWallet);
     const hasBalance = state.tokenBalance !== null && state.tokenBalance !== undefined;
+    const balanceText = hasBalance ? formatSnc(state.tokenBalance, 2) : "0 SNC";
 
     if (walletConnectStat) {
       walletConnectStat.classList.toggle("is-connected", isConnected);
@@ -335,12 +383,48 @@ document.addEventListener("DOMContentLoaded", () => {
         : "No conectada";
     }
 
+    if (adminWalletBalanceValue) {
+      if (!isConnected) {
+        adminWalletBalanceValue.textContent = "0 SNC";
+      } else if (hasBalance) {
+        adminWalletBalanceValue.textContent = balanceText;
+      } else {
+        adminWalletBalanceValue.textContent = "Leyendo...";
+      }
+    }
+
+    if (adminAvailableSncValue) {
+      adminAvailableSncValue.textContent = !isConnected
+        ? "0 SNC"
+        : hasBalance
+          ? balanceText
+          : "Leyendo...";
+    }
+
+    if (adminAvailableSncHelp) {
+      adminAvailableSncHelp.textContent = isConnected
+        ? "Saldo disponible en la wallet admin para enviar a usuarios."
+        : "Conecta la wallet admin para ver cuánto puedes enviar.";
+    }
+
+    if (adminAvailableSncStatus) {
+      if (!isConnected) {
+        adminAvailableSncStatus.textContent = "Wallet no conectada";
+      } else if (state.tokenBalanceLoading) {
+        adminAvailableSncStatus.textContent = "Consultando saldo";
+      } else if (hasBalance) {
+        adminAvailableSncStatus.textContent = `${shortAddress(state.payoutWallet)} listo para enviar`;
+      } else {
+        adminAvailableSncStatus.textContent = "Saldo no disponible";
+      }
+    }
+
     if (connectPayoutWalletButton) {
       connectPayoutWalletButton.textContent = isConnected
-        ? "Wallet SNC conectada"
-        : "Conectar wallet SNC";
+        ? "Desconectar"
+        : "Conectar wallet";
       connectPayoutWalletButton.classList.toggle("is-connected", isConnected);
-      connectPayoutWalletButton.disabled = isConnected;
+      connectPayoutWalletButton.disabled = false;
     }
 
     if (adminTokenStatus) {
@@ -349,9 +433,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!isConnected) {
         adminTokenStatus.textContent = "Conecta la wallet que tiene los tokens SNC";
       } else if (!state.tokenAddress) {
-        adminTokenStatus.innerHTML = `Consultando saldo disponible en <strong>SNC</strong>`;
+        adminTokenStatus.innerHTML = `Consultando saldo <strong>SNC</strong>`;
       } else if (state.tokenBalanceLoading) {
-        adminTokenStatus.innerHTML = `Consultando saldo disponible en <strong>SNC</strong>`;
+        adminTokenStatus.innerHTML = `Consultando saldo <strong>SNC</strong>`;
       } else if (hasBalance) {
         adminTokenStatus.innerHTML = `Disponible para enviar: <strong>${formatSnc(state.tokenBalance)}</strong>`;
       } else {
@@ -399,6 +483,17 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const connectPayoutWallet = async () => {
+    if (state.payoutWallet) {
+      state.payoutWallet = "";
+      state.payoutProvider = null;
+      state.tokenBalance = null;
+      state.tokenBalanceLoading = false;
+      clearPayoutWalletConnectionMemory();
+      updatePayoutWalletUi();
+      setMessage("Wallet de pago desconectada.", "success");
+      return;
+    }
+
     try {
       const provider = window.ethereum;
 
@@ -607,33 +702,49 @@ document.addEventListener("DOMContentLoaded", () => {
   const renderRows = (rows = []) => {
     if (!adminTableBody) return;
 
-    if (!rows.length) {
+    const referredPurchases = rows.filter((purchase) => purchase?.referrerWallet && purchase?.payoutStatus !== "paid");
+    const referrers = Array.isArray(state.referralsData?.referrers) ? state.referralsData.referrers : [];
+    const getPendingByReferrer = (wallet) => {
+      const normalizedWallet = String(wallet || "").toLowerCase();
+      const referrer = referrers.find((item) => String(item?.referrerWallet || "").toLowerCase() === normalizedWallet);
+      return Number(referrer?.pendingRewardsSnc || 0);
+    };
+
+    if (!referredPurchases.length) {
       adminTableBody.innerHTML =
-        '<tr><td colspan="7" class="referral-empty">Aún no hay compras confirmadas con referidos.</td></tr>';
+        '<tr><td colspan="8" class="referral-empty">Aún no hay compras realizadas con wallet o enlace de referido.</td></tr>';
       return;
     }
 
-    adminTableBody.innerHTML = rows
-      .map((item) => {
+    adminTableBody.innerHTML = referredPurchases
+      .map((purchase) => {
+        const txUrl = purchase?.txHash ? `https://bscscan.com/tx/${purchase.txHash}` : "#";
+        const date = purchase?.createdAt ? new Date(purchase.createdAt).toLocaleString("es-ES") : "-";
+        const isPaid = purchase?.payoutStatus === "paid";
+        const commission = Number(purchase?.commissionSncEstimated || 0);
+        const pendingForReferrer = getPendingByReferrer(purchase.referrerWallet) || commission;
+        const canPayReferrer = !isPaid && pendingForReferrer > 0;
+
         return `
           <tr>
-            <td class="wallet-full">${renderWalletWithCopy(item.referrerWallet)}</td>
-            <td>${escapeHtml(item.code || "-")}</td>
-            <td>${item.totalPurchases}</td>
-            <td>${formatNumber(item.totalVolumeBnb, 6)} BNB</td>
-            <td>${formatSnc(item.pendingRewardsSnc)}</td>
-            <td>${formatSnc(item.paidRewardsSnc)}</td>
+            <td class="wallet-full">${renderWalletWithCopy(purchase.referrerWallet)}</td>
+            <td>${escapeHtml(shortAddress(purchase.buyerWallet))}</td>
+            <td>${formatNumber(purchase.amountBnb, 6)} BNB</td>
+            <td>${formatSnc(commission)}</td>
+            <td>${purchase?.txHash ? `<a href="${txUrl}" target="_blank" rel="noopener">Ver TX</a>` : "-"}</td>
+            <td><span class="admin-status-badge ${isPaid ? "is-paid" : "is-pending"}">${isPaid ? "Pagado" : "Pendiente"}</span></td>
+            <td>${date}</td>
             <td>
               <div class="admin-pay-cell">
-                <span>Pagar</span>
+                <span>${isPaid ? "Completado" : "Pagar"}</span>
                 <button
                   class="admin-pay-button"
                   type="button"
-                  data-pay-referrer="${escapeHtml(item.referrerWallet || "")}"
-                  data-pay-snc="${escapeHtml(item.pendingRewardsSnc || "0")}"
-                  ${Number(item.pendingRewardsSnc || 0) <= 0 ? "disabled" : ""}
+                  data-pay-referrer="${escapeHtml(purchase.referrerWallet || "")}"
+                  data-pay-snc="${escapeHtml(String(pendingForReferrer || 0))}"
+                  ${canPayReferrer ? "" : "disabled"}
                 >
-                  Enviar SNC
+                  ${isPaid ? "Pagado" : "Enviar SNC"}
                 </button>
               </div>
             </td>
@@ -666,7 +777,58 @@ document.addEventListener("DOMContentLoaded", () => {
             <td>${formatNumber(purchase.amountBnb, 6)} BNB</td>
             <td>${formatSnc(purchase.commissionSncEstimated)}</td>
             <td><a href="${txUrl}" target="_blank" rel="noopener">Ver TX</a></td>
-            <td>${purchase.payoutStatus === "paid" ? "Pagado" : "Pendiente"}</td>
+            <td><span class="admin-status-badge ${purchase.payoutStatus === "paid" ? "is-paid" : "is-pending"}">${purchase.payoutStatus === "paid" ? "Pagado" : "Pendiente"}</span></td>
+            <td>${date}</td>
+          </tr>
+        `;
+      })
+      .join("");
+  };
+
+  const renderPaidTransactionRows = (purchases = []) => {
+    if (!adminPurchasesBody) return;
+
+    const paidReferralRows = purchases
+      .filter((purchase) => purchase.referrerWallet && purchase.payoutStatus === "paid")
+      .map((purchase) => ({
+        type: "Referido",
+        wallet: purchase.referrerWallet,
+        amountSnc: purchase.commissionSncEstimated,
+        txHash: purchase.payoutTxHash || purchase.txHash,
+        createdAt: purchase.paidAt || purchase.createdAt
+      }));
+
+    const paidBuyerRows = purchases
+      .filter((purchase) => purchase.tokenDeliveryStatus === "paid")
+      .map((purchase) => ({
+        type: "Comprador",
+        wallet: purchase.buyerWallet,
+        amountSnc: purchase.tokensSncEstimated,
+        txHash: purchase.tokenDeliveryTxHash || purchase.txHash,
+        createdAt: purchase.tokenDeliveredAt || purchase.createdAt
+      }));
+
+    const paidRows = [...paidReferralRows, ...paidBuyerRows]
+      .sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+
+    if (!paidRows.length) {
+      adminPurchasesBody.innerHTML =
+        '<tr><td colspan="6" class="referral-empty">Aún no hay transacciones pagadas.</td></tr>';
+      return;
+    }
+
+    adminPurchasesBody.innerHTML = paidRows
+      .map((item) => {
+        const txUrl = item.txHash ? `https://bscscan.com/tx/${item.txHash}` : "#";
+        const date = item.createdAt ? new Date(item.createdAt).toLocaleString("es-ES") : "-";
+
+        return `
+          <tr>
+            <td><span class="admin-type-badge">${escapeHtml(item.type)}</span></td>
+            <td class="wallet-full">${renderWalletWithCopy(item.wallet)}</td>
+            <td>${formatSnc(item.amountSnc)}</td>
+            <td>${item.txHash ? `<a href="${txUrl}" target="_blank" rel="noopener">Ver TX</a>` : "-"}</td>
+            <td><span class="admin-status-badge is-paid">Pagado</span></td>
             <td>${date}</td>
           </tr>
         `;
@@ -677,13 +839,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const renderBuyersRows = (buyers = []) => {
     if (!adminBuyersBody) return;
 
-    if (!buyers.length) {
+    const pendingBuyers = buyers.filter((buyer) => Number(buyer.pendingDeliverySnc || 0) > 0);
+
+    if (!pendingBuyers.length) {
       adminBuyersBody.innerHTML =
         '<tr><td colspan="6" class="referral-empty">Aún no hay compradores registrados.</td></tr>';
       return;
     }
 
-    adminBuyersBody.innerHTML = buyers
+    adminBuyersBody.innerHTML = pendingBuyers
       .map((buyer) => `
         <tr>
           <td class="wallet-full">${renderWalletWithCopy(buyer.buyerWallet)}</td>
@@ -710,9 +874,124 @@ document.addEventListener("DOMContentLoaded", () => {
       .join("");
   };
 
-  const updateAdminSummaryForTab = (tabName = state.activeTab || "referidos") => {
+  const sumBy = (rows = [], key = "") =>
+    rows.reduce((total, item) => total + Number(item?.[key] || 0), 0);
+
+  const setText = (element, value) => {
+    if (element) element.textContent = value;
+  };
+
+  const formatActivityDate = (dateValue) => {
+    if (!dateValue) return "Fecha no disponible";
+
+    try {
+      return new Date(dateValue).toLocaleString("es-ES", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    } catch (error) {
+      return "Fecha no disponible";
+    }
+  };
+
+  const updateOverviewSummary = () => {
     const referralsData = state.referralsData || {};
     const buyersData = state.buyersData || {};
+    const referrers = Array.isArray(referralsData.referrers) ? referralsData.referrers : [];
+    const buyers = Array.isArray(buyersData.buyers) ? buyersData.buyers : [];
+
+    setText(summaryReferrersCount, String(referralsData.totalReferrers || referrers.length || 0));
+    setText(summaryReferralPurchases, String(referralsData.totalPurchases || sumBy(referrers, "totalPurchases") || 0));
+    setText(summaryPendingRewards, formatSnc(referralsData.totalPendingRewardsSnc || sumBy(referrers, "pendingRewardsSnc") || 0, 2));
+    setText(summaryPaidRewards, formatSnc(sumBy(referrers, "paidRewardsSnc"), 2));
+
+    setText(summaryBuyersCount, String(buyersData.totalBuyers || buyers.length || 0));
+    setText(summaryPurchasedSnc, formatSnc(buyersData.totalPurchasedSnc || sumBy(buyers, "totalPurchasedSnc") || 0, 2));
+    setText(summaryPendingDelivery, formatSnc(buyersData.totalPendingDeliverySnc || sumBy(buyers, "pendingDeliverySnc") || 0, 2));
+    setText(summaryDeliveredSnc, formatSnc(sumBy(buyers, "deliveredSnc"), 2));
+  };
+
+  const updateSatoshiInsights = () => {
+    updateOverviewSummary();
+    const referralsData = state.referralsData || {};
+    const purchasesData = state.purchasesData || {};
+    const buyersData = state.buyersData || {};
+
+    const referrers = Array.isArray(referralsData.referrers) ? referralsData.referrers : [];
+    const buyers = Array.isArray(buyersData.buyers) ? buyersData.buyers : [];
+    const purchases = Array.isArray(purchasesData.purchases) ? purchasesData.purchases : [];
+
+    const pendingRewards = Number(referralsData.totalPendingRewardsSnc || sumBy(referrers, "pendingRewardsSnc") || 0);
+    const paidRewards = sumBy(referrers, "paidRewardsSnc");
+    const pendingDelivery = Number(buyersData.totalPendingDeliverySnc || sumBy(buyers, "pendingDeliverySnc") || 0);
+    const deliveredSnc = sumBy(buyers, "deliveredSnc");
+    const inProcess = purchases
+      .filter((purchase) => purchase?.referrerWallet && purchase?.payoutStatus !== "paid")
+      .reduce((total, purchase) => total + Number(purchase?.commissionSncEstimated || 0), 0);
+
+    const totalPending = pendingRewards + pendingDelivery;
+    const totalPaid = paidRewards + deliveredSnc;
+    const totalSnc = totalPending + totalPaid + inProcess;
+
+    setText(adminTotalSncValue, formatNumber(totalSnc, 2));
+    setText(adminPendingTotalValue, formatSnc(totalPending, 2));
+    setText(adminPaidTotalValue, formatSnc(totalPaid, 2));
+    setText(adminProcessTotalValue, formatSnc(inProcess, 2));
+    setText(adminSentSncValue, formatSnc(totalPaid, 2));
+    setText(adminSyncTime, new Date().toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" }));
+
+    if (!adminRecentActivity) return;
+
+    const activityItems = purchases
+      .slice()
+      .sort((a, b) => new Date(b?.createdAt || 0) - new Date(a?.createdAt || 0))
+      .slice(0, 5);
+
+    if (!activityItems.length) {
+      adminRecentActivity.innerHTML = '<p><i aria-hidden="true">◆</i><span>Carga los datos para ver actividad reciente.</span></p>';
+      return;
+    }
+
+    adminRecentActivity.innerHTML = activityItems
+      .map((purchase) => {
+        const buyer = shortAddress(purchase?.buyerWallet || "");
+        const referrer = shortAddress(purchase?.referrerWallet || "");
+        const amount = purchase?.referrerWallet
+          ? `+${formatSnc(purchase?.commissionSncEstimated || 0, 2)}`
+          : `${formatNumber(purchase?.amountBnb || 0, 6)} BNB`;
+        const label = purchase?.referrerWallet
+          ? `Compra referida de ${buyer}`
+          : `Compra directa de ${buyer}`;
+
+        return `
+          <p>
+            <i aria-hidden="true">${purchase?.referrerWallet ? "↗" : "◆"}</i>
+            <span>${escapeHtml(label)}${referrer ? `<small>Referidor ${escapeHtml(referrer)} · ${escapeHtml(formatActivityDate(purchase?.createdAt))}</small>` : `<small>${escapeHtml(formatActivityDate(purchase?.createdAt))}</small>`}</span>
+            <b>${escapeHtml(amount)}</b>
+          </p>
+        `;
+      })
+      .join("");
+  };
+
+  const updateAdminSummaryForTab = (tabName = state.activeTab || "resumen") => {
+    const referralsData = state.referralsData || {};
+    const buyersData = state.buyersData || {};
+
+    if (tabName === "resumen") {
+      if (adminPrimaryStatLabel) adminPrimaryStatLabel.textContent = "Compras referidas";
+      if (adminPrimaryStatValue) adminPrimaryStatValue.textContent = String(referralsData.totalPurchases || 0);
+      if (adminPrimaryStatHelp) adminPrimaryStatHelp.textContent = "Compras confirmadas con enlace de referido.";
+
+      if (adminSecondaryStatLabel) adminSecondaryStatLabel.textContent = "SNC pendientes";
+      if (adminSecondaryStatValue) adminSecondaryStatValue.textContent = formatSnc((Number(referralsData.totalPendingRewardsSnc || 0) + Number(buyersData.totalPendingDeliverySnc || 0)), 2);
+      if (adminSecondaryStatHelp) adminSecondaryStatHelp.textContent = "SNC pendientes por pagar o entregar.";
+      updateSatoshiInsights();
+      return;
+    }
 
     if (tabName === "compradores") {
       if (adminPrimaryStatLabel) adminPrimaryStatLabel.textContent = "Compradores con compras";
@@ -722,6 +1001,23 @@ document.addEventListener("DOMContentLoaded", () => {
       if (adminSecondaryStatLabel) adminSecondaryStatLabel.textContent = "SNC compradores pendientes";
       if (adminSecondaryStatValue) adminSecondaryStatValue.textContent = formatSnc(buyersData.totalPendingDeliverySnc || 0);
       if (adminSecondaryStatHelp) adminSecondaryStatHelp.textContent = "SNC que faltan por enviar a compradores.";
+      updateSatoshiInsights();
+      return;
+    }
+
+    if (tabName === "transacciones") {
+      const purchasesData = state.purchasesData || {};
+      const purchases = Array.isArray(purchasesData.purchases) ? purchasesData.purchases : [];
+      const referredPurchases = purchases.filter((purchase) => purchase?.referrerWallet);
+
+      if (adminPrimaryStatLabel) adminPrimaryStatLabel.textContent = "Transacciones referidas";
+      if (adminPrimaryStatValue) adminPrimaryStatValue.textContent = String(referredPurchases.length || 0);
+      if (adminPrimaryStatHelp) adminPrimaryStatHelp.textContent = "Compras confirmadas con enlace o wallet de referido.";
+
+      if (adminSecondaryStatLabel) adminSecondaryStatLabel.textContent = "SNC pendientes";
+      if (adminSecondaryStatValue) adminSecondaryStatValue.textContent = formatSnc(referralsData.totalPendingRewardsSnc || 0);
+      if (adminSecondaryStatHelp) adminSecondaryStatHelp.textContent = "Comisiones SNC pendientes por pagar.";
+      updateSatoshiInsights();
       return;
     }
 
@@ -732,10 +1028,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (adminSecondaryStatLabel) adminSecondaryStatLabel.textContent = "SNC referidos pendientes";
     if (adminSecondaryStatValue) adminSecondaryStatValue.textContent = formatSnc(referralsData.totalPendingRewardsSnc || 0);
     if (adminSecondaryStatHelp) adminSecondaryStatHelp.textContent = "Comisiones SNC pendientes por pagar a referidores.";
+
+    updateSatoshiInsights();
   };
 
-  const setAdminTab = (tabName = "referidos") => {
-    state.activeTab = tabName === "compradores" ? "compradores" : "referidos";
+  const setAdminTab = (tabName = "resumen") => {
+    state.activeTab = ["resumen", "referidos", "compradores", "transacciones"].includes(tabName) ? tabName : "resumen";
+    document.body.dataset.adminTab = state.activeTab;
 
     tabButtons.forEach((button) => {
       const isActive = button.dataset.adminTab === state.activeTab;
@@ -747,11 +1046,24 @@ document.addEventListener("DOMContentLoaded", () => {
       panel.hidden = panel.dataset.adminPanel !== state.activeTab;
     });
 
+    if (adminStatsSection) {
+      adminStatsSection.hidden = state.activeTab === "resumen";
+    }
+
+    if (adminSummaryCard) {
+      adminSummaryCard.hidden = state.activeTab !== "resumen";
+    }
+
+    if (adminActivityCard) {
+      adminActivityCard.hidden = state.activeTab !== "resumen";
+    }
+
     updateAdminSummaryForTab(state.activeTab);
   };
 
   const openAdminPanel = ({ scroll = true } = {}) => {
     document.body.classList.add("admin-unlocked");
+    document.body.dataset.adminTab = state.activeTab || "resumen";
 
     if (adminLoginCard) adminLoginCard.hidden = true;
     if (adminProtectedPanel) adminProtectedPanel.hidden = false;
@@ -768,6 +1080,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const closeAdminPanel = () => {
     document.body.classList.remove("admin-unlocked");
+    delete document.body.dataset.adminTab;
     stopAdminAutoRefresh();
     clearStoredAdminKey();
     clearPayoutWalletConnectionMemory();
@@ -782,16 +1095,18 @@ document.addEventListener("DOMContentLoaded", () => {
     state.payoutWallet = "";
     state.payoutProvider = null;
     state.tokenBalance = null;
+    if (adminSentSncValue) adminSentSncValue.textContent = "0 SNC";
+    if (adminWalletBalanceValue) adminWalletBalanceValue.textContent = "0 SNC";
     updatePayoutWalletUi();
 
-    setAdminTab("referidos");
+    setAdminTab("resumen");
 
     if (adminKeyInput) {
       adminKeyInput.value = "";
       window.setTimeout(() => adminKeyInput.focus(), 80);
     }
 
-    setMessage("Sesión cerrada.", "success");
+    setMessage("", "");
   };
 
   const loadAdminData = async ({
@@ -826,8 +1141,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (adminReferrers) adminReferrers.textContent = String(data.totalReferrers || 0);
 
-      renderRows(data.referrers || []);
-      renderPurchaseRows(purchasesData.purchases || []);
+      renderRows(purchasesData.purchases || []);
+      renderPaidTransactionRows(purchasesData.purchases || []);
       renderBuyersRows(buyersData.buyers || []);
       updateAdminSummaryForTab(state.activeTab);
 

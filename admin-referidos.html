@@ -3,187 +3,396 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Admin de referidos SatoshiNakaCoin." />
-  <title>SNC | Admin Referidos</title>
+  <meta name="description" content="Panel admin de referidos y pagos SatoshiNakaCoin." />
+  <title>SNC | Admin Nexus</title>
   <link rel="icon" type="image/png" href="snc-favicon.png" />
   <link rel="apple-touch-icon" href="snc-favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <script src="admin-referidos.js" defer></script>
 </head>
-<body class="admin-page-body">
-  <div class="page-glow page-glow-one" aria-hidden="true"></div>
-  <div class="page-glow page-glow-two" aria-hidden="true"></div>
+<body class="admin-page-body snc-nexus-body">
+  <div class="nexus-bg" aria-hidden="true"></div>
+  <div class="nexus-orb nexus-orb-left" aria-hidden="true"></div>
+  <div class="nexus-orb nexus-orb-right" aria-hidden="true"></div>
 
-  <main class="referral-page admin-page">
-    <div class="container">
-      <header class="referral-page-header admin-topbar">
-        <a href="index.html" class="brand">
-          <span class="brand-mark"><img src="snc-coin.png" alt="SNC" class="brand-logo" /></span>
-          <span class="brand-text">
+  <p class="form-message nexus-admin-message" id="adminMessage" role="status" aria-live="polite"></p>
+
+  <main class="snc-nexus-root">
+    <section class="admin-login-card nexus-auth" id="adminLoginCard">
+      <div class="nexus-auth-shell">
+        <a href="index.html" class="nexus-auth-brand" aria-label="Volver al sitio SatoshiNakaCoin">
+          <img src="snc-coin.png" alt="Logo SNC" />
+          <span>
             <strong>SatoshiNakaCoin</strong>
-            <small>Admin Referidos</small>
+            <small>Admin Nexus</small>
           </span>
         </a>
 
-        <div class="admin-top-actions">
-          <div class="admin-session-menu" id="adminSessionMenu" hidden>
-            <button class="admin-creator-button" id="creatorMenuButton" type="button" aria-expanded="false" aria-controls="creatorDropdown">
-              Creador Alex
-              <span>⌄</span>
-            </button>
-            <div class="admin-creator-dropdown" id="creatorDropdown" hidden>
-              <button type="button" id="logoutAdminButton">Cerrar</button>
+        <div class="nexus-auth-card">
+          <div class="nexus-auth-coin" aria-hidden="true">
+            <img src="snc-coin.png" alt="" />
+          </div>
+
+          <p class="eyebrow">ACCESO ADMIN</p>
+          <h1>Centro de Control SNC</h1>
+          <p>
+            Ingresa tu clave privada para gestionar pagos de referidos, compradores y entrega de tokens SNC con seguridad.
+          </p>
+
+          <div class="admin-login-form nexus-auth-form">
+            <div class="admin-key-control">
+              <label for="adminKeyInput">ADMIN_KEY</label>
+              <input id="adminKeyInput" type="password" placeholder="Clave admin del desarrollador" autocomplete="current-password" />
             </div>
+            <button class="btn btn-primary" id="loadAdminButton" type="button">Entrar al panel</button>
           </div>
-</div>
-      </header>
 
-      <section class="admin-login-card" id="adminLoginCard">
-        <p class="eyebrow">ADMIN</p>
-        <h1>Compras con referidos</h1>
-        <p>
-          Ingresa tu clave privada para ver únicamente compras confirmadas que generaron comisión.
-        </p>
-
-        <div class="admin-login-form">
-          <div class="admin-key-control">
-            <label for="adminKeyInput">ADMIN_KEY</label>
-            <input id="adminKeyInput" type="password" placeholder="Clave admin del desarrollador" autocomplete="current-password" />
-          </div>
-          <button class="btn btn-primary" id="loadAdminButton" type="button">Cargar datos</button>
-        </div>
-
-        <p class="form-message" id="adminMessage" role="status" aria-live="polite"></p>
-      </section>
-
-      <section id="adminProtectedPanel" class="admin-protected-panel admin-content-panel" hidden>
-        <div class="admin-panel-head admin-panel-head-compact">
-          <div>
-            <p class="eyebrow">ADMIN</p>
-            <h1>Panel de pagos SNC</h1>
-            <p>
-              Gestiona pagos de referidos y entrega de SNC comprados desde la misma wallet admin.
-            </p>
+          <div class="nexus-auth-status">
+            <span><i aria-hidden="true"></i> Red descentralizada segura</span>
+            <span>Validación protegida</span>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="admin-tab-menu" role="tablist" aria-label="Panel admin">
-          <button class="admin-tab-button active" id="tabReferidosButton" type="button" data-admin-tab="referidos" role="tab" aria-selected="true">
+    <section id="adminProtectedPanel" class="admin-protected-panel nexus-dashboard" hidden>
+      <aside class="nexus-sidebar" aria-label="Navegación admin">
+        <div class="nexus-sidebar-brand">
+          <img src="snc-coin.png" alt="SatoshiNakaCoin" />
+          <strong>SatoshiNakaCoin</strong>
+          <small>Admin Nexus</small>
+        </div>
+
+        <nav class="nexus-nav">
+          <button type="button" class="active" data-admin-tab="resumen">
+            <span aria-hidden="true">◈</span>
+            Resumen
+          </button>
+          <button type="button" data-admin-tab="referidos">
+            <span aria-hidden="true">◎</span>
             Referidos
           </button>
-          <button class="admin-tab-button" id="tabCompradoresButton" type="button" data-admin-tab="compradores" role="tab" aria-selected="false">
+          <button type="button" data-admin-tab="compradores">
+            <span aria-hidden="true">♙</span>
             Compradores
           </button>
-        </div>
+          <button type="button" data-admin-tab="transacciones">
+            <span aria-hidden="true">⇄</span>
+            Transacciones
+          </button>
+        </nav>
 
-        <div class="referral-mini-stats admin-wallet-stats">
-          <article class="wallet-connect-stat admin-wallet-card">
-            <span>Wallet SNC</span>
-            <strong id="adminPayoutWalletStatus">No conectada</strong>
-            <small id="adminTokenStatus">Conecta la wallet que tiene los tokens SNC.</small>
-            <button class="btn btn-outline admin-wallet-connect-button" id="connectPayoutWalletButton" type="button">
-              Conectar wallet
-            </button>
-          </article>
-          <article>
-            <span id="adminPrimaryStatLabel">Compras referidas</span>
-            <strong id="adminPrimaryStatValue">0</strong>
-            <small id="adminPrimaryStatHelp">Compras que entraron con enlace de referido.</small>
-          </article>
-          <article>
-            <span id="adminSecondaryStatLabel">SNC referidos pendientes</span>
-            <strong id="adminSecondaryStatValue">0 SNC</strong>
-            <small id="adminSecondaryStatHelp">Comisiones SNC pendientes por pagar a referidores.</small>
-          </article>
+        <div class="nexus-sidebar-visual">
+          <img src="satoshi-sidebar-art.png" alt="Arte Satoshi NakaCoin" />
         </div>
+      </aside>
 
-        <div class="admin-tab-panel" id="referidosPanel" data-admin-panel="referidos">
-          <article class="referral-table-card">
-            <h2>Detalle por referidor</h2>
-            <div class="table-scroll">
-              <table class="referral-table">
-                <thead>
-                  <tr>
-                    <th>Referidor</th>
-                    <th>Código</th>
-                    <th>Compras</th>
-                    <th>Volumen</th>
-                    <th>Pendiente SNC</th>
-                    <th>Pagado SNC</th>
-                    <th>Pagar</th>
-                  </tr>
-                </thead>
-                <tbody id="adminTableBody">
-                  <tr><td colspan="7" class="referral-empty">Ingresa tu ADMIN_KEY y carga los datos.</td></tr>
-                </tbody>
-              </table>
+      <div class="nexus-main">
+        <header class="nexus-topbar">
+          <div class="nexus-topbar-heading">
+            <div class="nexus-title-row">
+              <h1>Centro de Control SNC</h1>
+            </div>
+            <p>Gestiona pagos, referidos, compradores y transacciones desde una interfaz segura.</p>
+          </div>
+
+          <article class="nexus-panel nexus-wallet-side-card nexus-wallet-top-card wallet-connect-stat admin-wallet-card" id="adminWalletSideCard">
+            <div class="nexus-wallet-side-body">
+              <div class="nexus-wallet-side-icon" aria-hidden="true">▣</div>
+              <div class="nexus-wallet-side-info">
+                <strong id="adminWalletBalanceValue">0 SNC</strong>
+                <p id="adminPayoutWalletStatus">No conectada</p>
+                <small id="adminTokenStatus">Conecta la wallet que tiene los tokens SNC.</small>
+              </div>
+              <button class="btn btn-outline admin-wallet-connect-button" id="connectPayoutWalletButton" type="button">
+                Conectar wallet
+              </button>
             </div>
           </article>
 
-          <article class="referral-table-card">
-            <h2>Compras referidas confirmadas</h2>
-            <p class="admin-table-note">
-              Aquí solo aparecen compras verificadas por txHash que entraron con enlace de referido.
-            </p>
-            <div class="table-scroll">
-              <table class="referral-table">
-                <thead>
-                  <tr>
-                    <th>Referidor</th>
-                    <th>Comprador</th>
-                    <th>Monto</th>
-                    <th>Comisión 5% SNC</th>
-                    <th>TX</th>
-                    <th>Estado</th>
-                    <th>Fecha</th>
-                  </tr>
-                </thead>
-                <tbody id="adminPurchasesBody">
-                  <tr><td colspan="7" class="referral-empty">Ingresa tu ADMIN_KEY y carga los datos.</td></tr>
-                </tbody>
-              </table>
+          <div class="nexus-top-actions">
+
+
+            <div class="admin-session-menu nexus-session" id="adminSessionMenu" hidden>
+              <button class="admin-creator-button" id="creatorMenuButton" type="button" aria-expanded="false" aria-controls="creatorDropdown">
+                <img src="snc-coin-header.png" alt="" aria-hidden="true" />
+                <span>
+                  <strong>Creador Alex</strong>
+                  <small>Administrador</small>
+                </span>
+                <b aria-hidden="true">⌄</b>
+              </button>
+              <div class="admin-creator-dropdown" id="creatorDropdown" hidden>
+                <button type="button" id="logoutAdminButton">Cerrar sesión</button>
+              </div>
             </div>
+          </div>
+        </header>
+
+
+        <section class="referral-mini-stats admin-wallet-stats nexus-stats" id="adminStatsSection" aria-label="Métricas principales">
+          <article class="nexus-stat-card">
+            <div class="nexus-stat-icon" aria-hidden="true">⌛</div>
+            <div>
+              <span id="adminSecondaryStatLabel">Pagos pendientes</span>
+              <strong id="adminSecondaryStatValue">0 SNC</strong>
+              <small id="adminSecondaryStatHelp">SNC pendientes por pagar.</small>
+            </div>
+            <div class="nexus-spark nexus-spark-gold" aria-hidden="true"></div>
           </article>
+
+          <article class="nexus-stat-card">
+            <div class="nexus-stat-icon" aria-hidden="true">➤</div>
+            <div>
+              <span>SNC enviados</span>
+              <strong id="adminSentSncValue">0 SNC</strong>
+              <small>Pagos completados y tokens entregados.</small>
+            </div>
+            <div class="nexus-spark nexus-spark-green" aria-hidden="true"></div>
+          </article>
+
+          <article class="nexus-stat-card">
+            <div class="nexus-stat-icon" aria-hidden="true">✓</div>
+            <div>
+              <span id="adminPrimaryStatLabel">Compras verificadas</span>
+              <strong id="adminPrimaryStatValue">0</strong>
+              <small id="adminPrimaryStatHelp">Compras confirmadas en la red.</small>
+            </div>
+            <div class="nexus-spark nexus-spark-green" aria-hidden="true"></div>
+          </article>
+
+          <article class="nexus-stat-card nexus-available-card">
+            <div class="nexus-stat-icon" aria-hidden="true">▣</div>
+            <div>
+              <span>SNC disponibles</span>
+              <strong id="adminAvailableSncValue">0 SNC</strong>
+              <small id="adminAvailableSncHelp">Conecta la wallet admin para ver cuánto puedes enviar.</small>
+              <em id="adminAvailableSncStatus">Wallet no conectada</em>
+            </div>
+            <div class="nexus-spark nexus-spark-gold" aria-hidden="true"></div>
+          </article>
+
+
+        </section>
+
+        <div class="nexus-content-grid">
+          <div class="nexus-left-stack">
+            <div class="admin-tab-panel" id="resumenPanel" data-admin-panel="resumen">
+              <article class="nexus-panel nexus-overview-panel">
+                <div class="nexus-panel-head">
+                  <div>
+                    <span>◈</span>
+                    <h2>Resumen general</h2>
+                  </div>
+                  <small>Referidos y compradores</small>
+                </div>
+
+                <div class="nexus-overview-grid">
+                  <section class="nexus-overview-card">
+                    <div class="nexus-overview-title">
+                      <span aria-hidden="true">◎</span>
+                      <div>
+                        <h3>Resumen de referidos</h3>
+                        <p>Compras realizadas con wallet o enlace del referidor.</p>
+                      </div>
+                    </div>
+
+                    <div class="nexus-overview-metrics">
+                      <p><span>Referidores</span><strong id="summaryReferrersCount">0</strong></p>
+                      <p><span>Compras referidas</span><strong id="summaryReferralPurchases">0</strong></p>
+                      <p><span>Pendiente por pagar</span><strong id="summaryPendingRewards">0 SNC</strong></p>
+                      <p><span>Pagado a referidores</span><strong id="summaryPaidRewards">0 SNC</strong></p>
+                    </div>
+                  </section>
+
+                  <section class="nexus-overview-card">
+                    <div class="nexus-overview-title">
+                      <span aria-hidden="true">♙</span>
+                      <div>
+                        <h3>Resumen de compradores</h3>
+                        <p>Wallets que compraron SNC y tokens pendientes de entrega.</p>
+                      </div>
+                    </div>
+
+                    <div class="nexus-overview-metrics">
+                      <p><span>Compradores</span><strong id="summaryBuyersCount">0</strong></p>
+                      <p><span>SNC comprados</span><strong id="summaryPurchasedSnc">0 SNC</strong></p>
+                      <p><span>Pendiente por entregar</span><strong id="summaryPendingDelivery">0 SNC</strong></p>
+                      <p><span>Entregado a compradores</span><strong id="summaryDeliveredSnc">0 SNC</strong></p>
+                    </div>
+                  </section>
+                </div>
+              </article>
+            </div>
+
+            <div class="admin-tab-panel" id="referidosPanel" data-admin-panel="referidos" hidden>
+              <article class="referral-table-card nexus-panel">
+                <div class="nexus-panel-head">
+                  <div>
+                    <span>◎</span>
+                    <h2>Compras con referido</h2>
+                  </div>
+                  <small>Solo cuando la compra entra con wallet/enlace del referidor</small>
+                </div>
+
+                <p class="admin-table-note">
+                  Aquí solo se muestra la compra si el referido compró usando el enlace o wallet asociada al referidor.
+                </p>
+
+                <div class="table-scroll">
+                  <table class="referral-table nexus-table">
+                    <thead>
+                      <tr>
+                        <th>Referidor</th>
+                        <th>Comprador</th>
+                        <th>Monto</th>
+                        <th>Comisión SNC</th>
+                        <th>TX Hash</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                        <th>Acción</th>
+                      </tr>
+                    </thead>
+                    <tbody id="adminTableBody">
+                      <tr><td colspan="8" class="referral-empty">Ingresa tu ADMIN_KEY y carga los datos.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+            </div>
+
+            <div class="admin-tab-panel" id="compradoresPanel" data-admin-panel="compradores" hidden>
+              <article class="referral-table-card nexus-panel">
+                <div class="nexus-panel-head">
+                  <div>
+                    <span>♙</span>
+                    <h2>Compradores SNC</h2>
+                  </div>
+                  <small>Entrega de tokens</small>
+                </div>
+
+                <p class="admin-table-note">
+                  Aquí puedes enviar a cada comprador los SNC que compró y marcar la entrega como pagada.
+                </p>
+
+                <div class="table-scroll">
+                  <table class="referral-table nexus-table">
+                    <thead>
+                      <tr>
+                        <th>Comprador</th>
+                        <th>Compras</th>
+                        <th>Total comprado</th>
+                        <th>Pendiente SNC</th>
+                        <th>Enviado SNC</th>
+                        <th>Enviar</th>
+                      </tr>
+                    </thead>
+                    <tbody id="adminBuyersBody">
+                      <tr><td colspan="6" class="referral-empty">Ingresa tu ADMIN_KEY y carga los datos.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+            </div>
+
+            <div class="admin-tab-panel" id="transaccionesPanel" data-admin-panel="transacciones" hidden>
+              <article class="referral-table-card nexus-panel">
+                <div class="nexus-panel-head">
+                  <div>
+                    <span>⇄</span>
+                  <h2>Transacciones pagadas</h2>
+                </div>
+                  <small>Referidos y compradores</small>
+                </div>
+
+                <p class="admin-table-note">
+                  Aquí aparecen solo pagos completados a referidos y entregas completadas a compradores.
+                </p>
+
+                <div class="table-scroll">
+                  <table class="referral-table nexus-table">
+                    <thead>
+                      <tr>
+                        <th>Tipo</th>
+                        <th>Wallet</th>
+                        <th>SNC pagados</th>
+                        <th>TX</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                      </tr>
+                    </thead>
+                    <tbody id="adminPurchasesBody">
+                      <tr><td colspan="6" class="referral-empty">Ingresa tu ADMIN_KEY y carga los datos.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <aside class="nexus-right-stack" aria-label="Resumen y actividad">
+            <article class="nexus-panel nexus-summary-card" id="adminSummaryCard">
+              <div class="nexus-panel-head">
+                <div>
+                  <span>◌</span>
+                  <h2>Resumen general</h2>
+                </div>
+                <button type="button" aria-label="Actualizar resumen">•••</button>
+              </div>
+
+              <div class="nexus-summary-layout">
+                <div class="snc-donut nexus-donut" aria-hidden="true">
+                  <span>
+                    <small>Total</small>
+                    <strong id="adminTotalSncValue">0</strong>
+                    <small>SNC</small>
+                  </span>
+                </div>
+
+                <div class="nexus-legend">
+                  <p><i class="gold" aria-hidden="true"></i><span>Pendiente</span><b id="adminPendingTotalValue">0 SNC</b></p>
+                  <p><i class="green" aria-hidden="true"></i><span>Pagado</span><b id="adminPaidTotalValue">0 SNC</b></p>
+                  <p><i class="cyan" aria-hidden="true"></i><span>En proceso</span><b id="adminProcessTotalValue">0 SNC</b></p>
+                  <strong>Total actualizado <em id="adminSyncTime">ahora</em></strong>
+                </div>
+              </div>
+            </article>
+
+            <article class="nexus-panel nexus-activity-card" id="adminActivityCard">
+              <div class="nexus-panel-head">
+                <div>
+                  <span>⚡</span>
+                  <h2>Actividad reciente</h2>
+                </div>
+              </div>
+
+              <div class="snc-activity-list nexus-activity-list" id="adminRecentActivity">
+                <p><i aria-hidden="true">◆</i><span>Carga los datos para ver actividad reciente.</span></p>
+              </div>
+            </article>
+          </aside>
         </div>
 
-        <div class="admin-tab-panel" id="compradoresPanel" data-admin-panel="compradores" hidden>
-          <article class="referral-table-card">
-            <h2>Compradores SNC</h2>
-            <p class="admin-table-note">
-              Aquí puedes enviar a cada comprador los SNC que compró y marcar la entrega como pagada.
-            </p>
-            <div class="table-scroll">
-              <table class="referral-table">
-                <thead>
-                  <tr>
-                    <th>Comprador</th>
-                    <th>Compras</th>
-                    <th>Total comprado</th>
-                    <th>Pendiente SNC</th>
-                    <th>Enviado SNC</th>
-                    <th>Enviar</th>
-                  </tr>
-                </thead>
-                <tbody id="adminBuyersBody">
-                  <tr><td colspan="6" class="referral-empty">Ingresa tu ADMIN_KEY y carga los datos.</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </article>
-        </div>
-      </section>
-    </div>
+        <footer class="nexus-footer-quote">
+          <span>La confianza se gana con código. La libertad se construye en blockchain.</span>
+          <strong>— SATOSHI NAKAMOTO</strong>
+        </footer>
+      </div>
+    </section>
   </main>
+
   <div class="admin-confirm-overlay" id="adminConfirmOverlay" hidden>
-    <div class="admin-confirm-modal" role="dialog" aria-modal="true" aria-labelledby="adminConfirmTitle" aria-describedby="adminConfirmText">
+    <div class="admin-confirm-modal nexus-confirm-modal" role="dialog" aria-modal="true" aria-labelledby="adminConfirmTitle" aria-describedby="adminConfirmText">
       <button class="admin-confirm-close" id="adminConfirmClose" type="button" aria-label="Cerrar confirmación">×</button>
 
-      <div class="admin-confirm-icon" aria-hidden="true">SNC</div>
+      <div class="admin-confirm-icon" aria-hidden="true">
+        <img src="snc-coin-header.png" alt="" />
+      </div>
 
-      <p class="eyebrow">CONFIRMACIÓN</p>
+      <p class="eyebrow">CONFIRMACIÓN DE PAGO</p>
       <h2 id="adminConfirmTitle">Confirmar envío SNC</h2>
 
       <p class="admin-confirm-text" id="adminConfirmText">
@@ -204,7 +413,7 @@
       </div>
 
       <p class="admin-confirm-warning">
-        Confirma solo si la wallet conectada tiene suficientes SNC y estás seguro del destino.
+        Esta acción no se puede deshacer. Confirma solo si la wallet conectada tiene suficientes SNC y estás seguro del destino.
       </p>
 
       <div class="admin-confirm-actions">
@@ -213,6 +422,5 @@
       </div>
     </div>
   </div>
-
 </body>
 </html>
