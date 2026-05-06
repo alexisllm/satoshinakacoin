@@ -193,16 +193,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const shortAddress = (address) => address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "";
 
+  const normalizeFractionDigits = (digits, fallback = 4) => {
+    const parsed = Number(digits);
+    if (!Number.isFinite(parsed)) return fallback;
+    return Math.min(20, Math.max(0, Math.trunc(parsed)));
+  };
+
   const formatNumber = (value, digits = 8) => {
     const number = Number(value || 0);
-    return new Intl.NumberFormat("en-US", { maximumFractionDigits: digits }).format(number);
+    const maximumFractionDigits = normalizeFractionDigits(digits, 8);
+    return new Intl.NumberFormat("en-US", { maximumFractionDigits }).format(number);
   };
 
   const formatSnc = (value, digits = 4) => {
     const number = Number(value || 0);
+    const maximumFractionDigits = normalizeFractionDigits(digits, 4);
+    const minimumFractionDigits = number > 0 && number < 1 ? Math.min(4, maximumFractionDigits) : 0;
     return `${new Intl.NumberFormat("en-US", {
-      minimumFractionDigits: number > 0 && number < 1 ? 4 : 0,
-      maximumFractionDigits: digits
+      minimumFractionDigits,
+      maximumFractionDigits
     }).format(number)} SNC`;
   };
 
